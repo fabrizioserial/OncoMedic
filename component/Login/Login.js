@@ -3,6 +3,7 @@ import {SafeAreaView,Image,StyleSheet,Dimensions,View,Text,TextInput,Pressable,M
 import {ButtonCustomeOrange} from '../Buttons/ButtonCustomeOrange.js'
 
 const {width} = Dimensions.get("window")
+const {height} = Dimensions.get("window")
 
 export const Login = ({navigation}) => {
     const [modalVisible, setModalVisible] = useState(false);
@@ -40,8 +41,8 @@ export const Login = ({navigation}) => {
                 </View>
             </Modal>
             
-            <View style={LoginStyle.log_top_color}/>
-            <Image resizeMode={"cover"} style={LoginStyle.log_img_deco1} source={require('../../img/loging_deco.png')}/>
+            <View style={height<700?LoginStyle.log_top_color2:LoginStyle.log_top_color}/>
+            <Image resizeMode={"stretch"} style={height<700?LoginStyle.log_img_deco2:LoginStyle.log_img_deco1} source={require('../../img/loging_deco.png')}/>
             <View style={LoginStyle.log_cont_login}>
                 <View style={LoginStyle.log_cont_login_inside}>
                     <Text style={LoginStyle.log_text_log}>Iniciar</Text>
@@ -122,6 +123,11 @@ const LoginStyle = StyleSheet.create({
         height:80,
         width
     },
+    log_top_color2:{
+        backgroundColor:"#B189F8",
+        height:40,
+        width
+    },
     log_text_log:{
         fontSize: 25,
         fontWeight: 'bold',
@@ -135,6 +141,10 @@ const LoginStyle = StyleSheet.create({
     log_img_deco1:{
         width:"100%",
        height:150
+    },
+    log_img_deco2:{
+        width: "100%",
+        height:100,
     },
     log_cont_login:{
         marginTop: 20,

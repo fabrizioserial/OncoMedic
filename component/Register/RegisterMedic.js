@@ -20,7 +20,7 @@ export const RegisterMedic = ({navigation}) => {
         navigation.navigate("register_ilustrator1",{type:"continuar"})
     }
 
-    const notifyMessage = (msg: string) => {
+    const notifyMessage = (msg) => {
     Platform.OS === 'android' ? ToastAndroid.show(msg, ToastAndroid.SHORT) : AlertIOS.alert(msg)
     }
 
