@@ -1,14 +1,25 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect,useContext} from 'react'
 import { SafeAreaView,View,TextInput,Text,StyleSheet } from 'react-native'
 import { RadioButton } from 'react-native-paper';
+import {ContextElement} from '../../ContextRegister.js'
 
 
-export const ItemRegisterRadio = ({title,handlePress,key}) => {
+export const ItemRegisterRadio = ({title,key}) => {
     const [checked,setChecked] = useState(false)
 
-    useEffect(()=>{
-        handlePress(checked,key)
-    },[checked])
+    const [hip,setHip] = useState(useContext(ContextElement).hipElement)
+    const [epoc,setEpoc] = useState(useContext(ContextElement).epocElement)
+    const [acv,setAcv] = useState(useContext(ContextElement).acvElement)
+    const [inf,setInf] = useState(useContext(ContextElement).infElement)
+    const assd = useContext(ContextElement).hipElement[0]
+
+    useEffect(() => {
+        console.log("--------------")
+        console.log(assd)
+        console.log(hip)
+        title == "Hipertension"? setHip(checked):title=="Epoc"?setEpoc(checked):title=="Acv"?setAcv(checked):setInf(checked) 
+    }, [checked])
+
     
     return (
        
@@ -16,7 +27,7 @@ export const ItemRegisterRadio = ({title,handlePress,key}) => {
             
             <Text style={IRIStyle.iris_text}>{title}</Text>
             <View style={IRIStyle.iris_cont_radio}>
-                <View>
+                <View style={IRIStyle.iris_cont_items}>
                     <Text>Si</Text>
                     <RadioButton
                     value="Si"
@@ -25,7 +36,7 @@ export const ItemRegisterRadio = ({title,handlePress,key}) => {
                     onPress={() => setChecked(true)}/>
                 </View>
                 
-                <View>
+                <View style={IRIStyle.iris_cont_items}>
                     <Text>No</Text>
                     <RadioButton
                     color={"#B189F8"}
@@ -42,14 +53,20 @@ export const ItemRegisterRadio = ({title,handlePress,key}) => {
 
 
 const IRIStyle = StyleSheet.create({
+    iris_cont_items:{
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     iris_cont_radio:{
         flexDirection: 'row',
         justifyContent: 'center',
+        alignItems: 'center',
     },
     iris_text:{
         fontSize: 23,
         textAlign:"center",
         marginBottom:10,
+        
         fontWeight: 'bold',
         color:"#434343"
     }

@@ -36,7 +36,7 @@ import {RegisterIllustrator} from './component/Register/RegisterIllustrator.js'
 import {Register_Swiper} from './component/Register/Register_Swiper.js'
 import {Home} from './component/Home/Home.js'
 import {DailyRegister} from './component/DailyRegister/DailyRegister.js'
-
+import {ContextRegister} from './ContextRegister.js'
 
 
 const Stack = createStackNavigator()
@@ -46,18 +46,21 @@ const App: () => Node = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen  name="Splash_Screen" component={Splash} options={{header: ()=> null}}/>
-        <Stack.Screen  name="login" component={Login} options={{header: ()=> null}}/>
-        <Stack.Screen  name="register" component={Register} options={{header: ()=> null}}/>
-        <Stack.Screen  name="register_medic" component={RegisterMedic} options={{header: ()=> null}}/>
-        <Stack.Screen  name="register_ilustrator1" component={RegisterIllustrator} options={{header: ()=> null}}/>
-        <Stack.Screen  name="register_viewer" component={Register_Swiper} options={{header: ()=> null}}/>
-        <Stack.Screen  name="home" component={Home} options={{header: ()=> null}}/>
-        <Stack.Screen  name="registro_diario" component={DailyRegister} options={{header: ()=> null}}/>
+      <ContextRegister>
+        <Stack.Navigator>
+          <Stack.Screen  name="Splash_Screen" component={Splash} options={{header: ()=> null}}/>
+          <Stack.Screen  name="login" component={Login} options={{header: ()=> null}}/>
+          <Stack.Screen  name="register" component={Register} options={{header: ()=> null}}/>
+          <Stack.Screen  name="register_medic" component={RegisterMedic} options={{header: ()=> null}}/>
+          <Stack.Screen  name="register_ilustrator1" component={RegisterIllustrator} options={{header: ()=> null}}/>
+          <Stack.Screen  name="register_viewer" component={Register_Swiper} options={{header: ()=> null}}/>
+          <Stack.Screen  name="home" component={Home} options={{header: ()=> null}}/>
+          <Stack.Screen  name="registro_diario" component={DailyRegister} options={{header: ()=> null}}/>
 
-        
-      </Stack.Navigator>
+          
+        </Stack.Navigator>
+      </ContextRegister>
+
     </NavigationContainer>
   );
 };

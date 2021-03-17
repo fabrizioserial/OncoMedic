@@ -1,9 +1,10 @@
-import React,{useState,useEffect,useRef} from 'react'
+import React,{useState,useEffect,useRef,useContext} from 'react'
 import { SafeAreaView } from 'react-native'
 import  Swiper  from "react-native-swiper";
 import {RegisterElements} from './RegisterElements.js'
 import {RegisterElementsMore} from './RegisterElementsMore.js'
 import {RegisterIllustrator} from './RegisterIllustrator.js'
+import { ContextElement } from '../../ContextRegister.js'
 
 
 export const Register_Swiper = ({navigation}) => {
@@ -17,9 +18,6 @@ export const Register_Swiper = ({navigation}) => {
     const [fin,setFin] = useState(false)
 
     const [hip,setHip] = useState(false)
-    const [epoc,setEpoc] = useState(false)
-    const [acv,setAcv] = useState(false)
-    const [inf,setInf] = useState(false)
 
     const swiper = React.useRef(null);
 
@@ -31,7 +29,6 @@ export const Register_Swiper = ({navigation}) => {
         setDbt(value)
         console.log(value)
         swiper.current.scrollBy(++index,true);
-
     }
 
     const handleDBTMed = (value) =>{
@@ -39,17 +36,14 @@ export const Register_Swiper = ({navigation}) => {
         swiper.current.scrollBy(++index,true);
     }
 
-    const handleMed = (value) =>{
-        setMed(value)
-    }  
-
     const switchToHome = () =>{
         navigation.navigate("home")
     }
 
     return (
             <Swiper ref={swiper}  loop={false} activeDotColor={"#B189F8"}>
-                
+                {
+                }
                 <RegisterElements key="1"  type={"smoke"} handlePress={handleSwitchScreenSMK}/>
                     {
                         smoke && <RegisterElementsMore type={"smoke"} handlePress={setSmokeR}/>
@@ -58,6 +52,8 @@ export const Register_Swiper = ({navigation}) => {
                     {
                         dbt && <RegisterElementsMore type={"diabetic"} handlePress={handleDBTMed}/>
                     }
+                <RegisterElementsMore type={"medicamento"}/>
+
                 <RegisterIllustrator typeI={"a"} switchScreen={switchToHome}/>
             </Swiper>
             

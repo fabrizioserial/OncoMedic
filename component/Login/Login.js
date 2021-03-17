@@ -3,6 +3,8 @@ import {SafeAreaView,Image,StyleSheet,Dimensions,View,Text,TextInput,Pressable,M
 import {ButtonCustomeOrange} from '../Buttons/ButtonCustomeOrange.js'
 
 const {width} = Dimensions.get("window")
+const {height} = Dimensions.get("window")
+
 
 export const Login = ({navigation}) => {
     const [modalVisible, setModalVisible] = useState(false);
@@ -40,6 +42,9 @@ export const Login = ({navigation}) => {
                 </View>
             </Modal>
             
+            {
+                console.log(height)
+            }
             <View style={LoginStyle.log_top_color}/>
             <Image resizeMode={"cover"} style={LoginStyle.log_img_deco1} source={require('../../img/loging_deco.png')}/>
             <View style={LoginStyle.log_cont_login}>

@@ -13,8 +13,8 @@ export const RegisterElementsMore = ({type,handlePress}) => {
     const smoke_q = ["¿Cantidad por dia?","¿Tiempo fumado?"]
     const dbt_q = ["Insulina","Medicamento 2", "Medicamento 3"]
     const [image,setImage] = useState("")
-    //const [med, setMed] = useState([hip:{state:false,title:"Hipertension"},epoc:{state:false,title:"EPOC"},
-      //                              acv:{state:false,title:"ACV"},inf:{state:false,title:"Infarto"}])
+    const [med, setMed] = useState(["Hipertension","EPOC",
+                                   "ACV","Infarto"])
        
 
     useEffect(() => {
@@ -27,10 +27,7 @@ export const RegisterElementsMore = ({type,handlePress}) => {
         handlePress(value.item)
     }
 
-    const handleMed = (checked,key) =>{
-        const newmed = setMed()
-        handlePress(value)
-    }
+
 
     return (
         <SafeAreaView style={RegisterElementMoreStyle.regelem_const_back}>
@@ -43,8 +40,8 @@ export const RegisterElementsMore = ({type,handlePress}) => {
                 </View>
                 <View style={RegisterElementMoreStyle.regelem_itemcont}> 
                     {
-                        typeRegister == "smoke" ? smoke_q.map((element)=><ItemRegisterInput item={element} handlePress={handlePress} />) : typeRegister == "diabetic" ? dbt_q.map((element)=> <ItemRegister item={element} handlePress={handleSelectItem}/>) : 
-                        med.map((item,key)=><ItemRegisterRadio title={item.title} handlePress={handleMed} key={key}/>)
+                        typeRegister == "smoke" ? smoke_q.map((element,key)=><ItemRegisterInput key={key} item={element} handlePress={handlePress} />) : typeRegister == "diabetic" ? dbt_q.map((element,key)=> <ItemRegister item={element} key={key} handlePress={handleSelectItem}/>) : 
+                        med.map((item,key)=><ItemRegisterRadio title={item} key={key}/>)
                     }
                 </View>
             </ScrollView>

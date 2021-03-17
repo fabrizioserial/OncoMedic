@@ -34,7 +34,7 @@ export const RegisterElements = ({navigation,type,handlePress}) => {
                 </View>
                 <View style={RegisterElementStyle.regelem_itemcont}> 
                     {
-                        typeOption.length > 0 && typeOption.map((element)=><ItemRegister item={element} handlePress={handleSelectItem} />)
+                        typeOption.length > 0 && typeOption.map((element,key)=><ItemRegister key={key} item={element} handlePress={handleSelectItem} />)
                     }
                 </View>
             </ScrollView>
