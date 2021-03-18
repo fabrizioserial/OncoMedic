@@ -3,6 +3,7 @@ import {ToastAndroid,Platform, AlertIOS,
         SafeAreaView,StyleSheet,Dimensions,View,Image,Text,TextInput,ScrollView, Button,Modal,Pressable} from 'react-native'
 import {Picker} from '@react-native-picker/picker'
 import {ButtonCustomeOrange} from '../Buttons/ButtonCustomeOrange.js'
+import DropDownPicker from 'react-native-dropdown-picker'
 
 const {width} = Dimensions.get("window")
  
@@ -11,7 +12,7 @@ export const Register = ({navigation}) => {
     const [modalVisible,setModalVisible] = useState(false)
     const [email,setEmail] = useState("")
     const [name,setName] = useState ("")
-    const [gender,setGender] = useState(0)
+    const [gender,setGender] = useState(null)
     const [birth, setBirth] = useState("")
     const [lenghtbirth,setLength] = useState(0)
     const [birthValidate,setBValidate] = useState(true)
@@ -56,40 +57,12 @@ export const Register = ({navigation}) => {
     Platform.OS === 'android' ? ToastAndroid.show(msg, ToastAndroid.SHORT) : AlertIOS.alert(msg)
     }
 
+    const genderTypes=[{label: 'Masculino', value:0,},
+                {label: 'Femenino', value:1},
+                {label: 'Otro', value:2}]
+
     return (
         <SafeAreaView style={RegisterUser.reguse_cont_background}>
-
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => {
-                Alert.alert("Modal has been closed.");
-                setModalVisible(!modalVisible);
-                }}
-            >
-                <View style={RegisterUser.centeredView}>
-                    <View style={RegisterUser.modalView}>
-                        <Picker
-                            style={RegisterUser.reguse_picker}  
-                            dropdownIconColor={"#AAAAAA"}
-                            selectedValue={gender}
-                            onValueChange={(itemValue, itemIndex) =>
-                                    setGender(itemValue)
-                                    }>
-                        <Picker.Item label="Masculino"  value={0} />
-                        <Picker.Item label="Femenino" value={1} />
-                        <Picker.Item label="No indicar" value={2} />
-                        </Picker>
-                        <Pressable
-                        style={[RegisterUser.button, RegisterUser.buttonClose]}
-                        onPress={() => setModalVisible(!modalVisible)}
-                        >
-                        <Text style={RegisterUser.textStyle}>Confirmar</Text>
-                        </Pressable>
-                    </View>
-                </View>
-            </Modal>
 
             <View style={RegisterUser.reguse_top}>
                 <Image source={require("../../img/ic_user.png")}/>
@@ -106,10 +79,20 @@ export const Register = ({navigation}) => {
                                 <Text style={RegisterUser.reguse_text_upinput}>Nombre y apellido</Text>
                                 <TextInput onChangeText={setName} placeholderTextColor="#c4c4c4" placeholder="Ingrese su ID de paciente" style={RegisterUser.reguse_textInput}></TextInput>
                             </View>
-                            <View style={{marginTop: 25}}>
+                            <View style={{marginTop: 25}} zIndex={10000}>
                                 <View>
                                     <Text style={RegisterUser.reguse_text_upinput}>Genero</Text>
-                                    <Pressable style={RegisterUser.reguse_btn_gender} onPress={()=>setModalVisible(true)}>{gender==0? <Text style={RegisterUser.reguse_text}>Masculino</Text> :gender==1? <Text style={RegisterUser.reguse_text}>Femenino</Text> : <Text style={RegisterUser.reguse_text}>Otro</Text> }</Pressable>
+                                    <DropDownPicker
+                                    items={genderTypes}
+                                    defaultValue={gender}
+                                    style={gender!=null?{backgroundColor: '#fafafa',padding:0, borderRadius: 10}:{backgroundColor: "#E3E3E3",padding:0, borderRadius: 10}}
+                                    itemStyle={{ justifyContent: 'flex-start'}}
+                                    dropDownStyle={{backgroundColor: '#fafafa'}}
+                                    onChangeItem={item => setGender(item.value)}
+                                    placeholder={'Seleccione su genero'}
+                                    placeholderStyle={gender==null?{color:'#AAAAAA'}:{color:'black'}}
+                                    zIndex={30000}>
+                                    </DropDownPicker>
                                 </View>
                                 
                             </View>
@@ -192,6 +175,9 @@ const RegisterUser = StyleSheet.create({
     reguse_text_upinput:{
         color:"#AAAAAA",
         fontSize: 17,
+    },
+    reguse_picker_placeholder:{
+        backgroundColor: "#E3E3E3",   
     },
     reguse_picker:{
         marginTop: 80,
