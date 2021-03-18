@@ -24,6 +24,7 @@ export const RegisterElements = ({navigation,type,handlePress}) => {
 
     return (
         <SafeAreaView style={RegisterElementStyle.regelem_const_back}>
+
             <ScrollView style={RegisterElementStyle.regelem_scroll}>
                 <View style={RegisterElementStyle.regelem_cont}>
                     <View style={RegisterElementStyle.regelem_cont_top}>
