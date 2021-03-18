@@ -85,8 +85,9 @@ export const Register = ({navigation}) => {
                                     <DropDownPicker
                                     items={genderTypes}
                                     defaultValue={gender}
-                                    style={gender!=null?{backgroundColor: '#fafafa',padding:0, borderRadius: 10}:{backgroundColor: "#E3E3E3",padding:0, borderRadius: 10}}
+                                    style={gender!=null?{...RegisterUser.reguse_drop_down_picker,backgroundColor: '#fafafa'}:{...RegisterUser.reguse_drop_down_picker,backgroundColor: "#E3E3E3"}}
                                     itemStyle={{ justifyContent: 'flex-start'}}
+                                    containerStyle={{borderTopLeftRadius:10, borderTopRightRadius:10, borderBottomLeftRadius:10, borderBottomRightRadius:10}}
                                     dropDownStyle={{backgroundColor: '#fafafa'}}
                                     onChangeItem={item => setGender(item.value)}
                                     placeholder={'Seleccione su genero'}
@@ -120,41 +121,14 @@ export const Register = ({navigation}) => {
 }
 
 const RegisterUser = StyleSheet.create({
-    button: {
-        borderRadius: 10,
-        padding: 10,
-        elevation: 2,
-        width:150,
-        backgroundColor: "#B189F8",
-      },
-    textStyle: {
-        color: "white",
-        fontWeight: "bold",
-        textAlign: "center"
-    },
-    centeredView: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 22,
-        backgroundColor: "hsla(175, 75%, 0%, 0.15)",
-    },
-    modalView: {
-        height: 300,
-        margin: 10,
-        backgroundColor: "white",
-        borderRadius: 10,
-        padding: 20,
-        alignItems: "center",
-        justifyContent: 'center',
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 2
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-        elevation: 5
+
+    reguse_drop_down_picker:{
+        padding:0,
+        borderTopLeftRadius:10,
+        borderTopRightRadius:10, 
+        borderBottomLeftRadius:10, 
+        borderBottomRightRadius:10,
+        height:50,
     },
     reguse_validvalue:{
         color:"red"
@@ -175,19 +149,6 @@ const RegisterUser = StyleSheet.create({
     reguse_text_upinput:{
         color:"#AAAAAA",
         fontSize: 17,
-    },
-    reguse_picker_placeholder:{
-        backgroundColor: "#E3E3E3",   
-    },
-    reguse_picker:{
-        marginTop: 80,
-        marginBottom:80,
-        width:300,
-        height:50,
-        padding: 10,
-        borderRadius: 10,
-        backgroundColor: "#E3E3E3",
-        justifyContent: 'center',
     },
     reguse_textInput:{
         marginTop: 6,
