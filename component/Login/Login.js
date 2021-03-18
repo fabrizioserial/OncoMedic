@@ -4,10 +4,6 @@ import {ButtonCustomeOrange} from '../Buttons/ButtonCustomeOrange.js'
 
 const {width} = Dimensions.get("window")
 const {height} = Dimensions.get("window")
-<<<<<<< HEAD
-
-=======
->>>>>>> 46d8e36331128e0f3d7c3afb3e3b10d0ddeca5ab
 
 export const Login = ({navigation}) => {
     const [modalVisible, setModalVisible] = useState(false);
@@ -45,16 +41,8 @@ export const Login = ({navigation}) => {
                 </View>
             </Modal>
             
-<<<<<<< HEAD
-            {
-                console.log(height)
-            }
-            <View style={LoginStyle.log_top_color}/>
-            <Image resizeMode={"cover"} style={LoginStyle.log_img_deco1} source={require('../../img/loging_deco.png')}/>
-=======
             <View style={height<700?LoginStyle.log_top_color2:LoginStyle.log_top_color}/>
-            <Image resizeMode={"stretch"} style={height<700?LoginStyle.log_img_deco2:LoginStyle.log_img_deco1} source={require('../../img/loging_deco.png')}/>
->>>>>>> 46d8e36331128e0f3d7c3afb3e3b10d0ddeca5ab
+            <Image resizeMode={height<700 ?"stretch":"cover"} style={height<700?LoginStyle.log_img_deco2:LoginStyle.log_img_deco1} source={require('../../img/loging_deco.png')}/>
             <View style={LoginStyle.log_cont_login}>
                 <View style={LoginStyle.log_cont_login_inside}>
                     <Text style={LoginStyle.log_text_log}>Iniciar</Text>

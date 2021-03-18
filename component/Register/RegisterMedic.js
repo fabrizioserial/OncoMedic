@@ -5,7 +5,7 @@ import {Picker} from '@react-native-picker/picker'
 import {ButtonCustomeOrange} from '../Buttons/ButtonCustomeOrange.js'
 import { Button, Modal } from 'react-native-paper'
 import {SearchBar} from 'react-native-elements'
-import ModalTest from './ModalTest';
+import {ModalTest} from './ModalTest';
 
 const {width} = Dimensions.get("window")
  
@@ -13,7 +13,7 @@ export const RegisterMedic = ({navigation}) => {
     const [etnia,setEtnia] = useState("No Asignado")
     const [place,setPlace] = useState ("No Asignado")
     const [medic,setMedic] = useState(0)
-    const [medicModal,setMedicModal] = useState(false)
+    const [medicModal,setModalVisible] = useState(false)
     const [medicSearch,setMedicSearch] = useState('')
     const [id, setId] = useState("")
 
@@ -28,6 +28,10 @@ export const RegisterMedic = ({navigation}) => {
     Platform.OS === 'android' ? ToastAndroid.show(msg, ToastAndroid.SHORT) : AlertIOS.alert(msg)
     }
 
+    useEffect(()=>{
+
+        console.log("se switcheo", medicModal)
+    },[medicModal])
     return (
         <SafeAreaView style={RegisterUser.reguse_cont_background}>
 
@@ -62,12 +66,12 @@ export const RegisterMedic = ({navigation}) => {
             <ScrollView  contentContainerStyle={RegisterUser.scroll} >
                 
 
-                if (medicModal) {
+               
                     <ModalTest
                     isVisible={medicModal}
-                    setModalVisible={setMedicModal}>
+                    setModalVisible={setModalVisible}>
                     </ModalTest>
-                }
+                
                 
 
                 <View style={RegisterUser.reguse_cont_cont}>
@@ -81,7 +85,7 @@ export const RegisterMedic = ({navigation}) => {
                             <View>
                                 <Text style={RegisterUser.reguse_text_upinput}>Medico</Text>
                                 <View style={RegisterUser.reguse_picker}>
-                                    <Button style={{width:300, height:20}} onPress={()=>{setMedicModal(!medicModal)}} title={'Medico'}></Button>
+                                    <Button style={{width:300, height:20}} onPress={() => setModalVisible(true)} title={'Medico'}></Button>
                                 </View>
                             </View>
                             <View style={{marginTop: 25}}>
