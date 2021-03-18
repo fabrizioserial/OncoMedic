@@ -1,8 +1,11 @@
 import React, {useState,useEffect} from 'react'
 import {ToastAndroid,Platform, AlertIOS,
-        SafeAreaView,StyleSheet,Dimensions,View,Image,Text,TextInput,ScrollView} from 'react-native'
+        SafeAreaView,StyleSheet,Dimensions,View,Image,Text,TextInput,ScrollView, Pressable} from 'react-native'
 import {Picker} from '@react-native-picker/picker'
 import {ButtonCustomeOrange} from '../Buttons/ButtonCustomeOrange.js'
+import { Button, Modal } from 'react-native-paper'
+import {SearchBar} from 'react-native-elements'
+import ModalTest from './ModalTest';
 
 const {width} = Dimensions.get("window")
  
@@ -10,10 +13,11 @@ export const RegisterMedic = ({navigation}) => {
     const [etnia,setEtnia] = useState("No Asignado")
     const [place,setPlace] = useState ("No Asignado")
     const [medic,setMedic] = useState(0)
+    const [medicModal,setMedicModal] = useState(false)
+    const [medicSearch,setMedicSearch] = useState('')
     const [id, setId] = useState("")
 
-
-
+    const medics=['pedro', 'pepe']
 
     const handleSwitchToRegisterMedic = () =>{
        // id.length > 0 ? etnia != "No Asignado" && medic != 0 && place != "No Asignado" && navigation.navigate("register_ilustrator1") : notifyMessage("Faltan datos")
@@ -26,7 +30,46 @@ export const RegisterMedic = ({navigation}) => {
 
     return (
         <SafeAreaView style={RegisterUser.reguse_cont_background}>
+
+
+            {
+                /*
+                    <Modal
+                animationType="slide"
+                transparent={true}
+                visible={medicModal}
+                onRequestClose={() => {
+                Alert.alert("Modal has been closed.");
+                setMedicModal(!medicModal);
+                }}>
+                       
+                <SearchBar
+                placeholder="Seleccione su medico"
+                onChangeText={(crSearch)=>setMedicSearch(crSearch)}
+                value={medicSearch}>
+                </SearchBar>
+
+                {medics.map((medic)=>{
+                    if(medic.startsWith(medicSearch)){
+                        <Pressable>{medic}</Pressable>
+                    }
+                })}
+                
+                </Modal>
+                */
+            }
+
             <ScrollView  contentContainerStyle={RegisterUser.scroll} >
+                
+
+                if (medicModal) {
+                    <ModalTest
+                    isVisible={medicModal}
+                    setModalVisible={setMedicModal}>
+                    </ModalTest>
+                }
+                
+
                 <View style={RegisterUser.reguse_cont_cont}>
                     <View style={RegisterUser.reguse_top}>
                         <Image source={require("../../img/ic_medic.png")}/>
@@ -38,29 +81,12 @@ export const RegisterMedic = ({navigation}) => {
                             <View>
                                 <Text style={RegisterUser.reguse_text_upinput}>Medico</Text>
                                 <View style={RegisterUser.reguse_picker}>
-                                    <Picker  dropdownIconColor={"#AAAAAA"}
-                                    selectedValue={medic}
-                                    onValueChange={(itemValue, itemIndex) =>
-                                        setMedic(itemValue)
-                                    }>
-                                        <Picker.Item style={{color:"red"}} label="Seleccionar medico" value={0} />
-                                        <Picker.Item label="Carlos" value={1} />
-                                        <Picker.Item label="Mariano" value={2} />
-                                        <Picker.Item label="Juana" value={3} />
-                                    </Picker>
+                                    <Button style={{width:300, height:20}} onPress={()=>{setMedicModal(!medicModal)}} title={'Medico'}></Button>
                                 </View>
                             </View>
                             <View style={{marginTop: 25}}>
                                 <Text style={RegisterUser.reguse_text_upinput}>Lugar</Text>
                                 <View style={RegisterUser.reguse_picker}>
-                                    <Picker  dropdownIconColor={"#AAAAAA"}
-                                    selectedValue={place}
-                                    onValueChange={(itemValue, itemIndex) =>
-                                        setPlace(itemValue)
-                                    }>
-                                        <Picker.Item style={{color:"red"}} label="Seleccionar lugar" value={"No asignado"} />
-                                        <Picker.Item label="Hospital Austral" value={"Hospital Austral"} />
-                                    </Picker>
                                 </View>
                                 
                             </View>
@@ -191,5 +217,14 @@ const RegisterUser = StyleSheet.create({
         height:80,
         flex: 0,
         backgroundColor: "#B189F8",
-    }
+    },
+    reguse_btn_medic:{
+        backgroundColor: "#E3E3E3",
+        width:300,
+        height:50,
+        padding: 10,
+        borderRadius: 10,
+        justifyContent:'center',
+        alignContent: 'center', 
+    },
 })
