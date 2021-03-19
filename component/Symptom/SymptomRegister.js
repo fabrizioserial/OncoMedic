@@ -1,76 +1,75 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect } from 'react'
 import { View,StyleSheet,Image,Text } from 'react-native'
 import DropDownPicker from 'react-native-dropdown-picker'
 
 export const SymptomRegister = () => {
 
-    const [symptom,setSymptom] = useState({value:null,description:null,gravity:null})
+    const [symptom,setSymptom] = useState({label:null,value:null,description:null,gravity:null})
     const [grade,setGrade]= useState(null)
-    const [currentGrades,setCurrentGrades]=useState([])
+    const [currentGrades,setCurrentGrades]= useState([])
 
     const symptoms=[{label: 'Fiebre', value:'Fiebre',descripcion: 'Calor intenso corporal',gravity:[{label:'<36',value:'0'},{label:'>36',value:'1'}]},
     {label: 'Paro cardiaco', value:'Paro cardiaco',descripcion: 'Cmamut',gravity:[{label:'No me muero',value:'0'},{label:'Me',value:'1'}]},
     {label: 'Convulsion', value:'Convulsion',descripcion: 'Convulsionaste capo',gravity:[{label:'Sin vomitos',value:'0'},{label:'Con vomitos',value:'1'}]}]
 
-
-    const generateDropPicker=(datas,data,dataSet,placeHolderText,color,isGrade)=>{
-        return(
-            <DropDownPicker
-                items={datas}
-                defaultValue={data}
-                style={data!=null?{...SymptomStyle.symptom_dropDownPicker,backgroundColor: '#fafafa'}:{...SymptomStyle.symptom_dropDownPicker, backgroundColor: "#E3E3E3",padding:0}}
-
-                itemStyle={{ justifyContent: 'flex-start'}}
-                containerStyle={{borderRadius:10}}
-                dropDownStyle={{backgroundColor: 'white'}}
-                onChangeItem={item =>{
-                    dataSet({value:item.value,description:item.descripcion,gravity:item.gravity})
-                    if(!isGrade){
-                        getCurrentGrade()
-                    }
-                }}
-                placeholderStyle={data==null?{color:color,fontSize:17}:{color:'black',fontSize:17}}
-                zIndex={10000}
-                searchable={true}
-                searchablePlaceholder={placeHolderText}
-                searchablePlaceholderTextColor='#AAAAAA'
-                searchableError={()=><Text>Not Found</Text>}
-                >
-            </DropDownPicker> 
-        ) 
-    }
-
-    const getCurrentGrade=()=>{
-        //TODO gets grades from simptoms
-        /*
-        symptoms.map((symptom)=>{
-            const grav= [{label:symptom.gravity.label,value:symptom.gravity.value}]
-            console.log(grav)
-            console.log(currentGrades.concat(grav))
-            setCurrentGrades(currentGrades.concat(grav))
-            console.log(currentGrades)
-        })
-        */
-    }
+    useEffect(() => {
+        if(symptom.value != null){
+            setCurrentGrades(symptom.gravity)
+        }
+    },[symptom])
+    
+    useEffect(() => {
+        setGrade(null)
+    },[currentGrades])
 
     return (
         <View style={SymptomStyle.symptom_generalView}>
-            {console.log('entro')}
             <View style={SymptomStyle.symptom_topView} zIndex={50}>
                 <Text style={SymptomStyle.symptom_text_title}>Sintomas</Text>
                 <View zIndex={5000} style={SymptomStyle.symptom_dropDownPickerView}>
-                    {generateDropPicker(symptoms,symptom.value,setSymptom,'Seleccione su sintoma','#B189F9',false)}
+                    <DropDownPicker
+                        items={symptoms}
+                        defaultValue={symptom.value}
+                        style={symptom.value!=null?{...SymptomStyle.symptom_dropDownPicker,backgroundColor: '#fafafa'}:{...SymptomStyle.symptom_dropDownPicker, backgroundColor: "#E3E3E3",padding:0}}
+                        itemStyle={{ justifyContent: 'flex-start'}}
+                        containerStyle={{borderRadius:10}}
+                        dropDownStyle={{backgroundColor: 'white'}}
+                        onChangeItem={item =>{
+                            setSymptom(item)
+                        }}
+                        placeholderStyle={symptom==null?{color:'#B189F9',fontSize:17}:{color:'black',fontSize:17}}
+                        zIndex={10000}
+                        searchable={true}
+                        searchablePlaceholder={'Seleccione su sintoma'}
+                        searchablePlaceholderTextColor='#AAAAAA'
+                        searchableError={()=><Text>Not Found</Text>}
+                        >
+                            {console.log(symptom)}
+                    </DropDownPicker> 
                 </View>
-                <View>{symptom==null?
-                <Text style={SymptomStyle.symptom_descriptionText}>Descripcion de sintoma</Text>:
-                <Text style={SymptomStyle.symptom_descriptionText}>{symptom.description}</Text>}</View>
+                <View>{symptom.value==null?
+                <Text style={SymptomStyle.symptom_descriptionText}>Descripcion de sintoma</Text>:<Text style={SymptomStyle.symptom_descriptionText}>{symptom.descripcion}</Text>}</View>
             </View>
             <Image resizeMode={'stretch'} style={SymptomStyle.symptom_imgBack}source={require('../../img/register_deco.png')}/>
             <View style={SymptomStyle.symptom_bottomView}>
                 <Text style={SymptomStyle.symptom_text_title_bottom}>Grado</Text>
                 <View zIndex={4000} style={SymptomStyle.symptom_dropDownPickerView}>
-                    {//currentGrades.length!=0?generateDropPicker(currentGrades,grade,setSymptom,'Que grado de sintoma siente?','#B189F9',true):<Text style={{color:'#AAAAAA'}}>Seleccione sintoma</Text>
-                    }
+                    {currentGrades.length!=0? 
+                        <DropDownPicker
+                            items={currentGrades}
+                            defaultValue={grade}
+                            style={grade!=null?{...SymptomStyle.symptom_dropDownPicker,backgroundColor: '#fafafa'}:{...SymptomStyle.symptom_dropDownPicker, backgroundColor: "#E3E3E3",padding:0}}
+                            itemStyle={{ justifyContent: 'flex-start'}}
+                            containerStyle={{borderRadius:10}}
+                            dropDownStyle={{backgroundColor: 'white'}}
+                            onChangeItem={item =>{
+                                setGrade(item.value)
+                            }}
+                            placeholderStyle={grade==null?{color:'#B189F9',fontSize:17}:{color:'black',fontSize:17}}
+                            zIndex={10000}
+                            >
+                        </DropDownPicker> : <Text>Seleccione un sintoma</Text>}
+                    
                 </View>
             </View>
         </View>
@@ -80,7 +79,8 @@ export const SymptomRegister = () => {
 const SymptomStyle=StyleSheet.create({
 
     symptom_text_title_bottom:{
-        marginTop: 0,
+        marginTop: 20,
+        marginBottom:20,
         fontSize: 25,
         color:'#AAAAAA',
         textAlign:'center'
@@ -130,7 +130,7 @@ const SymptomStyle=StyleSheet.create({
     },
     
     symptom_bottomView:{
-        justifyContent:'center',
+        justifyContent:'flex-start',
         alignContent:'center',
         backgroundColor: 'white',
         alignItems:'center',

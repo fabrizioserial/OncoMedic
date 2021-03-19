@@ -6,11 +6,13 @@ import {ButtonCustomeOrange} from '../Buttons/ButtonCustomeOrange.js'
 import { Button, Modal } from 'react-native-paper'
 import {SearchBar} from 'react-native-elements'
 import {ModalTest} from './ModalTest';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import DropDownPicker from 'react-native-dropdown-picker'
 
 const {width} = Dimensions.get("window")
  
-export const RegisterMedic = ({navigation}) => {
+export const RegisterMedic = ({route,navigation}) => {
     const [etnia,setEtnia] = useState(null)
     const [place,setPlace] = useState (null)
     const [medic,setMedic] = useState(null)
@@ -18,6 +20,8 @@ export const RegisterMedic = ({navigation}) => {
 
     const handleSwitchToRegisterMedic = () =>{
        // id.length > 0 ? etnia != "No Asignado" && medic != 0 && place != "No Asignado" && navigation.navigate("register_ilustrator1") : notifyMessage("Faltan datos")
+        const userValues = route.params
+        console.log({route})
         navigation.navigate("register_ilustrator1",{type:"continuar"})
     }
 
@@ -44,7 +48,7 @@ export const RegisterMedic = ({navigation}) => {
                 dropDownStyle={{backgroundColor: '#fafafa'}}
                 onChangeItem={item => dataSet(item.value)}
                 placeholder={placeHolderText}
-                placeholderStyle={data==null?{color:'#AAAAAA'}:{color:'black'}}
+                placeholderStyle={data==null?{color:'#AAAAAA', fontSize:17}:{color:'black',fontSize:17}}
                 zIndex={30000}
                 >
             </DropDownPicker> 
