@@ -9,6 +9,11 @@ export const Home = ({navigation}) => {
     const switchDailyRegister = () =>{
         navigation.navigate("registro_diario")
     }
+
+    const switchSymptomsRegister = () =>{
+        navigation.navigate('registro_sintoma')
+    }
+
     return (
         <SafeAreaView style={HomeStyle.h_const_background}>
 
@@ -29,7 +34,7 @@ export const Home = ({navigation}) => {
             
 
             <ButtonCustomeHome title={"Como te encuentras hoy?"} orientation={"row"} illustration={"RD"} text={"Completa y cuentanos como te has sentido"} color={"#A476FC"} handlePres={switchDailyRegister}/>
-            <ButtonCustomeHome title={"No te encuentras bien?"} orientation={"row-reverse"} text={"Completa y cuentanos que te sucede!"} color={"#7685FC"} handlePres={switchDailyRegister}/>
+            <ButtonCustomeHome title={"No te encuentras bien?"} orientation={"row-reverse"} text={"Completa y cuentanos que te sucede!"} color={"#7685FC"} handlePres={switchSymptomsRegister}/>
 
         </SafeAreaView>
     )
