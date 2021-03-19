@@ -50,7 +50,7 @@ export const Register = ({navigation}) => {
 
     const handleSwitchToRegisterMedic = () =>{
        // email.length > 0 ? name.length >0 && gender != 0 && birth >0 && navigation.navigate("register_medic") : notifyMessage("Faltan datos")
-        navigation.navigate("register_medic")
+        navigation.navigate("register_medic",{user:{name:name,email:email,gender:gender,birth:birth}})
     }
 
     const notifyMessage = (msg) => {
@@ -91,7 +91,7 @@ export const Register = ({navigation}) => {
                                     dropDownStyle={{backgroundColor: '#fafafa'}}
                                     onChangeItem={item => setGender(item.value)}
                                     placeholder={'Seleccione su genero'}
-                                    placeholderStyle={gender==null?{color:'#AAAAAA'}:{color:'black'}}
+                                    placeholderStyle={gender==null?{color:'#AAAAAA',fontSize:17}:{color:'black',fontSize:17}}
                                     zIndex={30000}>
                                     </DropDownPicker>
                                 </View>

@@ -20,9 +20,9 @@ export const RegisterMedic = ({route,navigation}) => {
 
     const handleSwitchToRegisterMedic = () =>{
        // id.length > 0 ? etnia != "No Asignado" && medic != 0 && place != "No Asignado" && navigation.navigate("register_ilustrator1") : notifyMessage("Faltan datos")
-        const userValues = route.params
-        console.log({route})
-        navigation.navigate("register_ilustrator1",{type:"continuar"})
+        const newUser = {...route.params.user,etnia:etnia,place:place,medic:medic}
+        console.log(newUser)
+        navigation.navigate("register_ilustrator1",{type:"continuar",user:newUser})
     }
 
     const notifyMessage = (msg) => {

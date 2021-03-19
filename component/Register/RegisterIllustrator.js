@@ -6,6 +6,7 @@ const {width} = Dimensions.get("window")
 export const RegisterIllustrator = ({navigation,route,typeI,switchScreen}) => {
 
     const {type} = typeI ? typeI: route.params;
+    const userData= route.params.user
 
     const handleSwitchScreen = () =>{
         navigation.navigate(type == "continuar" ? "register_viewer":"home")
@@ -13,6 +14,7 @@ export const RegisterIllustrator = ({navigation,route,typeI,switchScreen}) => {
 
     return (
         <SafeAreaView style={RegisterIllustratorStyle.regilus_const_background}>
+            {console.log(userData)}
             <Pressable style={RegisterIllustratorStyle.regilus_const_background} onPress={type == "continuar"?handleSwitchScreen:switchScreen}>
                 <View style={RegisterIllustratorStyle.regilus_deco}>
                     <Image style={RegisterIllustratorStyle.regilus_image} resizeMode={"contain"} source={require("../../img/back_ilu1.png")}/>
