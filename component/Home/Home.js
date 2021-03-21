@@ -28,7 +28,7 @@ export const Home = ({navigation}) => {
             </View>
             
 
-            <ButtonCustomeHome title={"Como te encuentras hoy?"} orientation={"row"} illustration={"RD"} text={"Completa y cuentanos como te has sentido"} color={"#A476FC"} handlePres={switchDailyRegister}/>
+            <ButtonCustomeHome title={"Como te encuentras hoy?"} orientation={"row"} illustration={"RD"} text={"Completa y cuentanos como te has sentido"} color={"#A476FC"} handlePress={switchDailyRegister}/>
             <ButtonCustomeHome title={"No te encuentras bien?"} orientation={"row-reverse"} text={"Completa y cuentanos que te sucede!"} color={"#7685FC"} handlePres={switchDailyRegister}/>
 
         </SafeAreaView>

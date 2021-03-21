@@ -1,11 +1,15 @@
 import React from 'react'
 import {Pressable,Text,StyleSheet} from 'react-native'
 
-export const ItemRegister = ({item, handlePress}) => {
+export const ItemRegister = ({item, handlePress,switchSwiper}) => {
     return (
+        switchSwiper ?(
+        <Pressable style={ItemRegisterStyle.ireg_back} onPress={()=>handlePress({item}) , switchSwiper}>
+            <Text style={ItemRegisterStyle.ireg_text}>{item}</Text>
+        </Pressable>):(
         <Pressable style={ItemRegisterStyle.ireg_back} onPress={()=>handlePress({item})}>
             <Text style={ItemRegisterStyle.ireg_text}>{item}</Text>
-        </Pressable>
+        </Pressable>)
     )
 }
 
@@ -13,7 +17,7 @@ const ItemRegisterStyle = StyleSheet.create({
     ireg_back:{
         width:300,
         height:60,
-        backgroundColor: "#E3E3E3",
+        backgroundColor: "#E3E3E3", 
         borderRadius: 12,
         marginTop: 25,
         alignItems: 'center',
@@ -21,7 +25,7 @@ const ItemRegisterStyle = StyleSheet.create({
     },
     ireg_text:{
         fontSize: 19,
-        color:"#434343"
-
+        color:"#434343",
+        textAlign:'center'
     }
 })

@@ -4,7 +4,6 @@ import  Swiper  from "react-native-swiper";
 import {RegisterElements} from './RegisterElements.js'
 import {RegisterElementsMore} from './RegisterElementsMore.js'
 import {RegisterIllustrator} from './RegisterIllustrator.js'
-import { ContextElement } from '../../ContextRegister.js'
 
 
 export const Register_Swiper = ({navigation}) => {
@@ -27,7 +26,6 @@ export const Register_Swiper = ({navigation}) => {
     }
     const handleSwitchScreenDBT = (value) =>{
         setDbt(value)
-        console.log(value)
         swiper.current.scrollBy(++index,true);
     }
 
@@ -42,8 +40,7 @@ export const Register_Swiper = ({navigation}) => {
 
     return (
             <Swiper ref={swiper}  loop={false} activeDotColor={"#B189F8"}>
-                {
-                }
+                
                 <RegisterElements key="1"  type={"smoke"} handlePress={handleSwitchScreenSMK}/>
                     {
                         smoke && <RegisterElementsMore type={"smoke"} handlePress={setSmokeR}/>

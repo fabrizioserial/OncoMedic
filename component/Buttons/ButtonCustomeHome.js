@@ -1,9 +1,9 @@
 import React from 'react'
 import { Pressable,Image,View,Text,StyleSheet } from 'react-native'
 
-export const ButtonCustomeHome = ({color,illustration,title,text,orientation,handlePres}) => {
+export const ButtonCustomeHome = ({color,illustration,title,text,orientation,handlePress}) => {
     return (
-        <Pressable onPress={handlePres} style={{...BCHStyle.bch_back_cont, backgroundColor:color,flexDirection:orientation}}>
+        <Pressable onPress={handlePress} style={{...BCHStyle.bch_back_cont, backgroundColor:color,flexDirection:orientation}}>
             <View >
                 <Text style={[BCHStyle.bch_tile,illustration != "RD" && BCHStyle.bch_textRight]}>{title}</Text>
                 <Text style={[BCHStyle.bch_text,illustration != "RD" && BCHStyle.bch_textRight]}>{text}</Text>

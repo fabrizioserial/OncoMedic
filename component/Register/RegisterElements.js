@@ -37,7 +37,7 @@ export const RegisterElements = ({navigation,type,handlePress}) => {
                     {
                         typeOption.length > 0 && typeOption.map((element,key)=><ItemRegister key={key} item={element} handlePress={handleSelectItem} />)
                     }
-                </View>
+                </View> 
             </ScrollView>
         </SafeAreaView>
     )

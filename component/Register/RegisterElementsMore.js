@@ -16,12 +16,16 @@ export const RegisterElementsMore = ({type,handlePress}) => {
     const [med, setMed] = useState(["Hipertension","EPOC",
                                    "ACV","Infarto"])
        
-
+ 
     useEffect(() => {
         typeRegister == "smoke" ? setImage(require("../../img/ic_smoke.png")) :
         setImage(require("../../img/ic_diabetic.png"))
 
     }, [typeRegister])
+
+    useEffect(() => {
+        setType(type)
+    }, [type])
 
     const handleSelectItem = (value) =>{
         handlePress(value.item)

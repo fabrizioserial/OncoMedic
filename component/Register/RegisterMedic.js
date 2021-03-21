@@ -6,6 +6,10 @@ import {ButtonCustomeOrange} from '../Buttons/ButtonCustomeOrange.js'
 import { Button, Modal } from 'react-native-paper'
 import {SearchBar} from 'react-native-elements'
 import {ModalTest} from './ModalTest';
+import store from '../../reduxStore/store';
+import {setMedicalInformationAction} from '../../reduxStore/actions/registerAction'
+import { RegisterMedic } from 'component\Register\RegisterMedic';
+
 
 const {width} = Dimensions.get("window")
  
@@ -21,6 +25,12 @@ export const RegisterMedic = ({navigation}) => {
 
     const handleSwitchToRegisterMedic = () =>{
        // id.length > 0 ? etnia != "No Asignado" && medic != 0 && place != "No Asignado" && navigation.navigate("register_ilustrator1") : notifyMessage("Faltan datos")
+        setMedicalInformationAction({
+            medic:medic,
+            place:place,
+            etnia:etnia,
+            id:id
+        })
         navigation.navigate("register_ilustrator1",{type:"continuar"})
     }
 
@@ -28,10 +38,6 @@ export const RegisterMedic = ({navigation}) => {
     Platform.OS === 'android' ? ToastAndroid.show(msg, ToastAndroid.SHORT) : AlertIOS.alert(msg)
     }
 
-    useEffect(()=>{
-
-        console.log("se switcheo", medicModal)
-    },[medicModal])
     return (
         <SafeAreaView style={RegisterUser.reguse_cont_background}>
 
@@ -120,6 +126,12 @@ export const RegisterMedic = ({navigation}) => {
         </SafeAreaView>
     )
 }
+
+const mapDispatchToProps = {
+    setMedicalInformationAction
+}
+
+export default connect(null,mapDispatchToProps)(RegisterMedic)
 
 const RegisterUser = StyleSheet.create({
     reguse_validvalue:{

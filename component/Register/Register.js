@@ -3,10 +3,12 @@ import {ToastAndroid,Platform, AlertIOS,
         SafeAreaView,StyleSheet,Dimensions,View,Image,Text,TextInput,ScrollView, Button,Modal,Pressable} from 'react-native'
 import {Picker} from '@react-native-picker/picker'
 import {ButtonCustomeOrange} from '../Buttons/ButtonCustomeOrange.js'
+import {connect} from 'react-redux'
+import {setPersonalInformationAction} from '../../reduxStore/actions/registerAction'
 
 const {width} = Dimensions.get("window")
  
-export const Register = ({navigation}) => {
+const Register = ({navigation,setPersonalInformationAction}) => {
 
     const [modalVisible,setModalVisible] = useState(false)
     const [email,setEmail] = useState("")
@@ -44,11 +46,11 @@ export const Register = ({navigation}) => {
     useEffect(() => {
         const email_aux = email;
         email_aux.length > 0 ? email_aux.includes("@") ? setEValidate(true) : setEValidate(false) : setEValidate(true)
-        console.log(emailValidate)
     }, [email])
 
     const handleSwitchToRegisterMedic = () =>{
        // email.length > 0 ? name.length >0 && gender != 0 && birth >0 && navigation.navigate("register_medic") : notifyMessage("Faltan datos")
+        setPersonalInformationAction({name:name,email:email,gender:gender,birth:birth})
         navigation.navigate("register_medic")
     }
 
@@ -135,6 +137,11 @@ export const Register = ({navigation}) => {
         </SafeAreaView>
     )
 }
+const mapDispatchToProps = {
+    setPersonalInformationAction
+}
+
+export default connect(null,mapDispatchToProps)(Register)
 
 const RegisterUser = StyleSheet.create({
     button: {
@@ -180,7 +187,7 @@ const RegisterUser = StyleSheet.create({
         width,
         paddingBottom: 30,
         alignItems: 'center',
-        minHeight: "100%",
+    
 
     },
     reguse_cont_cont:{

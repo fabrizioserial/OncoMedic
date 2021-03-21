@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import{View, StyleSheet, Modal,Text, Pressable} from 'react-native'
 
 
-export const ModalTest =({isVisible,setMedicModal})=> {
+export const ModalTest =({isVisible,setModalVisible})=> {
         return (
             
         
@@ -11,8 +11,7 @@ export const ModalTest =({isVisible,setMedicModal})=> {
                 transparent={true}
                 visible={isVisible}
                 onRequestClose={() => {
-                Alert.alert("Modal has been closed.");
-                setModalVisible(!modalVisible);
+                setModalVisible(!isVisible);
                 }}
             >
                 <View style={styles.centeredView}>
@@ -20,7 +19,7 @@ export const ModalTest =({isVisible,setMedicModal})=> {
                     <Text style={styles.modalText}>Proximamente va a funcionar</Text>
                     <Pressable
                     style={[styles.button, styles.buttonClose]}
-                    onPress={() => setModalVisible(!modalVisible)}
+                    onPress={() => setModalVisible(!isVisible)}
                     >
                     <Text style={styles.textStyle}>Genial!</Text>
                     </Pressable>
