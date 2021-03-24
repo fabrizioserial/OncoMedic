@@ -1,21 +1,39 @@
 import React,{useState,useEffect}  from 'react'
 import {SafeAreaView,Text,Image,StyleSheet,Dimensions,ScrollView,View} from 'react-native'
-import {ItemRegister} from '../Item/ItemRegister.js'
+import ItemRegister from '../Item/ItemRegister.js'
 import {ItemRegisterInput} from '../Item/ItemRegisterInput.js'
 import {ItemRegisterRadio} from '../Item/ItemRegisterRadio.js'
+import { connect } from 'react-redux';
+import { setSmokeOptionAction } from '../../reduxStore/actions/registerAction';
+import { setMedOptionAction } from '../../reduxStore/actions/registerAction';
 
 
 
 const {width} = Dimensions.get("window")
 
-export const RegisterElementsMore = ({type,handlePress}) => {
+const RegisterElementsMore = ({type,setSmokeOptionAction,setMedOptionAction}) => {
     const [typeRegister,setType] = useState(type)
     const smoke_q = ["¿Cantidad por dia?","¿Tiempo fumado?"]
     const dbt_q = ["Insulina","Medicamento 2", "Medicamento 3"]
     const [image,setImage] = useState("")
     const [med, setMed] = useState(["Hipertension","EPOC",
                                    "ACV","Infarto"])
+    
+    const [qnt, setQnt] = useState("")
+    const [time, setTime] = useState("")
+
+    const [hip, setHip] = useState(false)
+    const [epoc, setEpoc] = useState(false)
+    const [acv, setACV] = useState(false)
+    const [inf, setInf] = useState(false)
        
+    useEffect(() => {
+        setSmokeOptionAction({qnt:qnt,time:time})
+    }, [qnt,time])
+
+    useEffect(() => {
+        setMedOptionAction({hip:hip,epoc:epoc,acv:acv,inf:inf})
+    }, [hip,epoc,acv,inf])
  
     useEffect(() => {
         typeRegister == "smoke" ? setImage(require("../../img/ic_smoke.png")) :
@@ -44,14 +62,22 @@ export const RegisterElementsMore = ({type,handlePress}) => {
                 </View>
                 <View style={RegisterElementMoreStyle.regelem_itemcont}> 
                     {
-                        typeRegister == "smoke" ? smoke_q.map((element,key)=><ItemRegisterInput key={key} item={element} handlePress={handlePress} />) : typeRegister == "diabetic" ? dbt_q.map((element,key)=> <ItemRegister item={element} key={key} handlePress={handleSelectItem}/>) : 
-                        med.map((item,key)=><ItemRegisterRadio title={item} key={key}/>)
+                        typeRegister == "smoke" ? smoke_q.map((element,key)=><ItemRegisterInput type={typeRegister} key={key} item={element} handlePress={element=="¿Cantidad por dia?"?setQnt:setTime} />) : typeRegister == "diabetic_more" ? dbt_q.map((element,key)=> <ItemRegister item={element} key={key} type={typeRegister}  />) : 
+                        med.map((item,key)=><ItemRegisterRadio title={item} key={key} handlePress={item=="ACV"?setACV : item=="EPOC"?setEpoc:item=="Infarto"?setInf:setHip}/>)
                     }
                 </View>
             </ScrollView>
         </SafeAreaView>
     )
 }
+
+const mapDispatchToProps = {
+    setSmokeOptionAction,
+    setMedOptionAction
+}
+
+export default connect(null,mapDispatchToProps)(RegisterElementsMore)
+
 const RegisterElementMoreStyle = StyleSheet.create({
     reglem_img:{
         width:40,

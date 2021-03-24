@@ -8,6 +8,7 @@
 
 import React from 'react';
 import type {Node} from 'react';
+
 import {
   SafeAreaView,
   ScrollView,
@@ -31,13 +32,16 @@ import { createStackNavigator } from '@react-navigation/stack' ;
 import {Splash} from './component/Splash/Splash.js'
 import {Login} from './component/Login/Login.js'
 import Register from './component/Register/Register.js'
-import {RegisterMedic} from './component/Register/RegisterMedic.js'
-import {RegisterIllustrator} from './component/Register/RegisterIllustrator.js'
-import {Register_Swiper} from './component/Register/Register_Swiper.js'
+import RegisterMedic from './component/Register/RegisterMedic.js'
+import RegisterIllustrator from './component/Register/RegisterIllustrator.js'
+import Register_Swiper from './component/Register/Register_Swiper.js'
 import {Home} from './component/Home/Home.js'
 import {DailyRegister} from './component/DailyRegister/DailyRegister.js'
-import store from './reduxStore/store';
+import store from './reduxStore/store'
 import {Provider} from 'react-redux'
+import {ContextRegister} from './ContextRegister.js'
+import {SymptomRegister} from './component/Symptom/SymptomRegister'
+
 
 const Stack = createStackNavigator()
 
@@ -58,7 +62,7 @@ const App: () => Node = () => {
           <Stack.Screen  name="register_viewer" component={Register_Swiper} options={{header: ()=> null}}/>
           <Stack.Screen  name="home" component={Home} options={{header: ()=> null}}/>
           <Stack.Screen  name="registro_diario" component={DailyRegister} options={{header: ()=> null}}/>
-
+          <Stack.Screen  name="registro_sintoma" component={SymptomRegister} options={{header: ()=> null}}/>
           
         </Stack.Navigator>
       </Provider>

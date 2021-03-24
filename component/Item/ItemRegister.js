@@ -1,17 +1,32 @@
 import React from 'react'
 import {Pressable,Text,StyleSheet} from 'react-native'
+import {connect} from 'react-redux' 
+import {setSmokeInformationAction,setDbtInformationAction,setDbtOptionAction} from '../../reduxStore/actions/registerAction'
 
-export const ItemRegister = ({item, handlePress,switchSwiper}) => {
+const ItemRegister = ({item,type,switchSwiper,setSmokeInformationAction,setDbtInformationAction,setDbtOptionAction}) => {
+
+    const saveInformation = (item) =>{
+        type == "smoke" ? setSmokeInformationAction(item.item=="No"?0:item.item=="Fumaba"?1:2) : type == "diabetic" ? setDbtInformationAction(item.item=="No"?false:true):setDbtOptionAction(item.item)
+    }
+
     return (
         switchSwiper ?(
-        <Pressable style={ItemRegisterStyle.ireg_back} onPress={()=>handlePress({item}) , switchSwiper}>
+        <Pressable style={ItemRegisterStyle.ireg_back} onPress={()=>saveInformation({item}) , switchSwiper}>
             <Text style={ItemRegisterStyle.ireg_text}>{item}</Text>
         </Pressable>):(
-        <Pressable style={ItemRegisterStyle.ireg_back} onPress={()=>handlePress({item})}>
+        <Pressable style={ItemRegisterStyle.ireg_back} onPress={()=>saveInformation({item})}>
             <Text style={ItemRegisterStyle.ireg_text}>{item}</Text>
         </Pressable>)
     )
 }
+
+const mapDispatchToProps = {
+    setSmokeInformationAction,
+    setDbtInformationAction,
+    setDbtOptionAction
+}
+
+export default connect(null,mapDispatchToProps)(ItemRegister)
 
 const ItemRegisterStyle = StyleSheet.create({
     ireg_back:{

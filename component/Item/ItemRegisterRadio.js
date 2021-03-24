@@ -3,16 +3,11 @@ import { SafeAreaView,View,TextInput,Text,StyleSheet } from 'react-native'
 import { RadioButton } from 'react-native-paper';
 
 
-export const ItemRegisterRadio = ({title,key}) => {
+export const ItemRegisterRadio = ({title,handlePress}) => {
     const [checked,setChecked] = useState(false)
 
-    const [hip,setHip] = useState()
-    const [epoc,setEpoc] = useState()
-    const [acv,setAcv] = useState()
-    const [inf,setInf] = useState()
-
     useEffect(() => {
-        title == "Hipertension"? setHip(checked):title=="Epoc"?setEpoc(checked):title=="Acv"?setAcv(checked):setInf(checked) 
+        handlePress(checked)
     }, [checked])
 
     
@@ -45,6 +40,7 @@ export const ItemRegisterRadio = ({title,key}) => {
         </SafeAreaView>
     )
 }
+
 
 
 const IRIStyle = StyleSheet.create({

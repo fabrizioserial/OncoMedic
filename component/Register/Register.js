@@ -5,6 +5,7 @@ import {Picker} from '@react-native-picker/picker'
 import {ButtonCustomeOrange} from '../Buttons/ButtonCustomeOrange.js'
 import {connect} from 'react-redux'
 import {setPersonalInformationAction} from '../../reduxStore/actions/registerAction'
+import DropDownPicker from 'react-native-dropdown-picker'
 
 const {width} = Dimensions.get("window")
  
@@ -13,7 +14,7 @@ const Register = ({navigation,setPersonalInformationAction}) => {
     const [modalVisible,setModalVisible] = useState(false)
     const [email,setEmail] = useState("")
     const [name,setName] = useState ("")
-    const [gender,setGender] = useState(0)
+    const [gender,setGender] = useState(2)
     const [birth, setBirth] = useState("")
     const [lenghtbirth,setLength] = useState(0)
     const [birthValidate,setBValidate] = useState(true)
@@ -58,60 +59,42 @@ const Register = ({navigation,setPersonalInformationAction}) => {
     Platform.OS === 'android' ? ToastAndroid.show(msg, ToastAndroid.SHORT) : AlertIOS.alert(msg)
     }
 
+    const genderTypes=[{label: 'Masculino', value:0,},
+                {label: 'Femenino', value:1},
+                {label: 'Otro', value:2}]
+
     return (
         <SafeAreaView style={RegisterUser.reguse_cont_background}>
-
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => {
-                Alert.alert("Modal has been closed.");
-                setModalVisible(!modalVisible);
-                }}
-            >
-                <View style={RegisterUser.centeredView}>
-                    <View style={RegisterUser.modalView}>
-                        <Picker
-                            style={RegisterUser.reguse_picker}  
-                            dropdownIconColor={"#AAAAAA"}
-                            selectedValue={gender}
-                            onValueChange={(itemValue, itemIndex) =>
-                                    setGender(itemValue)
-                                    }>
-                        <Picker.Item label="Masculino"  value={0} />
-                        <Picker.Item label="Femenino" value={1} />
-                        <Picker.Item label="No indicar" value={2} />
-                        </Picker>
-                        <Pressable
-                        style={[RegisterUser.button, RegisterUser.buttonClose]}
-                        onPress={() => setModalVisible(!modalVisible)}
-                        >
-                        <Text style={RegisterUser.textStyle}>Confirmar</Text>
-                        </Pressable>
-                    </View>
-                </View>
-            </Modal>
 
             <View style={RegisterUser.reguse_top}>
                 <Image source={require("../../img/ic_user.png")}/>
                 <Text style={RegisterUser.reguse_text_top}>   DATOS USUARIO</Text>
             </View>
             <View>
-            <Image style={RegisterUser.reguse_top_img} source={require("../../img/register_deco.png")}/>
+                <Image style={RegisterUser.reguse_top_img} source={require("../../img/register_deco.png")}/>
             </View>
             <ScrollView  contentContainerStyle={RegisterUser.scroll} >
                 <View style={RegisterUser.reguse_cont_cont}>
-                    
                     <View style={RegisterUser.reguse_cont_regusein_inputs}>
                             <View>
                                 <Text style={RegisterUser.reguse_text_upinput}>Nombre y apellido</Text>
                                 <TextInput onChangeText={setName} placeholderTextColor="#c4c4c4" placeholder="Ingrese su ID de paciente" style={RegisterUser.reguse_textInput}></TextInput>
                             </View>
-                            <View style={{marginTop: 25}}>
+                            <View style={{marginTop: 25}} zIndex={10000}>
                                 <View>
                                     <Text style={RegisterUser.reguse_text_upinput}>Genero</Text>
-                                    <Pressable style={RegisterUser.reguse_btn_gender} onPress={()=>setModalVisible(true)}>{gender==0? <Text style={RegisterUser.reguse_text}>Masculino</Text> :gender==1? <Text style={RegisterUser.reguse_text}>Femenino</Text> : <Text style={RegisterUser.reguse_text}>Otro</Text> }</Pressable>
+                                    <DropDownPicker
+                                        items={genderTypes}
+                                        defaultValue={gender}
+                                        style={gender!=null?{...RegisterUser.reguse_drop_down_picker,backgroundColor: '#fafafa'}:{...RegisterUser.reguse_drop_down_picker,backgroundColor: "#E3E3E3"}}
+                                        itemStyle={{ justifyContent: 'flex-start'}}
+                                        containerStyle={{borderTopLeftRadius:10, borderTopRightRadius:10, borderBottomLeftRadius:10, borderBottomRightRadius:10}}
+                                        dropDownStyle={{backgroundColor: '#fafafa'}}
+                                        onChangeItem={(item) => setGender(item.value)}
+                                        placeholder={'Seleccione su genero'}
+                                        placeholderStyle={gender==null?{color:'#AAAAAA',fontSize:17}:{color:'black',fontSize:17}}
+                                        zIndex={30}>
+                                    </DropDownPicker>
                                 </View>
                                 
                             </View>
@@ -144,41 +127,14 @@ const mapDispatchToProps = {
 export default connect(null,mapDispatchToProps)(Register)
 
 const RegisterUser = StyleSheet.create({
-    button: {
-        borderRadius: 10,
-        padding: 10,
-        elevation: 2,
-        width:150,
-        backgroundColor: "#B189F8",
-      },
-    textStyle: {
-        color: "white",
-        fontWeight: "bold",
-        textAlign: "center"
-    },
-    centeredView: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 22,
-        backgroundColor: "hsla(175, 75%, 0%, 0.15)",
-    },
-    modalView: {
-        height: 300,
-        margin: 10,
-        backgroundColor: "white",
-        borderRadius: 10,
-        padding: 20,
-        alignItems: "center",
-        justifyContent: 'center',
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 2
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-        elevation: 5
+
+    reguse_drop_down_picker:{
+        padding:0,
+        borderTopLeftRadius:10,
+        borderTopRightRadius:10, 
+        borderBottomLeftRadius:10, 
+        borderBottomRightRadius:10,
+        height:50,
     },
     reguse_validvalue:{
         color:"red"
@@ -199,16 +155,6 @@ const RegisterUser = StyleSheet.create({
     reguse_text_upinput:{
         color:"#AAAAAA",
         fontSize: 17,
-    },
-    reguse_picker:{
-        marginTop: 80,
-        marginBottom:80,
-        width:300,
-        height:50,
-        padding: 10,
-        borderRadius: 10,
-        backgroundColor: "#E3E3E3",
-        justifyContent: 'center',
     },
     reguse_textInput:{
         marginTop: 6,

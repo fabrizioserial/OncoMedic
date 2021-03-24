@@ -1,11 +1,12 @@
 import React,{useState,useEffect}  from 'react'
 import {SafeAreaView,Text,Image,StyleSheet,Dimensions,ScrollView,View} from 'react-native'
-import {ItemRegister} from '../Item/ItemRegister.js'
+import ItemRegister from '../Item/ItemRegister.js'
+
 
 const {width} = Dimensions.get("window")
 
-export const RegisterElements = ({navigation,type,handlePress}) => {
-
+export const RegisterElements = ({navigation,type}) => {
+ 
     const [typeRegister,setType] = useState(type)
     const [textType,setTextype] = useState("")
     const [typeOption,setTypeOption] = useState([])
@@ -17,10 +18,9 @@ export const RegisterElements = ({navigation,type,handlePress}) => {
 
     }, [typeRegister])
 
-    const handleSelectItem = (value) =>{
-        console.log(value)
-        value.item == "No" ? handlePress(false) : handlePress(true)
-    }
+    //const handleSelectItem = (value) =>{
+    //    value.item == "No" ? handlePress(false) : handlePress(true)
+    //}
 
     return (
         <SafeAreaView style={RegisterElementStyle.regelem_const_back}>
@@ -35,13 +35,15 @@ export const RegisterElements = ({navigation,type,handlePress}) => {
                 </View>
                 <View style={RegisterElementStyle.regelem_itemcont}> 
                     {
-                        typeOption.length > 0 && typeOption.map((element,key)=><ItemRegister key={key} item={element} handlePress={handleSelectItem} />)
+                        typeOption.length > 0 && typeOption.map((element,key)=><ItemRegister key={key} type={typeRegister} item={element} />)
                     }
                 </View> 
             </ScrollView>
         </SafeAreaView>
     )
 }
+
+
 
 const RegisterElementStyle = StyleSheet.create({
     regelem_itemcont:{
