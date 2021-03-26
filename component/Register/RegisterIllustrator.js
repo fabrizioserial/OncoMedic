@@ -6,7 +6,6 @@ const {width} = Dimensions.get("window")
 export const RegisterIllustrator = ({navigation,route,typeI,switchScreen}) => {
 
     const {type} = typeI ? typeI: route.params;
-    const userData= route.params.user
 
     const handleSwitchScreen = () =>{
         navigation.navigate(type == "continuar" ? "register_viewer":"home")

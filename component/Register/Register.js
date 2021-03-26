@@ -9,7 +9,6 @@ const {width} = Dimensions.get("window")
  
 export const Register = ({navigation}) => {
 
-    const [modalVisible,setModalVisible] = useState(false)
     const [email,setEmail] = useState("")
     const [name,setName] = useState ("")
     const [gender,setGender] = useState(null)
@@ -50,7 +49,7 @@ export const Register = ({navigation}) => {
 
     const handleSwitchToRegisterMedic = () =>{
        // email.length > 0 ? name.length >0 && gender != 0 && birth >0 && navigation.navigate("register_medic") : notifyMessage("Faltan datos")
-        navigation.navigate("register_medic",{user:{name:name,email:email,gender:gender,birth:birth}})
+        navigation.navigate("register_medic")
     }
 
     const notifyMessage = (msg) => {
