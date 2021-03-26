@@ -3,15 +3,17 @@ import {ToastAndroid,Platform, AlertIOS,
         SafeAreaView,StyleSheet,Dimensions,View,Image,Text,TextInput,ScrollView, Button,Modal,Pressable} from 'react-native'
 import {Picker} from '@react-native-picker/picker'
 import {ButtonCustomeOrange} from '../Buttons/ButtonCustomeOrange.js'
+import {connect} from 'react-redux'
+import {setPersonalInformationAction} from '../../reduxStore/actions/registerAction'
 import DropDownPicker from 'react-native-dropdown-picker'
 
 const {width} = Dimensions.get("window")
  
-export const Register = ({navigation}) => {
+const Register = ({navigation,setPersonalInformationAction}) => {
 
     const [email,setEmail] = useState("")
     const [name,setName] = useState ("")
-    const [gender,setGender] = useState(null)
+    const [gender,setGender] = useState(2)
     const [birth, setBirth] = useState("")
     const [lenghtbirth,setLength] = useState(0)
     const [birthValidate,setBValidate] = useState(true)
@@ -44,11 +46,11 @@ export const Register = ({navigation}) => {
     useEffect(() => {
         const email_aux = email;
         email_aux.length > 0 ? email_aux.includes("@") ? setEValidate(true) : setEValidate(false) : setEValidate(true)
-        console.log(emailValidate)
     }, [email])
 
     const handleSwitchToRegisterMedic = () =>{
        // email.length > 0 ? name.length >0 && gender != 0 && birth >0 && navigation.navigate("register_medic") : notifyMessage("Faltan datos")
+        setPersonalInformationAction({name:name,email:email,gender:gender,birth:birth})
         navigation.navigate("register_medic")
     }
 
@@ -68,11 +70,10 @@ export const Register = ({navigation}) => {
                 <Text style={RegisterUser.reguse_text_top}>   DATOS USUARIO</Text>
             </View>
             <View>
-            <Image style={RegisterUser.reguse_top_img} source={require("../../img/register_deco.png")}/>
+                <Image style={RegisterUser.reguse_top_img} source={require("../../img/register_deco.png")}/>
             </View>
             <ScrollView  contentContainerStyle={RegisterUser.scroll} >
                 <View style={RegisterUser.reguse_cont_cont}>
-                    
                     <View style={RegisterUser.reguse_cont_regusein_inputs}>
                             <View>
                                 <Text style={RegisterUser.reguse_text_upinput}>Nombre y apellido</Text>
@@ -82,16 +83,16 @@ export const Register = ({navigation}) => {
                                 <View>
                                     <Text style={RegisterUser.reguse_text_upinput}>Genero</Text>
                                     <DropDownPicker
-                                    items={genderTypes}
-                                    defaultValue={gender}
-                                    style={gender!=null?{...RegisterUser.reguse_drop_down_picker,backgroundColor: '#fafafa'}:{...RegisterUser.reguse_drop_down_picker,backgroundColor: "#E3E3E3"}}
-                                    itemStyle={{ justifyContent: 'flex-start'}}
-                                    containerStyle={{borderTopLeftRadius:10, borderTopRightRadius:10, borderBottomLeftRadius:10, borderBottomRightRadius:10}}
-                                    dropDownStyle={{backgroundColor: '#fafafa'}}
-                                    onChangeItem={item => setGender(item.value)}
-                                    placeholder={'Seleccione su genero'}
-                                    placeholderStyle={gender==null?{color:'#AAAAAA',fontSize:17}:{color:'black',fontSize:17}}
-                                    zIndex={30000}>
+                                        items={genderTypes}
+                                        defaultValue={gender}
+                                        style={gender!=null?{...RegisterUser.reguse_drop_down_picker,backgroundColor: '#fafafa'}:{...RegisterUser.reguse_drop_down_picker,backgroundColor: "#E3E3E3"}}
+                                        itemStyle={{ justifyContent: 'flex-start'}}
+                                        containerStyle={{borderTopLeftRadius:10, borderTopRightRadius:10, borderBottomLeftRadius:10, borderBottomRightRadius:10}}
+                                        dropDownStyle={{backgroundColor: '#fafafa'}}
+                                        onChangeItem={(item) => setGender(item.value)}
+                                        placeholder={'Seleccione su genero'}
+                                        placeholderStyle={gender==null?{color:'#AAAAAA',fontSize:17}:{color:'black',fontSize:17}}
+                                        zIndex={30}>
                                     </DropDownPicker>
                                 </View>
                                 
@@ -118,6 +119,11 @@ export const Register = ({navigation}) => {
         </SafeAreaView>
     )
 }
+const mapDispatchToProps = {
+    setPersonalInformationAction
+}
+
+export default connect(null,mapDispatchToProps)(Register)
 
 const RegisterUser = StyleSheet.create({
 
@@ -136,7 +142,7 @@ const RegisterUser = StyleSheet.create({
         width,
         paddingBottom: 30,
         alignItems: 'center',
-        minHeight: "100%",
+    
 
     },
     reguse_cont_cont:{

@@ -6,13 +6,15 @@ import {ButtonCustomeOrange} from '../Buttons/ButtonCustomeOrange.js'
 import { Button, Modal } from 'react-native-paper'
 import {SearchBar} from 'react-native-elements'
 import {ModalTest} from './ModalTest';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import store from '../../reduxStore/store';
+import {setMedicalInformationAction} from '../../reduxStore/actions/registerAction'
 import DropDownPicker from 'react-native-dropdown-picker'
+import {connect} from 'react-redux'
+
 
 const {width} = Dimensions.get("window")
  
-export const RegisterMedic = ({route,navigation}) => {
+const RegisterMedic = ({navigation,setMedicalInformationAction}) => {
     const [etnia,setEtnia] = useState(null)
     const [place,setPlace] = useState (null)
     const [medic,setMedic] = useState(null)
@@ -20,13 +22,15 @@ export const RegisterMedic = ({route,navigation}) => {
 
     const handleSwitchToRegisterMedic = () =>{
        // id.length > 0 ? etnia != "No Asignado" && medic != 0 && place != "No Asignado" && navigation.navigate("register_ilustrator1") : notifyMessage("Faltan datos")
+        console.log(id)
+        setMedicalInformationAction({medic:medic,place:place,etnia:etnia,id:id})
         navigation.navigate("register_ilustrator1",{type:"continuar"})
     }
 
     const notifyMessage = (msg) => {
     Platform.OS === 'android' ? ToastAndroid.show(msg, ToastAndroid.SHORT) : AlertIOS.alert(msg)
     }
-
+ 
     const medics=[{label: 'Roberto', value:0,},
     {label: 'Pepe', value:1},
     {label: 'Manuela', value:2}]
@@ -126,6 +130,12 @@ export const RegisterMedic = ({route,navigation}) => {
         </SafeAreaView>
     )
 }
+
+const mapDispatchToProps = {
+    setMedicalInformationAction
+}
+
+export default connect(null,mapDispatchToProps)(RegisterMedic)
 
 const RegisterUser = StyleSheet.create({
     reguse_drop_down_picker:{

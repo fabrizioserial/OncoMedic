@@ -1,23 +1,13 @@
 import React,{useState,useEffect,useContext} from 'react'
 import { SafeAreaView,View,TextInput,Text,StyleSheet } from 'react-native'
 import { RadioButton } from 'react-native-paper';
-import {ContextElement} from '../../ContextRegister.js'
 
 
-export const ItemRegisterRadio = ({title,key}) => {
+export const ItemRegisterRadio = ({title,handlePress}) => {
     const [checked,setChecked] = useState(false)
 
-    const [hip,setHip] = useState(useContext(ContextElement).hipElement)
-    const [epoc,setEpoc] = useState(useContext(ContextElement).epocElement)
-    const [acv,setAcv] = useState(useContext(ContextElement).acvElement)
-    const [inf,setInf] = useState(useContext(ContextElement).infElement)
-    const assd = useContext(ContextElement).hipElement[0]
-
     useEffect(() => {
-        console.log("--------------")
-        console.log(assd)
-        console.log(hip)
-        title == "Hipertension"? setHip(checked):title=="Epoc"?setEpoc(checked):title=="Acv"?setAcv(checked):setInf(checked) 
+        handlePress(checked)
     }, [checked])
 
     
@@ -50,6 +40,7 @@ export const ItemRegisterRadio = ({title,key}) => {
         </SafeAreaView>
     )
 }
+
 
 
 const IRIStyle = StyleSheet.create({

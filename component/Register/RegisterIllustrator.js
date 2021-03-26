@@ -1,19 +1,28 @@
 import React from 'react'
 import { StyleSheet, SafeAreaView,Image,Dimensions,View,Text,Pressable} from 'react-native'
+import { connect } from 'react-redux';
 
 const {width} = Dimensions.get("window")
 
-export const RegisterIllustrator = ({navigation,route,typeI,switchScreen}) => {
+const RegisterIllustrator = ({navigation,route,typeI,switchScreen,userdata}) => {
 
     const {type} = typeI ? typeI: route.params;
-
+//  const userData= route.params.user
+    
     const handleSwitchScreen = () =>{
+        type != "continuar" && pushToDatabase(userData)
         navigation.navigate(type == "continuar" ? "register_viewer":"home")
+    }
+
+    const pushToDatabase = (valueToPush) =>{
+        //TODO
     }
 
     return (
         <SafeAreaView style={RegisterIllustratorStyle.regilus_const_background}>
-            {console.log(userData)}
+            {
+            //console.log(userData)
+            }
             <Pressable style={RegisterIllustratorStyle.regilus_const_background} onPress={type == "continuar"?handleSwitchScreen:switchScreen}>
                 <View style={RegisterIllustratorStyle.regilus_deco}>
                     <Image style={RegisterIllustratorStyle.regilus_image} resizeMode={"contain"} source={require("../../img/back_ilu1.png")}/>
@@ -39,6 +48,15 @@ export const RegisterIllustrator = ({navigation,route,typeI,switchScreen}) => {
         </SafeAreaView>
     )
 }
+
+const mapStateToProps = (state) => {
+    return {
+        userdata: state.user_data
+    }
+}
+
+export default connect(mapStateToProps)(RegisterIllustrator)
+
 const RegisterIllustratorStyle = StyleSheet.create({
     regilus_const_background:{
         width,

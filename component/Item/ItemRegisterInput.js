@@ -1,7 +1,8 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import { SafeAreaView,View,TextInput,Text,StyleSheet } from 'react-native'
 
-export const ItemRegisterInput = ({item,handlePress}) => {
+export const ItemRegisterInput = ({item,type,handlePress}) => {
+
     return (
         <SafeAreaView style={{marginTop: 40,}}>
             <Text style={IRIStyle.iris_text}>{item}</Text>
@@ -9,6 +10,8 @@ export const ItemRegisterInput = ({item,handlePress}) => {
         </SafeAreaView>
     )
 }
+
+
 
 const IRIStyle = StyleSheet.create({
     reguse_textInput:{

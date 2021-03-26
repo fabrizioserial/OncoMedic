@@ -31,12 +31,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack' ;
 import {Splash} from './component/Splash/Splash.js'
 import {Login} from './component/Login/Login.js'
-import {Register} from './component/Register/Register.js'
-import {RegisterMedic} from './component/Register/RegisterMedic.js'
-import {RegisterIllustrator} from './component/Register/RegisterIllustrator.js'
-import {Register_Swiper} from './component/Register/Register_Swiper.js'
+import Register from './component/Register/Register.js'
+import RegisterMedic from './component/Register/RegisterMedic.js'
+import RegisterIllustrator from './component/Register/RegisterIllustrator.js'
+import Register_Swiper from './component/Register/Register_Swiper.js'
 import {Home} from './component/Home/Home.js'
 import {DailyRegister} from './component/DailyRegister/DailyRegister.js'
+import store from './reduxStore/store'
+import {Provider} from 'react-redux'
 import {ContextRegister} from './ContextRegister.js'
 import {SymptomRegister} from './component/Symptom/SymptomRegister'
 
@@ -45,10 +47,12 @@ const Stack = createStackNavigator()
 
 const App: () => Node = () => {
 
+  console.log(store.getState())
 
   return (
     <NavigationContainer>
-      <ContextRegister>
+      <Provider store={store}>
+        
         <Stack.Navigator>
           <Stack.Screen  name="Splash_Screen" component={Splash} options={{header: ()=> null}}/>
           <Stack.Screen  name="login" component={Login} options={{header: ()=> null}}/>
@@ -61,7 +65,7 @@ const App: () => Node = () => {
           <Stack.Screen  name="registro_sintoma" component={SymptomRegister} options={{header: ()=> null}}/>
           
         </Stack.Navigator>
-      </ContextRegister>
+      </Provider>
 
     </NavigationContainer>
   );
