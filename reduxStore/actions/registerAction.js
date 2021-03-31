@@ -12,6 +12,8 @@ export const SET_DBT_OPTION = "SET_DBT_OPTION";
 
 export const SET_MED_OPTION = "SET_MED_OPTION";
 
+export const SET_AVATAR = "SET_AVATAR"
+
 export const SET_DAILYREGISTER_INFORMATION = "SET_DAILYREGISTER_INFORMATION";
 export const REGISTER_USER = "REGISTER_USER";
 export const ADD_DAILYREGISTER = "ADD_DAILYREGISTER";
@@ -60,5 +62,11 @@ export const setMedOptionAction = (userMed) =>{
     return{
         type: SET_MED_OPTION,
         payload: userMed
+    }
+}
+export const setAvatarAction = (userAvatar) =>{
+    return{
+        type: SET_AVATAR,
+        payload: userAvatar
     }
 }

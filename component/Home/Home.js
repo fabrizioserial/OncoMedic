@@ -1,10 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { Pressable } from 'react-native'
 import { SafeAreaView,View,Text,StyleSheet,Dimensions,Image } from 'react-native'
 import {ButtonCustomeHome} from '../Buttons/ButtonCustomeHome.js'
+import { connect } from 'react-redux'
+import {AvatarImage} from '../AvatarImage'
 
 const {width} = Dimensions.get('window')
 
-export const Home = ({navigation}) => {
+const Home = ({navigation, avatarData}) => {
+
+
+    const [avatar,setAvatar] = useState(avatarData)
+
+    useEffect(()=>{
+        setAvatar(avatarData)
+        console.log(avatar)
+    },[avatarData])
 
     const switchDailyRegister = () =>{
         navigation.navigate("registro_diario")
@@ -12,6 +23,10 @@ export const Home = ({navigation}) => {
 
     const switchSymptomsRegister = () =>{
         navigation.navigate('registro_sintoma')
+    }
+
+    const switchAvatarChanger = () => {
+        navigation.navigate('avatar_changer')
     }
 
     return (
@@ -29,7 +44,9 @@ export const Home = ({navigation}) => {
                 
             </View>
             <View style={HomeStyle.h_header}>
-                <Image style={HomeStyle.h_header_img} source={require('../../img/avatar/avatar1.png')}/>
+                <Pressable onPress={switchAvatarChanger} style={HomeStyle.h_header_img}>
+                    <AvatarImage index={avatar} size={'small'}></AvatarImage>
+                </Pressable>
             </View>
             
 
@@ -81,3 +98,11 @@ const HomeStyle = StyleSheet.create({
         position: "relative",
     }
 })
+
+const mapStateToProps = (state) => {
+    return {
+        avatarData: state.user_data.avatar
+    }
+}
+
+export default connect(mapStateToProps)(Home)

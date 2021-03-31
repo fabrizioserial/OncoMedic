@@ -128,7 +128,7 @@ const LoginStyle = StyleSheet.create({
         height:40,
         width
     },
-    UUlog_text_log:{
+    log_text_log:{
         fontSize: 25,
         fontWeight: 'bold',
     },

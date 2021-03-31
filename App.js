@@ -35,12 +35,13 @@ import Register from './component/Register/Register.js'
 import RegisterMedic from './component/Register/RegisterMedic.js'
 import RegisterIllustrator from './component/Register/RegisterIllustrator.js'
 import Register_Swiper from './component/Register/Register_Swiper.js'
-import {Home} from './component/Home/Home.js'
+import Home from './component/Home/Home.js'
 import {DailyRegister} from './component/DailyRegister/DailyRegister.js'
 import store from './reduxStore/store'
 import {Provider} from 'react-redux'
 import {ContextRegister} from './ContextRegister.js'
 import {SymptomRegister} from './component/Symptom/SymptomRegister'
+import AvatarChanger from './component/AvatarChanger/AvatarChanger'
 
 
 const Stack = createStackNavigator()
@@ -63,6 +64,7 @@ const App: () => Node = () => {
           <Stack.Screen  name="home" component={Home} options={{header: ()=> null}}/>
           <Stack.Screen  name="registro_diario" component={DailyRegister} options={{header: ()=> null}}/>
           <Stack.Screen  name="registro_sintoma" component={SymptomRegister} options={{header: ()=> null}}/>
+          <Stack.Screen  name="avatar_changer" component={AvatarChanger} options={{header: ()=> null}}/>
           
         </Stack.Navigator>
       </Provider>

@@ -1,5 +1,5 @@
 import {SET_PERSONAL_INFORMATION,SET_MEDICAL_INFORMATION,SET_SMOKE_INFORMATION,SET_DBT_INFORMATION,
-        SET_DBT_OPTION,SET_SMOKE_OPTION,SET_MED_OPTION} from '../actions/registerAction.js'
+        SET_DBT_OPTION,SET_SMOKE_OPTION,SET_MED_OPTION,SET_AVATAR} from '../actions/registerAction.js'
 
 const default_user ={
     name:"",
@@ -95,6 +95,12 @@ const user_data = (state=default_user , action) =>{
                     acv: action.payload.acv,
                     inf: action.payload.inf,
                 }
+            }
+        }
+        case SET_AVATAR:{
+            return{
+                ...state,
+                avatar:action.payload.avatar
             }
         }
         default: return default_user;
