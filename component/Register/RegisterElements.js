@@ -64,6 +64,7 @@ const RegisterElementStyle = StyleSheet.create({
         flexGrow: 1,
         minHeight: "100%",    
         flexDirection: 'column',
+        marginBottom:200
     },
     regelem_cont:{
         alignItems: 'center',

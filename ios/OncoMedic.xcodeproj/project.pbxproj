@@ -11,10 +11,9 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		355BC16A54307728E1AB9D91 /* libPods-OncoMedic-OncoMedicTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E74B71EE7714143DCF9E01 /* libPods-OncoMedic-OncoMedicTests.a */; };
-		7DF41AC5430C90592D0A51EC /* libPods-OncoMedic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD8FD79BC126D95924B7BCD1 /* libPods-OncoMedic.a */; };
+		698473E8C1913FB4C242D680 /* libPods-OncoMedic-OncoMedicTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A74CEA00361F149BBC4A57A /* libPods-OncoMedic-OncoMedicTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		E54E68C22603D56500FBF1E8 /* libPods-OncoMedic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD8FD79BC126D95924B7BCD1 /* libPods-OncoMedic.a */; };
+		EDE3679A85DDEFC4C403F04E /* libPods-OncoMedic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC012EB0F1FD6F1A8DD8E251 /* libPods-OncoMedic.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,20 +30,36 @@
 		00E356EE1AD99517003FC87E /* OncoMedicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OncoMedicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* OncoMedicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OncoMedicTests.m; sourceTree = "<group>"; };
+		0703B726960742DDABC52754 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
+		0A445F7A656541E681D6CF0D /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* OncoMedic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OncoMedic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = OncoMedic/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = OncoMedic/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = OncoMedic/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = OncoMedic/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = OncoMedic/main.m; sourceTree = "<group>"; };
-		2E85681798B56FE9427BD4ED /* Pods-OncoMedic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OncoMedic.debug.xcconfig"; path = "Target Support Files/Pods-OncoMedic/Pods-OncoMedic.debug.xcconfig"; sourceTree = "<group>"; };
+		201C7EFBE8453409C4B986FA /* Pods-OncoMedic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OncoMedic.debug.xcconfig"; path = "Target Support Files/Pods-OncoMedic/Pods-OncoMedic.debug.xcconfig"; sourceTree = "<group>"; };
+		219C792371BB4DE5A422E7C7 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		234E3FE589244C0EBC7CADFC /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		2D1673DF2D4046E59D898133 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		47C0D05AD4EB4ADD8E6072A0 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		53F8A3313A224C11B6777C1F /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
+		556BC4DFDB0EE321840B954F /* Pods-OncoMedic-OncoMedicTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OncoMedic-OncoMedicTests.debug.xcconfig"; path = "Target Support Files/Pods-OncoMedic-OncoMedicTests/Pods-OncoMedic-OncoMedicTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5E4843A84DBF401E9280E1CE /* Pods-OncoMedic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OncoMedic.release.xcconfig"; path = "Target Support Files/Pods-OncoMedic/Pods-OncoMedic.release.xcconfig"; sourceTree = "<group>"; };
+		6F62DA0510454C7458F2734C /* Pods-OncoMedic-OncoMedicTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OncoMedic-OncoMedicTests.release.xcconfig"; path = "Target Support Files/Pods-OncoMedic-OncoMedicTests/Pods-OncoMedic-OncoMedicTests.release.xcconfig"; sourceTree = "<group>"; };
+		709E070419074C59A8FC8030 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
+		718C4B6D980D42F0B88FFFA9 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
+		7A74CEA00361F149BBC4A57A /* libPods-OncoMedic-OncoMedicTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OncoMedic-OncoMedicTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = OncoMedic/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		99F0A11B0F3CC0FA97B1A435 /* Pods-OncoMedic-OncoMedicTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OncoMedic-OncoMedicTests.debug.xcconfig"; path = "Target Support Files/Pods-OncoMedic-OncoMedicTests/Pods-OncoMedic-OncoMedicTests.debug.xcconfig"; sourceTree = "<group>"; };
-		BC5B510D64211A2492F10826 /* Pods-OncoMedic-OncoMedicTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OncoMedic-OncoMedicTests.release.xcconfig"; path = "Target Support Files/Pods-OncoMedic-OncoMedicTests/Pods-OncoMedic-OncoMedicTests.release.xcconfig"; sourceTree = "<group>"; };
-		BEF4E4F90ACCD2120ABD2DC5 /* Pods-OncoMedic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OncoMedic.release.xcconfig"; path = "Target Support Files/Pods-OncoMedic/Pods-OncoMedic.release.xcconfig"; sourceTree = "<group>"; };
-		DD8FD79BC126D95924B7BCD1 /* libPods-OncoMedic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OncoMedic.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E0E74B71EE7714143DCF9E01 /* libPods-OncoMedic-OncoMedicTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OncoMedic-OncoMedicTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		98F0E995AD534B71A23C668D /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		AF6D06BD37A342DE8DEE5679 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
+		BC012EB0F1FD6F1A8DD8E251 /* libPods-OncoMedic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OncoMedic.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2110C4227834E08865CB8D2 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+		DD008A74471D4ACEB5ACA2AE /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		EDF60CD57274474595706B5E /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
+		F2F891C4A1A24269B8D6D7E9 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
+		FEDC43472ECE4E55B5EA21C1 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				355BC16A54307728E1AB9D91 /* libPods-OncoMedic-OncoMedicTests.a in Frameworks */,
+				698473E8C1913FB4C242D680 /* libPods-OncoMedic-OncoMedicTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,8 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7DF41AC5430C90592D0A51EC /* libPods-OncoMedic.a in Frameworks */,
-				E54E68C22603D56500FBF1E8 /* libPods-OncoMedic.a in Frameworks */,
+				EDE3679A85DDEFC4C403F04E /* libPods-OncoMedic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,8 +116,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				DD8FD79BC126D95924B7BCD1 /* libPods-OncoMedic.a */,
-				E0E74B71EE7714143DCF9E01 /* libPods-OncoMedic-OncoMedicTests.a */,
+				BC012EB0F1FD6F1A8DD8E251 /* libPods-OncoMedic.a */,
+				7A74CEA00361F149BBC4A57A /* libPods-OncoMedic-OncoMedicTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -124,6 +138,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				B88E16878B35D1A4C222113B /* Pods */,
+				D75219DAC9F34E4D950BBE20 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -142,12 +157,35 @@
 		B88E16878B35D1A4C222113B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2E85681798B56FE9427BD4ED /* Pods-OncoMedic.debug.xcconfig */,
-				BEF4E4F90ACCD2120ABD2DC5 /* Pods-OncoMedic.release.xcconfig */,
-				99F0A11B0F3CC0FA97B1A435 /* Pods-OncoMedic-OncoMedicTests.debug.xcconfig */,
-				BC5B510D64211A2492F10826 /* Pods-OncoMedic-OncoMedicTests.release.xcconfig */,
+				201C7EFBE8453409C4B986FA /* Pods-OncoMedic.debug.xcconfig */,
+				5E4843A84DBF401E9280E1CE /* Pods-OncoMedic.release.xcconfig */,
+				556BC4DFDB0EE321840B954F /* Pods-OncoMedic-OncoMedicTests.debug.xcconfig */,
+				6F62DA0510454C7458F2734C /* Pods-OncoMedic-OncoMedicTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D75219DAC9F34E4D950BBE20 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F2F891C4A1A24269B8D6D7E9 /* AntDesign.ttf */,
+				98F0E995AD534B71A23C668D /* Entypo.ttf */,
+				0A445F7A656541E681D6CF0D /* EvilIcons.ttf */,
+				EDF60CD57274474595706B5E /* Feather.ttf */,
+				2D1673DF2D4046E59D898133 /* FontAwesome.ttf */,
+				AF6D06BD37A342DE8DEE5679 /* FontAwesome5_Brands.ttf */,
+				709E070419074C59A8FC8030 /* FontAwesome5_Regular.ttf */,
+				718C4B6D980D42F0B88FFFA9 /* FontAwesome5_Solid.ttf */,
+				FEDC43472ECE4E55B5EA21C1 /* Fontisto.ttf */,
+				234E3FE589244C0EBC7CADFC /* Foundation.ttf */,
+				DD008A74471D4ACEB5ACA2AE /* Ionicons.ttf */,
+				53F8A3313A224C11B6777C1F /* MaterialCommunityIcons.ttf */,
+				219C792371BB4DE5A422E7C7 /* MaterialIcons.ttf */,
+				D2110C4227834E08865CB8D2 /* Octicons.ttf */,
+				47C0D05AD4EB4ADD8E6072A0 /* SimpleLineIcons.ttf */,
+				0703B726960742DDABC52754 /* Zocial.ttf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,12 +195,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "OncoMedicTests" */;
 			buildPhases = (
-				0C98B7B6689EC4510FBB6DC2 /* [CP] Check Pods Manifest.lock */,
+				BD1C59C01539249D879D4C9A /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				C7B8E504ABFB4E6DAD1D6A05 /* [CP] Embed Pods Frameworks */,
-				53CB77AEFE2BACE155FB00BF /* [CP] Copy Pods Resources */,
+				ACFC9FAEC2F30D3EF39A98F3 /* [CP] Embed Pods Frameworks */,
+				D21117BE5CE94C960FCAB257 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -178,14 +216,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "OncoMedic" */;
 			buildPhases = (
-				A0377E578D1271D314F994C3 /* [CP] Check Pods Manifest.lock */,
+				AA57FAA4880F999C23F3BC41 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				2558848451F7458C93F9A4B6 /* [CP] Embed Pods Frameworks */,
-				AFDC6A38E29B8691BC42F70A /* [CP] Copy Pods Resources */,
+				B7FA3ED0AFFCE05443768810 /* [CP] Embed Pods Frameworks */,
+				85FA29D5ADB99C7A93A7FC4D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -266,63 +304,24 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		0C98B7B6689EC4510FBB6DC2 /* [CP] Check Pods Manifest.lock */ = {
+		85FA29D5ADB99C7A93A7FC4D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OncoMedic-OncoMedicTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2558848451F7458C93F9A4B6 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OncoMedic/Pods-OncoMedic-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OncoMedic/Pods-OncoMedic-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OncoMedic/Pods-OncoMedic-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		53CB77AEFE2BACE155FB00BF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OncoMedic-OncoMedicTests/Pods-OncoMedic-OncoMedicTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-OncoMedic/Pods-OncoMedic-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OncoMedic-OncoMedicTests/Pods-OncoMedic-OncoMedicTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-OncoMedic/Pods-OncoMedic-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OncoMedic-OncoMedicTests/Pods-OncoMedic-OncoMedicTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OncoMedic/Pods-OncoMedic-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A0377E578D1271D314F994C3 /* [CP] Check Pods Manifest.lock */ = {
+		AA57FAA4880F999C23F3BC41 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -344,24 +343,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AFDC6A38E29B8691BC42F70A /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OncoMedic/Pods-OncoMedic-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OncoMedic/Pods-OncoMedic-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OncoMedic/Pods-OncoMedic-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C7B8E504ABFB4E6DAD1D6A05 /* [CP] Embed Pods Frameworks */ = {
+		ACFC9FAEC2F30D3EF39A98F3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -376,6 +358,62 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OncoMedic-OncoMedicTests/Pods-OncoMedic-OncoMedicTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B7FA3ED0AFFCE05443768810 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OncoMedic/Pods-OncoMedic-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OncoMedic/Pods-OncoMedic-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OncoMedic/Pods-OncoMedic-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BD1C59C01539249D879D4C9A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OncoMedic-OncoMedicTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D21117BE5CE94C960FCAB257 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OncoMedic-OncoMedicTests/Pods-OncoMedic-OncoMedicTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OncoMedic-OncoMedicTests/Pods-OncoMedic-OncoMedicTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OncoMedic-OncoMedicTests/Pods-OncoMedic-OncoMedicTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -430,9 +468,13 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 99F0A11B0F3CC0FA97B1A435 /* Pods-OncoMedic-OncoMedicTests.debug.xcconfig */;
+			baseConfigurationReference = 556BC4DFDB0EE321840B954F /* Pods-OncoMedic-OncoMedicTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -451,16 +493,22 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OncoMedic.app/OncoMedic";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC5B510D64211A2492F10826 /* Pods-OncoMedic-OncoMedicTests.release.xcconfig */;
+			baseConfigurationReference = 6F62DA0510454C7458F2734C /* Pods-OncoMedic-OncoMedicTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = OncoMedicTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -475,13 +523,15 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OncoMedic.app/OncoMedic";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2E85681798B56FE9427BD4ED /* Pods-OncoMedic.debug.xcconfig */;
+			baseConfigurationReference = 201C7EFBE8453409C4B986FA /* Pods-OncoMedic.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -508,7 +558,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BEF4E4F90ACCD2120ABD2DC5 /* Pods-OncoMedic.release.xcconfig */;
+			baseConfigurationReference = 5E4843A84DBF401E9280E1CE /* Pods-OncoMedic.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

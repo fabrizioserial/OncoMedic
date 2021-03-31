@@ -7,7 +7,7 @@ import RegisterIllustrator from './RegisterIllustrator.js'
 import { connect } from 'react-redux';
 
 
-const Register_Swiper = ({navigation,smokeState,dbtState}) => {
+const Register_Swiper = ({navigation,smokeState,dbtState,dbtMed}) => {
 
     var index =0;
  
@@ -22,13 +22,15 @@ const Register_Swiper = ({navigation,smokeState,dbtState}) => {
     }
 
     useEffect(()=>{
-        smokeState && nextScreen()
+        nextScreen()
+    },[dbtMed])
 
+    useEffect(()=>{
+        nextScreen()
     },[smokeState])
 
     useEffect(()=>{
-        dbtState && nextScreen()
-
+        nextScreen()
     },[dbtState])
     
 
@@ -53,6 +55,7 @@ const mapStateToProps = (state) => {
     return {
         smokeState: state.user_data.smoke.smoke,
         dbtState: state.user_data.dbt.dbt,
+        dbtMed: state.user_data.dbt.med
     }
 }
 

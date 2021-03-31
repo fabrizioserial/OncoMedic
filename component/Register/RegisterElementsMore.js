@@ -62,7 +62,7 @@ const RegisterElementsMore = ({type,setSmokeOptionAction,setMedOptionAction}) =>
                 </View>
                 <View style={RegisterElementMoreStyle.regelem_itemcont}> 
                     {
-                        typeRegister == "smoke" ? smoke_q.map((element,key)=><ItemRegisterInput type={typeRegister} key={key} item={element} handlePress={element=="¿Cantidad por dia?"?setQnt:setTime} />) : typeRegister == "diabetic_more" ? dbt_q.map((element,key)=> <ItemRegister item={element} key={key} type={typeRegister}  />) : 
+                        typeRegister == "smoke" ? smoke_q.map((element,key)=><ItemRegisterInput type={typeRegister} key={key} item={element} handlePress={element=="¿Cantidad por dia?"?setQnt:setTime} />) : typeRegister == "diabetic_more" ? dbt_q.map((element,key)=> <ItemRegister item={element} key={key} type={typeRegister}/>) : 
                         med.map((item,key)=><ItemRegisterRadio title={item} key={key} handlePress={item=="ACV"?setACV : item=="EPOC"?setEpoc:item=="Infarto"?setInf:setHip}/>)
                     }
                 </View>
