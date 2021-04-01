@@ -8,13 +8,17 @@ const {width} = Dimensions.get("window")
 const RegisterIllustrator = ({navigation,userData,goHomeFunction}) => {
     
     const handleSwitchScreen = () =>{
+        
         pushToDatabase(userData)
         goHomeFunction()
     }
 
     const pushToDatabase = (user) =>{
-        console.log('pepe')
-        console.log(user)
+        const userDocument = firestore()
+        .collection('users')
+        .doc(user.id);
+
+        userDocument != null ?
         firestore()
         .collection('users')
         .doc(user.id)
@@ -23,7 +27,8 @@ const RegisterIllustrator = ({navigation,userData,goHomeFunction}) => {
         })
         .then(() => {
             console.log('User added!');
-        });
+        }):
+        console.log('err id exists already')
     }
 
     return (
