@@ -42,6 +42,8 @@ import {Provider} from 'react-redux'
 import {ContextRegister} from './ContextRegister.js'
 import {SymptomRegister} from './component/Symptom/SymptomRegister'
 import AvatarChanger from './component/AvatarChanger/AvatarChanger'
+import { firebase } from '@react-native-firebase/firestore';
+import {RegisterAlmostFinished} from './component/Register/RegisterAlmostFinished'
 
 
 const Stack = createStackNavigator()
@@ -49,6 +51,17 @@ const Stack = createStackNavigator()
 const App: () => Node = () => {
 
   console.log(store.getState())
+
+  firebase.initializeApp(firebaseConfig = {
+    apiKey: "AIzaSyDcinCzje9E9uwyxVhe3So1-Aa4jWmrV8s",
+    authDomain: "oncologia-austral.firebaseapp.com",
+    databaseURL: "https://oncologia-austral-default-rtdb.firebaseio.com",
+    projectId: "oncologia-austral",
+    storageBucket: "oncologia-austral.appspot.com",
+    messagingSenderId: "497357435658",
+    appId: "1:497357435658:web:5a1d7ed2d70cd665fc40f3",
+    measurementId: "G-9MTWR4YYV5"
+  })
 
   return (
     <NavigationContainer>
@@ -65,7 +78,7 @@ const App: () => Node = () => {
           <Stack.Screen  name="registro_diario" component={DailyRegister} options={{header: ()=> null}}/>
           <Stack.Screen  name="registro_sintoma" component={SymptomRegister} options={{header: ()=> null}}/>
           <Stack.Screen  name="avatar_changer" component={AvatarChanger} options={{header: ()=> null}}/>
-          
+          <Stack.Screen  name='register_almost' component={RegisterAlmostFinished} options={{header: ()=> null}}/>
         </Stack.Navigator>
       </Provider>
 

@@ -1,62 +1,34 @@
 import React from 'react'
-import { StyleSheet, SafeAreaView,Image,Dimensions,View,Text,Pressable} from 'react-native'
-import { connect } from 'react-redux';
-import firestore from '@react-native-firebase/firestore';
+import {StyleSheet, SafeAreaView,Image,View,Text,Pressable} from 'react-native'
 
-const {width} = Dimensions.get("window")
+export const RegisterAlmostFinished = ({navigation}) => {
 
-const RegisterIllustrator = ({navigation,userData,goHomeFunction}) => {
-    
-    const handleSwitchScreen = () =>{
-        pushToDatabase(userData)
-        goHomeFunction()
-    }
-
-    const pushToDatabase = (user) =>{
-        console.log('pepe')
-        console.log(user)
-        firestore()
-        .collection('users')
-        .doc(user.id)
-        .set({
-            user
-        })
-        .then(() => {
-            console.log('User added!');
-        });
+    const moveToSwiper = ()=>{
+        navigation.navigate('register_viewer')
     }
 
     return (
         <SafeAreaView style={RegisterIllustratorStyle.regilus_const_background}>
-            <Pressable style={RegisterIllustratorStyle.regilus_const_background} onPress={handleSwitchScreen}>
+            <Pressable style={RegisterIllustratorStyle.regilus_const_background} onPress={moveToSwiper}>
                 <View style={RegisterIllustratorStyle.regilus_deco}>
                     <Image style={RegisterIllustratorStyle.regilus_image} resizeMode={"contain"} source={require("../../img/back_ilu1.png")}/>
                     <Image style={RegisterIllustratorStyle.regilus_image2} resizeMode={"contain"} source={require("../../img/back_ilu2.png")}/>
                     <Image style={RegisterIllustratorStyle.regilus_image3} resizeMode={"cover"} source={require("../../img/back_ilu3.png")}/>
                     <Text style={RegisterIllustratorStyle.regilus_text_cont}>Haz click para continuar</Text>    
                 </View>
-            
                 <View style={RegisterIllustratorStyle.regilus_cont_ilustext}>
-                    <Text style={RegisterIllustratorStyle.regilus_text}>REGISTRO</Text>
-                    <Text style={RegisterIllustratorStyle.regilus_text}>TERMINADO!</Text>
-                    <Image style={RegisterIllustratorStyle.regilus_ilus} resizeMode={"cover"} source={require("../../img/illust_terminado.png")}/>
-                </View>
+                    <Text style={RegisterIllustratorStyle.regilus_text}>CASI</Text>
+                    <Text style={RegisterIllustratorStyle.regilus_text}>TERMINAMOS!</Text>
+                    <Image style={RegisterIllustratorStyle.regilus_ilus} resizeMode={"cover"} source={require("../../img/ilust_casiterminamos.png")}/>
+                 </View>     
             </Pressable>
         </SafeAreaView>
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        userData: state.user_data
-    }
-}
-
-export default connect(mapStateToProps)(RegisterIllustrator)
-
 const RegisterIllustratorStyle = StyleSheet.create({
     regilus_const_background:{
-        width,
+        width:"100%",
         height:"100%",
         backgroundColor: "#B189F8",
         justifyContent: 'center',
@@ -74,23 +46,24 @@ const RegisterIllustratorStyle = StyleSheet.create({
         fontSize: 35,
     },
     regilus_deco:{
-        width,height:"100%",
+        width:"100%",
+        height:"100%",
         position: "relative",
         justifyContent: 'flex-end',
         flexDirection: 'column',
     },
     regilus_image:{
-        width,
+        width:"70%",
         height:"70%",
         position:"absolute"
     },
     regilus_image2:{
-        width,
+        width:"50%",
         height:"50%",
         position:"absolute"
     },
     regilus_image3:{
-        width,
+        width:'20%',
         height:"20%",
         position:"absolute"
     },
@@ -110,3 +83,4 @@ const RegisterIllustratorStyle = StyleSheet.create({
         
     }
 })
+
