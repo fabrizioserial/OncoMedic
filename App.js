@@ -30,7 +30,7 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack' ;
 import {Splash} from './component/Splash/Splash.js'
-import {Login} from './component/Login/Login.js'
+import Login from './component/Login/Login.js'
 import Register from './component/Register/Register.js'
 import RegisterMedic from './component/Register/RegisterMedic.js'
 import RegisterIllustrator from './component/Register/RegisterIllustrator.js'

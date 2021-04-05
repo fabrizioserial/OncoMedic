@@ -31,7 +31,6 @@ const Home = ({navigation, avatarData}) => {
 
     return (
         <SafeAreaView style={HomeStyle.h_const_background}>
-
             <View style={HomeStyle.h_back_img}>
                 <View  style={HomeStyle.h_back_img}>
                     <Image style={HomeStyle.h_img}source={require('../../img/back_home1.png')}/>

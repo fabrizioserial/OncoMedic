@@ -17,11 +17,19 @@ export const SET_AVATAR = "SET_AVATAR"
 export const SET_DAILYREGISTER_INFORMATION = "SET_DAILYREGISTER_INFORMATION";
 export const REGISTER_USER = "REGISTER_USER";
 export const ADD_DAILYREGISTER = "ADD_DAILYREGISTER";
+export const SET_USER="SET_USER";
 
 export const setPersonalInformationAction = (userData) =>{
     return{
         type: SET_PERSONAL_INFORMATION,
         payload: userData
+    }
+}
+
+export const setUser = (userData) =>{
+    return{
+        type: SET_USER,
+        payload:userData
     }
 }
 

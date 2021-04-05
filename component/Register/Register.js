@@ -13,6 +13,7 @@ const Register = ({navigation,setPersonalInformationAction}) => {
 
     const [email,setEmail] = useState("")
     const [name,setName] = useState ("")
+    const [password,setPassword] = useState("")
     const [gender,setGender] = useState(2)
     const [birth, setBirth] = useState("")
     const [lenghtbirth,setLength] = useState(0)
@@ -50,7 +51,7 @@ const Register = ({navigation,setPersonalInformationAction}) => {
 
     const handleSwitchToRegisterMedic = () =>{
        // email.length > 0 ? name.length >0 && gender != 0 && birth >0 && navigation.navigate("register_medic") : notifyMessage("Faltan datos")
-        setPersonalInformationAction({name:name,email:email,gender:gender,birth:birth})
+        setPersonalInformationAction({name:name,email:email,gender:gender,birth:birth,password:password})
         navigation.navigate("register_medic")
     }
 
@@ -77,7 +78,11 @@ const Register = ({navigation,setPersonalInformationAction}) => {
                     <View style={RegisterUser.reguse_cont_regusein_inputs}>
                             <View>
                                 <Text style={RegisterUser.reguse_text_upinput}>Nombre y apellido</Text>
-                                <TextInput onChangeText={setName} placeholderTextColor="#c4c4c4" placeholder="Ingrese su ID de paciente" style={RegisterUser.reguse_textInput}></TextInput>
+                                <TextInput onChangeText={setName} placeholderTextColor="#c4c4c4" placeholder="Ingrese su nombre" style={RegisterUser.reguse_textInput}></TextInput>
+                            </View>
+                            <View style={{marginTop:25}}>
+                                <Text style={RegisterUser.reguse_text_upinput}>Contraseña</Text>
+                                <TextInput onChangeText={setPassword} placeholderTextColor="#c4c4c4" placeholder="Ingrese su contraseña" style={RegisterUser.reguse_textInput}></TextInput>
                             </View>
                             <View style={{marginTop: 25}} zIndex={10000}>
                                 <View>
