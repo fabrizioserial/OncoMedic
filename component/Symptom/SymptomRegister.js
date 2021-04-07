@@ -1,9 +1,14 @@
 import React, {useState,useEffect } from 'react'
+import { Pressable } from 'react-native'
 import { View,StyleSheet,Image,Text } from 'react-native'
 import DropDownPicker from 'react-native-dropdown-picker'
+import { ButtonCustomeOrange } from '../Buttons/ButtonCustomeOrange'
+import { connect } from 'react-redux';
+import firestore from '@react-native-firebase/firestore';
 
-export const SymptomRegister = () => {
+const SymptomRegister = ({navigation,idR}) => {
 
+    const [id,setId] = useState(idR)
     const [symptom,setSymptom] = useState({label:null,value:null,description:null,gravity:null})
     const [grade,setGrade]= useState(null)
     const [currentGrades,setCurrentGrades]= useState([])
@@ -21,6 +26,22 @@ export const SymptomRegister = () => {
     useEffect(() => {
         setGrade(null)
     },[currentGrades])
+
+    useEffect(()=>{
+        setId(id)
+    },[id])
+
+    const pushSymptoms = () =>{
+        const date = new Date()
+        const userDocument = firestore()
+        .collection('symptoms')
+        .add({
+            id:id,
+            symptom:symptom.label,
+            grade:grade,
+            date:date
+        }).then(navigation.navigate('home'))
+    }
 
     return (
         <View style={SymptomStyle.symptom_generalView}>
@@ -71,6 +92,8 @@ export const SymptomRegister = () => {
                         </DropDownPicker> : <Text>Seleccione un sintoma</Text>}
                     
                 </View>
+
+            <ButtonCustomeOrange title="Agregar" handleFunction={pushSymptoms}></ButtonCustomeOrange>
             </View>
         </View>
     )
@@ -84,6 +107,12 @@ const SymptomStyle=StyleSheet.create({
         fontSize: 25,
         color:'#AAAAAA',
         textAlign:'center'
+    },
+
+    symptom_btn_add:{
+        flexDirection: 'row',
+        marginTop: 15,
+        justifyContent: 'center',
     },
 
     symptom_descriptionText:{
@@ -139,6 +168,13 @@ const SymptomStyle=StyleSheet.create({
 
     symptom_imgBack:{
         height:50
-
     }
 })
+
+const mapStateToProps = (state) => {
+    return {
+        idR: state.user_data.id
+    }
+}
+
+export default connect(mapStateToProps)(SymptomRegister)

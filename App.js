@@ -40,7 +40,7 @@ import {DailyRegister} from './component/DailyRegister/DailyRegister.js'
 import store from './reduxStore/store'
 import {Provider} from 'react-redux'
 import {ContextRegister} from './ContextRegister.js'
-import {SymptomRegister} from './component/Symptom/SymptomRegister'
+import SymptomRegister from './component/Symptom/SymptomRegister'
 import AvatarChanger from './component/AvatarChanger/AvatarChanger'
 import { firebase } from '@react-native-firebase/firestore';
 import {RegisterAlmostFinished} from './component/Register/RegisterAlmostFinished'
