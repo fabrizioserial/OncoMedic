@@ -23,7 +23,7 @@ const RegisterIllustrator = ({navigation,userData,goHomeFunction}) => {
         .collection('users')
         .doc(user.id)
         .set({
-            user
+            ...user
         })
         .then(() => {
             console.log('User added!');
