@@ -1,12 +1,16 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import {SafeAreaView,Image,StyleSheet,Dimensions,View,Text,TextInput,Pressable,Modal,Button } from 'react-native'
 import {ButtonCustomeOrange} from '../Buttons/ButtonCustomeOrange.js'
+import {setUser} from '../../reduxStore/actions/registerAction'
+import { connect } from 'react-redux';
 
 const {width} = Dimensions.get("window")
 const {height} = Dimensions.get("window")
 
-export const Login = ({navigation}) => {
+const Login = ({navigation, setUser}) => {
     const [modalVisible, setModalVisible] = useState(false);
+    const [id,setId]=useState("")
+    const [password,setPassword] = useState("")
 
     const handleSwitchToRegister = () =>{
         navigation.navigate('register')
@@ -51,11 +55,11 @@ export const Login = ({navigation}) => {
                 <View style={LoginStyle.log_cont_login_inputs}>
                     <View>
                         <Text style={LoginStyle.log_text_upinput}>ID de paciente</Text>
-                        <TextInput placeholderTextColor="#c4c4c4" placeholder="Ingrese su ID de paciente" style={LoginStyle.log_textInput}></TextInput>
+                        <TextInput onChangeText={setId} placeholderTextColor="#c4c4c4" placeholder="Ingrese su ID de paciente" style={LoginStyle.log_textInput}></TextInput>
                     </View>
                     <View style={{marginTop: 20}}>
                         <Text style={LoginStyle.log_text_upinput}>Constraseña</Text>
-                        <TextInput placeholderTextColor="#c4c4c4" placeholder="Ingrese su contraseña" style={LoginStyle.log_textInput}></TextInput>
+                        <TextInput onChangeText={setPassword} placeholderTextColor="#c4c4c4" placeholder="Ingrese su contraseña" style={LoginStyle.log_textInput}></TextInput>
                     </View>
                     <View style={LoginStyle.log_cont_olvcont}>
                         <Pressable style={{width:300}} onPress={() => setModalVisible(true)}>
@@ -207,3 +211,9 @@ const styles = StyleSheet.create({
     textAlign: "center"
   }
 });
+
+const mapDispatchToProps = {
+    setUser
+}
+
+export default connect(null,mapDispatchToProps) (Login)

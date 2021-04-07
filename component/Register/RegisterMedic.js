@@ -24,7 +24,7 @@ const RegisterMedic = ({navigation,setMedicalInformationAction}) => {
        // id.length > 0 ? etnia != "No Asignado" && medic != 0 && place != "No Asignado" && navigation.navigate("register_ilustrator1") : notifyMessage("Faltan datos")
         console.log(id)
         setMedicalInformationAction({medic:medic,place:place,etnia:etnia,id:id})
-        navigation.navigate("register_ilustrator1",{type:"continuar"})
+        navigation.navigate("register_almost")
     }
 
     const notifyMessage = (msg) => {
