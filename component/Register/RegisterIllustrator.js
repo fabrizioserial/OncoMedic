@@ -1,19 +1,55 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { StyleSheet, SafeAreaView,Image,Dimensions,View,Text,Pressable} from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { connect } from 'react-redux';
 
 const {width} = Dimensions.get("window")
 
 const RegisterIllustrator = ({navigation,userData,goHomeFunction}) => {
+
     
     const handleSwitchScreen = () =>{
-        
-        pushToDatabase(userData)
-        goHomeFunction()
+        pushToDatabase(userData).then(
+            goHomeFunction()
+        )
     }
 
-    const pushToDatabase = (user) =>{
-        //TODO
+    const pushToDatabase = async (user) =>{
+        fetch('https://83b9594e94c4.ngrok.io/users',{
+            method: 'POST',
+            headers:{
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name:user.name,
+                password:user.password,
+                gender:user.gender,
+                email:user.email,
+                birth:user.birth,
+                medic:user.medic,
+                place:user.place,
+                etnia:user.etnia,
+                id:user.id,
+                smoke:user.smoke.smoke,
+                time: user.smoke.time==''?0:user.smoke.time,
+                qnt:user.smoke.qnt==''?0:user.smoke.qnt,
+                dbt:user.dbt.dbt,
+                med:user.dbt.med,
+                gip:user.gip,
+                epoc:user.epoc,
+                acv:user.acv,
+                inf:user.inf,
+                avatar:user.avatar
+            })
+        }).then((response) => response.json())
+        .then(async (json) =>{
+            try{
+                await AsyncStorage.setItem(user.id,json.body.token)
+            }catch(e){
+                console.log('error')
+            }
+        })
     }
 
     return (

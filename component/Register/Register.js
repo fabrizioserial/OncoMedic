@@ -7,6 +7,7 @@ import {connect} from 'react-redux'
 import {setPersonalInformationAction} from '../../reduxStore/actions/registerAction'
 import DropDownPicker from 'react-native-dropdown-picker'
 
+
 const {width} = Dimensions.get("window")
  
 const Register = ({navigation,setPersonalInformationAction}) => {

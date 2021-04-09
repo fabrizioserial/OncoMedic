@@ -3,6 +3,7 @@ import {SafeAreaView,Image,StyleSheet,Dimensions,View,Text,TextInput,Pressable,M
 import {ButtonCustomeOrange} from '../Buttons/ButtonCustomeOrange.js'
 import {setUser} from '../../reduxStore/actions/registerAction'
 import { connect } from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const {width} = Dimensions.get("window")
 const {height} = Dimensions.get("window")
@@ -16,8 +17,61 @@ const Login = ({navigation, setUser}) => {
         navigation.navigate('register')
     }
 
-    const switchToHome = () =>{
-        navigation.navigate('home')
+    const switchToHome = async () =>{
+        const token = await getToken(id)
+        fetch('https://83b9594e94c4.ngrok.io/users/' + id,{
+            method: 'GET',
+            headers:{
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer '+ token
+            }
+        }).then((response) => response.json())
+        .then(async (json) =>{
+            const userGot = json[0]
+            console.log(userGot.password)
+            console.log(password)
+            if(userGot.password==password){
+                const smoke={smoke:json.smoke,time:json.time,qnt:json.qnt}
+                const dbt={dbt:json.dbt,med:json.med}
+                setUser({
+                name:userGot.name,
+                password:userGot.password,
+                gender:userGot.gender,
+                email:userGot.email,
+                birth:userGot.birth,
+                medic:userGot.medic,
+                place:userGot.place,
+                etnia:userGot.etnia,
+                id:userGot.id,
+                smoke:smoke,
+                dbt:dbt,
+                gip:userGot.gip,
+                epoc:userGot.epoc,
+                acv:userGot.acv,
+                inf:userGot.inf,
+                avatar:userGot.avatar
+                })
+                navigation.navigate('home')
+            }
+            else(console.log('error'))
+        })
+    }
+    
+
+    const getToken = async (idToGet) => {
+        try{
+            const value = await AsyncStorage.getItem(idToGet)
+            if(value!=null){
+                return value
+            }
+            else{
+                console.log('err')
+                return
+            }
+        }catch(e){
+            console.log('error')
+        }
     }
 
     return (
@@ -78,6 +132,7 @@ const Login = ({navigation, setUser}) => {
                     </Pressable>
                 </View>
             </View>
+            <Button onPress={()=>AsyncStorage.clear()} title={'clear storage'}></Button>
         </SafeAreaView>
     )
 }

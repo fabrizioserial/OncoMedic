@@ -16,24 +16,32 @@ export const DailyRegister = ({navigation}) => {
 
 
     const cant_screen = 5;
-    var index =0;
 
-    const swipeNext = () =>{
-        cant_screen > index ?
-        swiper.current.scrollBy(++index,true) : cant_screen < index && navigation.navigate("home")
+    const swipeNext = (i) =>{
+        cant_screen >= ++i ?
+        swiper.current.scrollBy(1) : returnHome()
+    }
+
+    const returnHome= () =>{
+        //TODO save in database
+        console.log(mood)
+        console.log(sad)
+        console.log(hungry)
+        console.log(hid)
+        console.log(run)
+        console.log(social)
+        navigation.navigate("home")
     }
 
     return (
         
             <Swiper ref={swiper} loop={false} activeDotColor={"#FFB13A"}>
-                <DailyRegisterOptions type={"ESTADO DE ANIMO"} imageProp={require("../../img/ic_child.png")} switchSwiper={swipeNext} handleValue={setMood}/>
-                <DailyRegisterOptions type={"DOLOR"} imageProp={require("../../img/ic_sad.png")} switchSwiper={swipeNext} handleValue={setSad}/>
-                {/*
-                <DailyRegisterButtons type={"¿APETITO?"} imageProp={require("../../img/ic_utensils.png")} switchSwiper={swipeNext} handleValue={setHungry}/>
-                <DailyRegisterButtons type={"¿HIDRATACION?"} imageProp={require("../../img/ic_water.png")} switchSwiper={swipeNext} handleValue={setHid}/>
-                <DailyRegisterButtons type={"ACTIVIDAD FISICA"} imageProp={require("../../img/ic_run.png")} switchSwiper={swipeNext} handleValue={setRun}/>
-                <DailyRegisterButtons type={"ACTIVIDAD SOCIAL"} imageProp={require("../../img/ic_social.png")} switchSwiper={swipeNext} handleValue={setSocial}/>
-                */}
+                <DailyRegisterOptions type={"ESTADO DE ANIMO"} imageProp={require("../../img/ic_child.png")} switchSwiper={swipeNext} handleValue={setMood} index={0}/>
+                <DailyRegisterOptions type={"DOLOR"} imageProp={require("../../img/ic_sad.png")} switchSwiper={swipeNext} handleValue={setSad} index={1}/>
+                <DailyRegisterButtons type={"¿APETITO?"} imageProp={require("../../img/ic_utensils.png")} switchSwiper={swipeNext} handleValue={setHungry} index={2}/>
+                <DailyRegisterButtons type={"¿HIDRATACION?"} imageProp={require("../../img/ic_water.png")} switchSwiper={swipeNext} handleValue={setHid} index={3}/>
+                <DailyRegisterButtons type={"ACTIVIDAD FISICA"} imageProp={require("../../img/ic_run.png")} switchSwiper={swipeNext} handleValue={setRun} index={4}/>
+                <DailyRegisterButtons type={"ACTIVIDAD SOCIAL"} imageProp={require("../../img/ic_social.png")} switchSwiper={swipeNext} handleValue={setSocial} index={5}/>
             </Swiper>
        
     )
