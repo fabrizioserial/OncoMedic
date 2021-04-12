@@ -5,7 +5,7 @@ const ItemDRButtons = ({item,switchSwiper,handlePress}) => {
 
 
     const optionSelected = (option) =>{
-        await handlePress(option);
+        handlePress(option);
         switchSwiper()
     }
 

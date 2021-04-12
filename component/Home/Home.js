@@ -47,9 +47,6 @@ const Home = ({navigation, avatarData, name}) => {
                 <Pressable onPress={switchAvatarChanger} style={HomeStyle.h_header_img}>
                     <AvatarImage index={avatar} size={'small'}></AvatarImage>
                 </Pressable>
-            </View>
-            
-            <View>
                 <Text style={HomeStyle.h_txt_hola}>Hola,</Text>
                 <Text style={HomeStyle.h_txt_name}>{name}</Text>
             </View>
@@ -62,11 +59,14 @@ const Home = ({navigation, avatarData, name}) => {
 }
 const HomeStyle = StyleSheet.create({
     h_txt_hola:{
+        marginTop:20,
+        marginLeft: 20,
         fontSize: 25, 
     },
     h_txt_name:{
         fontSize:25,
         fontWeight: 'bold',
+        marginLeft: 20,
     },
     h_header_img:{
         width:50,
@@ -76,9 +76,10 @@ const HomeStyle = StyleSheet.create({
         justifyContent: 'center',
         padding: 10,
         width,
-        height:80,
+        height:180,
         position: "absolute",
         top: 0,
+        marginLeft:40
     },
     h_img_view:{
         height:320,

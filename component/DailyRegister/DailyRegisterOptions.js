@@ -39,7 +39,7 @@ export const DailyRegisterOptions = ({type,imageProp,switchSwiper,handleValue,in
                 <View style={DailyRegisterEStyle.dairegele_itemcont}> 
                     {
                         <View style={DailyRegisterEStyle.radOption}>
-                            {inmap.map((item,key)=><ItemDROption title={item} status={status == item ? true:false} onChange={switchOption}/>)}
+                            {inmap.map((item,key)=><ItemDROption key={key} title={item} status={status == item ? true:false} onChange={switchOption}/>)}
                         </View>
                     }
                 </View>

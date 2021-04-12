@@ -46,7 +46,7 @@ const DailyRegister = ({navigation,idR}) => {
         const date = new Date()
         const userDocument = firestore()
         .collection('diaryReg')
-        .doc(id +'EN'+ date.getDate() + date.getMonth() + date.getFullYear())
+        .doc(id +'EN'+ date.getDate() +'DE'+ date.getMonth() +'DE'+ date.getFullYear())
         .set({
             mood:mood,
             sad:sad,

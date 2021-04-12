@@ -5,6 +5,7 @@ import DropDownPicker from 'react-native-dropdown-picker'
 import { ButtonCustomeOrange } from '../Buttons/ButtonCustomeOrange'
 import { connect } from 'react-redux';
 import firestore from '@react-native-firebase/firestore';
+import { Alert } from 'react-native'
 
 const SymptomRegister = ({navigation,idR}) => {
 
@@ -13,9 +14,9 @@ const SymptomRegister = ({navigation,idR}) => {
     const [grade,setGrade]= useState(null)
     const [currentGrades,setCurrentGrades]= useState([])
 
-    const symptoms=[{label: 'Fiebre', value:'Fiebre',descripcion: 'Calor intenso corporal',gravity:[{label:'<36',value:'0'},{label:'>36',value:'1'}]},
-    {label: 'Paro cardiaco', value:'Paro cardiaco',descripcion: 'Cmamut',gravity:[{label:'No me muero',value:'0'},{label:'Me',value:'1'}]},
-    {label: 'Convulsion', value:'Convulsion',descripcion: 'Convulsionaste capo',gravity:[{label:'Sin vomitos',value:'0'},{label:'Con vomitos',value:'1'}]}]
+    const symptoms=[{label: 'Fiebre', value:'Fiebre',descripcion: 'Calor intenso corporal',gravity:[{label:'<36',value:'0'},{label:'>36',value:'6'}]},
+    {label: 'Paro cardiaco', value:'Paro cardiaco',descripcion: 'Cmamut',gravity:[{label:'No me muero',value:'0'},{label:'Me',value:'6'}]},
+    {label: 'Convulsion', value:'Convulsion',descripcion: 'Convulsionaste',gravity:[{label:'Sin vomitos',value:'0'},{label:'Con vomitos',value:'6'}]}]
 
     useEffect(() => {
         if(symptom.value != null){
@@ -31,7 +32,7 @@ const SymptomRegister = ({navigation,idR}) => {
         setId(id)
     },[id])
 
-    const pushSymptoms = () =>{
+    const firestoreSave = () =>{
         const date = new Date()
         const userDocument = firestore()
         .collection('symptoms')
@@ -41,6 +42,25 @@ const SymptomRegister = ({navigation,idR}) => {
             grade:grade,
             date:date
         }).then(navigation.navigate('home'))
+    }
+
+    const pushSymptoms = () =>{
+        if(grade>5){
+            console.log('fue activado')
+            console.log(grade)
+            Alert.alert(
+                "Advertencia",
+                "Se sugiere su visita a un hospital",
+                [
+                    {
+                        text: 'OK',
+                        onPress:() => firestoreSave()
+                    }
+                ]
+            )
+        }else{
+            firestoreSave()
+        }
     }
 
     return (
