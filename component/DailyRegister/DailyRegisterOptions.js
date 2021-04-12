@@ -4,10 +4,14 @@ import {ItemDROption} from '../Item/ItemDROption.js'
 
 const {width} = Dimensions.get('window')
 
-export const DailyRegisterOptions = ({type,imageProp,switchSwiper,handleValue}) => {
+export const DailyRegisterOptions = ({type,imageProp,switchSwiper,handleValue,index}) => {
     const [textType,setTextype] = useState(type)
     const [checked,setChecked] = useState(false)
     const [status,setStatus] = useState("")
+
+    const swipeHandler= () =>{
+        switchSwiper(index)
+    }
 
     const inmap = ["1","2","3","4","5","6","7","8","9","10"]
 
@@ -16,7 +20,10 @@ export const DailyRegisterOptions = ({type,imageProp,switchSwiper,handleValue}) 
     }
 
     useEffect(() => {
-        status != "" && switchSwiper(), handleValue(status)
+        if(status != ""){
+            handleValue(status)
+            swipeHandler(index)
+        }
     }, [status])
 
     return (

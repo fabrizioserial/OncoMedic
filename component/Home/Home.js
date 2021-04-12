@@ -7,10 +7,11 @@ import {AvatarImage} from '../AvatarImage'
 
 const {width} = Dimensions.get('window')
 
-const Home = ({navigation, avatarData}) => {
+const Home = ({navigation, avatarData, name}) => {
 
 
     const [avatar,setAvatar] = useState(avatarData)
+    console.log(avatar)
 
     useEffect(()=>{
         setAvatar(avatarData)
@@ -48,6 +49,10 @@ const Home = ({navigation, avatarData}) => {
                 </Pressable>
             </View>
             
+            <View>
+                <Text style={HomeStyle.h_txt_hola}>Hola,</Text>
+                <Text style={HomeStyle.h_txt_name}>{name}</Text>
+            </View>
 
             <ButtonCustomeHome title={"Como te encuentras hoy?"} orientation={"row"} illustration={"RD"} text={"Completa y cuentanos como te has sentido"} color={"#A476FC"} handlePress={switchDailyRegister}/>
             <ButtonCustomeHome title={"No te encuentras bien?"} orientation={"row-reverse"} text={"Completa y cuentanos que te sucede!"} color={"#7685FC"} handlePress={switchSymptomsRegister}/>
@@ -56,6 +61,13 @@ const Home = ({navigation, avatarData}) => {
     )
 }
 const HomeStyle = StyleSheet.create({
+    h_txt_hola:{
+        fontSize: 25, 
+    },
+    h_txt_name:{
+        fontSize:25,
+        fontWeight: 'bold',
+    },
     h_header_img:{
         width:50,
         height:50
@@ -100,7 +112,8 @@ const HomeStyle = StyleSheet.create({
 
 const mapStateToProps = (state) => {
     return {
-        avatarData: state.user_data.avatar
+        avatarData: state.user_data.avatar,
+        name: state.user_data.name
     }
 }
 

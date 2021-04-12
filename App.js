@@ -36,7 +36,7 @@ import RegisterMedic from './component/Register/RegisterMedic.js'
 import RegisterIllustrator from './component/Register/RegisterIllustrator.js'
 import Register_Swiper from './component/Register/Register_Swiper.js'
 import Home from './component/Home/Home.js'
-import {DailyRegister} from './component/DailyRegister/DailyRegister.js'
+import DailyRegister from './component/DailyRegister/DailyRegister.js'
 import store from './reduxStore/store'
 import {Provider} from 'react-redux'
 import {ContextRegister} from './ContextRegister.js'
@@ -44,6 +44,7 @@ import SymptomRegister from './component/Symptom/SymptomRegister'
 import AvatarChanger from './component/AvatarChanger/AvatarChanger'
 import { firebase } from '@react-native-firebase/firestore';
 import {RegisterAlmostFinished} from './component/Register/RegisterAlmostFinished'
+import {WaitScreen} from './component/Login/WaitScreen'
 
 
 const Stack = createStackNavigator()
@@ -79,6 +80,7 @@ const App: () => Node = () => {
           <Stack.Screen  name="registro_sintoma" component={SymptomRegister} options={{header: ()=> null}}/>
           <Stack.Screen  name="avatar_changer" component={AvatarChanger} options={{header: ()=> null}}/>
           <Stack.Screen  name='register_almost' component={RegisterAlmostFinished} options={{header: ()=> null}}/>
+          <Stack.Screen  name='wait_screen' component={WaitScreen} options={{header: ()=> null}}/>
         </Stack.Navigator>
       </Provider>
 

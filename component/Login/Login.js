@@ -21,9 +21,12 @@ const Login = ({navigation, setUser}) => {
         return firestore()
         .collection('users')
         .doc(id).get().then((doc)=>{
-            if(doc.exists && doc.data().password==password){
+            if(doc.exists && doc.data().password==password && doc.data().status=='Activo'){
                 setUser(doc.data())
                 navigation.navigate('home')
+            }
+            else if(doc.exists && doc.data().password==password && doc.data().status!='Activo'){
+                navigation.navigate('wait_screen')
             }
         })
     }
