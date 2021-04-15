@@ -47,7 +47,7 @@ const Register_Swiper = ({navigation,smokeState,dbtState,dbtMed}) => {
                     }
                 <RegisterElementsMore type={"medicamento"}/>
 
-                <RegisterIllustrator goHomeFunction={() => navigation.navigate('home')}/>
+                <RegisterIllustrator goHomeFunction={() => navigation.navigate('login')}/>
             </Swiper>            
     )
 }

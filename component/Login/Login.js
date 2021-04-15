@@ -4,6 +4,7 @@ import {ButtonCustomeOrange} from '../Buttons/ButtonCustomeOrange.js'
 import firestore from '@react-native-firebase/firestore';
 import {setUser} from '../../reduxStore/actions/registerAction'
 import { connect } from 'react-redux';
+import { Alert } from 'react-native';
 
 const {width} = Dimensions.get("window")
 const {height} = Dimensions.get("window")
@@ -17,8 +18,8 @@ const Login = ({navigation, setUser}) => {
         navigation.navigate('register')
     }
 
-    const switchToHome = () =>{
-        return firestore()
+    const switchToHome = async () =>{
+        return await firestore()
         .collection('users')
         .doc(id).get().then((doc)=>{
             if(doc.exists && doc.data().password==password && doc.data().status=='Activo'){
@@ -27,6 +28,28 @@ const Login = ({navigation, setUser}) => {
             }
             else if(doc.exists && doc.data().password==password && doc.data().status!='Activo'){
                 navigation.navigate('wait_screen')
+            }
+            else if(doc.exists && doc.data().password!=password){
+                Alert.alert(
+                    "Error",
+                    "Contraseña incorrecta",
+                    [
+                        {
+                            text: 'OK',
+                        }
+                    ]
+                )
+            }
+            else{
+                Alert.alert(
+                    "Error",
+                    "Usuario no existe",
+                    [
+                        {
+                            text: 'OK',
+                        }
+                    ]
+                )
             }
         })
     }

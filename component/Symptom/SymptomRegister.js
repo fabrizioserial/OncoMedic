@@ -13,16 +13,36 @@ const SymptomRegister = ({navigation,idR}) => {
     const [symptom,setSymptom] = useState({label:null,value:null,description:null,gravity:null})
     const [grade,setGrade]= useState(null)
     const [currentGrades,setCurrentGrades]= useState([])
+    const [symptomIsLoaded,setSymptomIsLoaded] = useState(false)
+    const [sLoaded,setSLoaded]=useState([{label: 'null', value:'null',descripcion: 'null',gravity:[{label:'<36',value:'0'},{label:'>36',value:'6'}]}])
 
-    const symptoms=[{label: 'Fiebre', value:'Fiebre',descripcion: 'Calor intenso corporal',gravity:[{label:'<36',value:'0'},{label:'>36',value:'6'}]},
-    {label: 'Paro cardiaco', value:'Paro cardiaco',descripcion: 'Cmamut',gravity:[{label:'No me muero',value:'0'},{label:'Me',value:'6'}]},
-    {label: 'Convulsion', value:'Convulsion',descripcion: 'Convulsionaste',gravity:[{label:'Sin vomitos',value:'0'},{label:'Con vomitos',value:'6'}]}]
+    const getSymptoms = async()=>{
+        const sL = []
+        const sLDb = firestore().collection('mainSymptoms')
+        await sLDb.get().then(
+            (snapshot) => {
+                snapshot.forEach(doc => {
+                    console.log(doc.data().label)
+                    sL.push({label:doc.data().label,value:doc.data().value,descripcion:doc.data().descripcion,gravity:doc.data().gravity})
+                })
+            }
+        )
+        setSLoaded(sL)
+    }
 
     useEffect(() => {
         if(symptom.value != null){
             setCurrentGrades(symptom.gravity)
         }
     },[symptom])
+
+    useEffect(() => {
+        if(symptomIsLoaded==false){
+            getSymptoms().then(
+                setSymptomIsLoaded(!symptomIsLoaded)
+            )
+        }  
+    },[symptomIsLoaded])
     
     useEffect(() => {
         setGrade(null)
@@ -64,19 +84,20 @@ const SymptomRegister = ({navigation,idR}) => {
     }
 
     return (
+        symptomIsLoaded?
         <View style={SymptomStyle.symptom_generalView}>
             <View style={SymptomStyle.symptom_topView} zIndex={50}>
                 <Text style={SymptomStyle.symptom_text_title}>Sintomas</Text>
                 <View zIndex={5000} style={SymptomStyle.symptom_dropDownPickerView}>
                     <DropDownPicker
-                        items={symptoms}
+                        items={sLoaded}
                         defaultValue={symptom.value}
                         style={symptom.value!=null?{...SymptomStyle.symptom_dropDownPicker,backgroundColor: '#fafafa'}:{...SymptomStyle.symptom_dropDownPicker, backgroundColor: "#E3E3E3",padding:0}}
                         itemStyle={{ justifyContent: 'flex-start'}}
                         containerStyle={{borderRadius:10}}
                         dropDownStyle={{backgroundColor: 'white'}}
                         onChangeItem={item =>{
-                            setSymptom(item)
+                            setSymptom(item);
                         }}
                         placeholderStyle={symptom==null?{color:'#B189F9',fontSize:17}:{color:'black',fontSize:17}}
                         zIndex={10000}
@@ -115,7 +136,8 @@ const SymptomRegister = ({navigation,idR}) => {
 
             <ButtonCustomeOrange title="Agregar" handleFunction={pushSymptoms}></ButtonCustomeOrange>
             </View>
-        </View>
+        </View>:
+        <View style={{backgroundColor:'#B189F8', height:'100%', width:'100%'}}></View>
     )
 }
 
