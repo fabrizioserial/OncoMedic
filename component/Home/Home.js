@@ -9,7 +9,6 @@ const {width} = Dimensions.get('window')
 
 const Home = ({navigation, avatarData, name}) => {
 
-
     const [avatar,setAvatar] = useState(avatarData)
     console.log(avatar)
 

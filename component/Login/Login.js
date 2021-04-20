@@ -2,9 +2,10 @@ import React,{useEffect, useState} from 'react'
 import {SafeAreaView,Image,StyleSheet,Dimensions,View,Text,TextInput,Pressable,Modal,Button } from 'react-native'
 import {ButtonCustomeOrange} from '../Buttons/ButtonCustomeOrange.js'
 import firestore from '@react-native-firebase/firestore';
-import {setUser} from '../../reduxStore/actions/registerAction'
+import {setUser, logoutUser} from '../../reduxStore/actions/registerAction'
 import { connect } from 'react-redux';
 import { Alert } from 'react-native';
+import {useFocusEffect} from '@react-navigation/native'
 
 const {width} = Dimensions.get("window")
 const {height} = Dimensions.get("window")
@@ -13,6 +14,13 @@ const Login = ({navigation, setUser}) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [id,setId]=useState("")
     const [password,setPassword] = useState("")
+
+    useFocusEffect(
+        React.useCallback(()=>{
+            console.log('buenas')
+            logoutUser()
+        })
+    )
 
     const handleSwitchToRegister = () =>{
         navigation.navigate('register')
@@ -247,7 +255,8 @@ const styles = StyleSheet.create({
 });
 
 const mapDispatchToProps = {
-    setUser
+    setUser,
+    logoutUser
 }
 
 export default connect(null,mapDispatchToProps) (Login)

@@ -48,6 +48,7 @@ const DailyRegister = ({navigation,idR}) => {
         .collection('diaryReg')
         .doc(id +'EN'+ date.getDate() +'DE'+ date.getMonth() +'DE'+ date.getFullYear())
         .set({
+            date:date,
             id:id,
             mood:mood,
             sad:sad,

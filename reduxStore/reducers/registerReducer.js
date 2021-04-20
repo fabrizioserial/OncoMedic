@@ -1,5 +1,5 @@
 import {SET_PERSONAL_INFORMATION,SET_MEDICAL_INFORMATION,SET_SMOKE_INFORMATION,SET_DBT_INFORMATION,
-        SET_DBT_OPTION,SET_SMOKE_OPTION,SET_MED_OPTION,SET_AVATAR,SET_USER} from '../actions/registerAction.js'
+        SET_DBT_OPTION,SET_SMOKE_OPTION,SET_MED_OPTION,SET_AVATAR,SET_USER,USER_LOGOUT} from '../actions/registerAction.js'
 
 const default_user ={
     name:"",
@@ -32,6 +32,12 @@ const default_user ={
 
 const user_data = (state=default_user , action) =>{
     switch (action.type) {
+        case USER_LOGOUT:{
+            return{
+                ...state,
+                ...default_user
+            }
+        }
         case SET_PERSONAL_INFORMATION:{
             return{
                 ...state,
