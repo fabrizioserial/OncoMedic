@@ -1,18 +1,46 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import {Image, StyleSheet} from 'react-native'
+import firestore, { firebase } from '@react-native-firebase/firestore';
+
 
 export const AvatarImage = ({index,size}) => {
-    switch(index){
-        case 1 : return( <Image style={size=='small'?AvatarStyle.small:size=='medium'?AvatarStyle.medium:AvatarStyle.big} source={require('../img/avatar/avatar1.png')}></Image>)
-        case 2 : return( <Image style={size=='small'?AvatarStyle.small:size=='medium'?AvatarStyle.medium:AvatarStyle.big} source={require('../img/avatar/avatar2.png')}></Image>)
-        case 3 : return( <Image style={size=='small'?AvatarStyle.small:size=='medium'?AvatarStyle.medium:AvatarStyle.big} source={require('../img/avatar/avatar3.png')}></Image>)
-        case 4 : return( <Image style={size=='small'?AvatarStyle.small:size=='medium'?AvatarStyle.medium:AvatarStyle.big} source={require('../img/avatar/avatar4.png')}></Image>)
-        case 5 : return( <Image style={size=='small'?AvatarStyle.small:size=='medium'?AvatarStyle.medium:AvatarStyle.big} source={require('../img/avatar/avatar5.png')}></Image>)
-        case 6 : return( <Image style={size=='small'?AvatarStyle.small:size=='medium'?AvatarStyle.medium:AvatarStyle.big} source={require('../img/avatar/avatar6.png')}></Image>)
-        case 7 : return( <Image style={size=='small'?AvatarStyle.small:size=='medium'?AvatarStyle.medium:AvatarStyle.big} source={require('../img/avatar/avatar7.png')}></Image>)
-        case 8 : return( <Image style={size=='small'?AvatarStyle.small:size=='medium'?AvatarStyle.medium:AvatarStyle.big} source={require('../img/avatar/avatar8.png')}></Image>)
-        case 9 : return( <Image style={size=='small'?AvatarStyle.small:size=='medium'?AvatarStyle.medium:AvatarStyle.big} source={require('../img/avatar/avatar9.png')}></Image>)
-        default: return( <Image style={size=='small'?AvatarStyle.small:size=='medium'?AvatarStyle.medium:AvatarStyle.big} source={require('../img/avatar/avatar1.png')}></Image>)
+
+    const [avatarHasL, setAvatarHasl]= useState(false)
+    const [avatars, setAvatars]=useState([])
+
+    function compareAvatars(a,b){
+        return a.id - b.id
+    }
+
+    const getAvatars = async()=>{
+        const AvatarsLoaded = []
+        const AvatarsDb = firestore().collection('avatars')
+        await AvatarsDb.get().then(
+            (snapshot) => {
+                snapshot.forEach(doc => {
+                    AvatarsLoaded.push(doc.data())
+                })
+            })
+            AvatarsLoaded.sort(compareAvatars)
+        return AvatarsLoaded
+    }
+
+    if(!avatarHasL){
+        getAvatars().then((loadedAvatars)=>{
+            setAvatars(loadedAvatars)
+            setAvatarHasl(true)
+            console.log('has loaded')
+        })
+    }  
+
+    if(avatarHasL && index < avatars.length){
+        if(index < avatars.length){
+            console.log(avatars[index])
+            return <Image style={size=='small'?AvatarStyle.small:size=='medium'?AvatarStyle.medium:AvatarStyle.big} source={{uri:avatars[index].url}}></Image>
+        }
+    }
+    else{
+        return <Image style={size=='small'?AvatarStyle.small:size=='medium'?AvatarStyle.medium:AvatarStyle.big} source={require('../img/avatar/avatar1.png')}></Image>
     }
 }
 
