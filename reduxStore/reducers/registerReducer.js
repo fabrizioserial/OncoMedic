@@ -25,7 +25,8 @@ const default_user ={
         acv:false,
         inf:false
     },
-    avatar:""
+    avatar:"",
+    status:""
 }
 
 const user_data = (state=default_user , action) =>{

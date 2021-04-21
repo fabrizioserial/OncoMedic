@@ -22,9 +22,9 @@ const RegisterIllustrator = ({navigation,userData,goHomeFunction}) => {
         firestore()
         .collection('users')
         .doc(user.id)
-        .set({
+        .set(
             user
-        })
+        )
         .then(() => {
             console.log('User added!');
         }):

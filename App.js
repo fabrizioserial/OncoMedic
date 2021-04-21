@@ -50,8 +50,6 @@ const Stack = createStackNavigator()
 
 const App: () => Node = () => {
 
-  console.log(store.getState())
-
   firebase.initializeApp(firebaseConfig = {
     apiKey: "AIzaSyDcinCzje9E9uwyxVhe3So1-Aa4jWmrV8s",
     authDomain: "oncologia-austral.firebaseapp.com",
