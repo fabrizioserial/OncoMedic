@@ -6,6 +6,7 @@ import { ButtonCustomeOrange } from '../Buttons/ButtonCustomeOrange'
 import { connect } from 'react-redux';
 import firestore from '@react-native-firebase/firestore';
 import { Alert } from 'react-native'
+import {ActivityIndicator} from 'react-native-paper';
 
 const SymptomRegister = ({navigation,idR}) => {
 
@@ -14,7 +15,8 @@ const SymptomRegister = ({navigation,idR}) => {
     const [grade,setGrade]= useState(null)
     const [currentGrades,setCurrentGrades]= useState([])
     const [symptomIsLoaded,setSymptomIsLoaded] = useState(false)
-    const [sLoaded,setSLoaded]=useState([{label: 'null', value:'null',descripcion: 'null',gravity:[{label:'<36',value:'0'},{label:'>36',value:'6'}]}])
+    const [sLoaded,setSLoaded]=useState([{label: 'LOADING', value:'null',descripcion: 'null',gravity:[{label:'LOADING',value:'0'}]}])
+    const [isLoading, setIsLoading]= useState(false)
 
     const getSymptoms = async()=>{
         const sL = []
@@ -53,6 +55,7 @@ const SymptomRegister = ({navigation,idR}) => {
     },[id])
 
     const firestoreSave = () =>{
+        setIsLoading(true)
         const date = new Date()
         const userDocument = firestore()
         .collection('symptoms')
@@ -61,7 +64,7 @@ const SymptomRegister = ({navigation,idR}) => {
             symptom:symptom.label,
             grade:grade,
             date:date
-        }).then(navigation.navigate('home'))
+        }).then(setIsLoading(false),navigation.navigate('home'))
     }
 
     const pushSymptoms = () =>{
@@ -84,7 +87,6 @@ const SymptomRegister = ({navigation,idR}) => {
     }
 
     return (
-        symptomIsLoaded?
         <View style={SymptomStyle.symptom_generalView}>
             <View style={SymptomStyle.symptom_topView} zIndex={50}>
                 <Text style={SymptomStyle.symptom_text_title}>Sintomas</Text>
@@ -136,12 +138,25 @@ const SymptomRegister = ({navigation,idR}) => {
 
             <ButtonCustomeOrange title="Agregar" handleFunction={pushSymptoms}></ButtonCustomeOrange>
             </View>
-        </View>:
-        <View style={{backgroundColor:'#B189F8', height:'100%', width:'100%'}}></View>
+            {isLoading && 
+            <View style={SymptomStyle.symptom_loading} zIndex={1000000}>
+            <ActivityIndicator animating={true} color={"#FFFFFF"} size='large' />
+            </View>}
+        </View>
+        
     )
 }
 
 const SymptomStyle=StyleSheet.create({
+
+    symptom_loading:{
+        position: 'absolute',
+        backgroundColor:'#707070',
+        opacity:0.7, 
+        width:'100%',
+        height:'100%',
+        justifyContent:'center'
+    },
 
     symptom_text_title_bottom:{
         marginTop: 20,
