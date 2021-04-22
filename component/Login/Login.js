@@ -1,19 +1,65 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import {SafeAreaView,Image,StyleSheet,Dimensions,View,Text,TextInput,Pressable,Modal,Button } from 'react-native'
 import {ButtonCustomeOrange} from '../Buttons/ButtonCustomeOrange.js'
+import firestore from '@react-native-firebase/firestore';
+import {setUser, logoutUser} from '../../reduxStore/actions/registerAction'
+import { connect } from 'react-redux';
+import { Alert } from 'react-native';
+import {useFocusEffect} from '@react-navigation/native'
 
 const {width} = Dimensions.get("window")
 const {height} = Dimensions.get("window")
 
-export const Login = ({navigation}) => {
+const Login = ({navigation, setUser}) => {
     const [modalVisible, setModalVisible] = useState(false);
+    const [id,setId]=useState("")
+    const [password,setPassword] = useState("")
+
+    useFocusEffect(
+        React.useCallback(()=>{
+            console.log('buenas')
+            logoutUser()
+        })
+    )
 
     const handleSwitchToRegister = () =>{
         navigation.navigate('register')
     }
 
-    const switchToHome = () =>{
-        navigation.navigate('home')
+    const switchToHome = async () =>{
+        return await firestore()
+        .collection('users')
+        .doc(id).get().then((doc)=>{
+            if(doc.exists && doc.data().password==password && doc.data().status=='Activo'){
+                setUser(doc.data())
+                navigation.navigate('home')
+            }
+            else if(doc.exists && doc.data().password==password && doc.data().status!='Activo'){
+                navigation.navigate('wait_screen')
+            }
+            else if(doc.exists && doc.data().password!=password){
+                Alert.alert(
+                    "Error",
+                    "Contraseña incorrecta",
+                    [
+                        {
+                            text: 'OK',
+                        }
+                    ]
+                )
+            }
+            else{
+                Alert.alert(
+                    "Error",
+                    "Usuario no existe",
+                    [
+                        {
+                            text: 'OK',
+                        }
+                    ]
+                )
+            }
+        })
     }
 
     return (
@@ -51,11 +97,11 @@ export const Login = ({navigation}) => {
                 <View style={LoginStyle.log_cont_login_inputs}>
                     <View>
                         <Text style={LoginStyle.log_text_upinput}>ID de paciente</Text>
-                        <TextInput placeholderTextColor="#c4c4c4" placeholder="Ingrese su ID de paciente" style={LoginStyle.log_textInput}></TextInput>
+                        <TextInput onChangeText={setId} placeholderTextColor="#c4c4c4" placeholder="Ingrese su ID de paciente" style={LoginStyle.log_textInput}></TextInput>
                     </View>
                     <View style={{marginTop: 20}}>
                         <Text style={LoginStyle.log_text_upinput}>Constraseña</Text>
-                        <TextInput placeholderTextColor="#c4c4c4" placeholder="Ingrese su contraseña" style={LoginStyle.log_textInput}></TextInput>
+                        <TextInput onChangeText={setPassword} placeholderTextColor="#c4c4c4" placeholder="Ingrese su contraseña" style={LoginStyle.log_textInput}></TextInput>
                     </View>
                     <View style={LoginStyle.log_cont_olvcont}>
                         <Pressable style={{width:300}} onPress={() => setModalVisible(true)}>
@@ -207,3 +253,10 @@ const styles = StyleSheet.create({
     textAlign: "center"
   }
 });
+
+const mapDispatchToProps = {
+    setUser,
+    logoutUser
+}
+
+export default connect(null,mapDispatchToProps) (Login)

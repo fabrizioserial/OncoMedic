@@ -7,10 +7,10 @@ import {AvatarImage} from '../AvatarImage'
 
 const {width} = Dimensions.get('window')
 
-const Home = ({navigation, avatarData}) => {
-
+const Home = ({navigation, avatarData, name}) => {
 
     const [avatar,setAvatar] = useState(avatarData)
+    console.log(avatar)
 
     useEffect(()=>{
         setAvatar(avatarData)
@@ -31,7 +31,6 @@ const Home = ({navigation, avatarData}) => {
 
     return (
         <SafeAreaView style={HomeStyle.h_const_background}>
-
             <View style={HomeStyle.h_back_img}>
                 <View  style={HomeStyle.h_back_img}>
                     <Image style={HomeStyle.h_img}source={require('../../img/back_home1.png')}/>
@@ -47,16 +46,27 @@ const Home = ({navigation, avatarData}) => {
                 <Pressable onPress={switchAvatarChanger} style={HomeStyle.h_header_img}>
                     <AvatarImage index={avatar} size={'small'}></AvatarImage>
                 </Pressable>
+                <Text style={HomeStyle.h_txt_hola}>Hola,</Text>
+                <Text style={HomeStyle.h_txt_name}>{name}</Text>
             </View>
-            
 
             <ButtonCustomeHome title={"Como te encuentras hoy?"} orientation={"row"} illustration={"RD"} text={"Completa y cuentanos como te has sentido"} color={"#A476FC"} handlePress={switchDailyRegister}/>
             <ButtonCustomeHome title={"No te encuentras bien?"} orientation={"row-reverse"} text={"Completa y cuentanos que te sucede!"} color={"#7685FC"} handlePress={switchSymptomsRegister}/>
-
+            <Button onPress={()=> navigation.navigate("status")}/>
         </SafeAreaView>
     )
 }
 const HomeStyle = StyleSheet.create({
+    h_txt_hola:{
+        marginTop:20,
+        marginLeft: 20,
+        fontSize: 25, 
+    },
+    h_txt_name:{
+        fontSize:25,
+        fontWeight: 'bold',
+        marginLeft: 20,
+    },
     h_header_img:{
         width:50,
         height:50
@@ -65,9 +75,10 @@ const HomeStyle = StyleSheet.create({
         justifyContent: 'center',
         padding: 10,
         width,
-        height:80,
+        height:180,
         position: "absolute",
         top: 0,
+        marginLeft:40
     },
     h_img_view:{
         height:320,
@@ -101,7 +112,8 @@ const HomeStyle = StyleSheet.create({
 
 const mapStateToProps = (state) => {
     return {
-        avatarData: state.user_data.avatar
+        avatarData: state.user_data.avatar,
+        name: state.user_data.name
     }
 }
 

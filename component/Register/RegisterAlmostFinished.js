@@ -48,22 +48,22 @@ const RegisterIllustratorStyle = StyleSheet.create({
     regilus_deco:{
         width:"100%",
         height:"100%",
-        position: "relative",
+        position: "absolute",
         justifyContent: 'flex-end',
         flexDirection: 'column',
     },
     regilus_image:{
-        width:"70%",
+        width:"100%",
         height:"70%",
         position:"absolute"
     },
     regilus_image2:{
-        width:"50%",
+        width:"100%",
         height:"50%",
         position:"absolute"
     },
     regilus_image3:{
-        width:'20%',
+        width:'100%',
         height:"20%",
         position:"absolute"
     },

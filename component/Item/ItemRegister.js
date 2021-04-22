@@ -3,10 +3,21 @@ import {Pressable,Text,StyleSheet} from 'react-native'
 import {connect} from 'react-redux' 
 import {setSmokeInformationAction,setDbtInformationAction,setDbtOptionAction} from '../../reduxStore/actions/registerAction'
 
-const ItemRegister = ({item,type,switchSwiper,setSmokeInformationAction,setDbtInformationAction,setDbtOptionAction}) => {
+const ItemRegister = ({item,type,nextScreen,switchSwiper,setSmokeInformationAction,setDbtInformationAction,setDbtOptionAction}) => {
 
     const saveInformation = (item) =>{
-        type == "smoke" ? setSmokeInformationAction(item.item=="No"?0:item.item=="Fumaba"?1:2) : type == "diabetic" ? setDbtInformationAction(item.item=="No"?false:true):setDbtOptionAction(item.item)
+        if(type=='smoke'){
+            setSmokeInformationAction(item.item=="No"?0:item.item=="Fumaba"?1:2)
+            nextScreen()
+        }
+        else if(type=='diabetic'){
+            setDbtInformationAction(item.item=="No"?false:true)
+            nextScreen()
+        }
+        else{
+            setDbtOptionAction(item.item)
+            nextScreen()
+        }
     }
 
     return (

@@ -10,34 +10,56 @@ import store from '../../reduxStore/store';
 import {setMedicalInformationAction} from '../../reduxStore/actions/registerAction'
 import DropDownPicker from 'react-native-dropdown-picker'
 import {connect} from 'react-redux'
+import firestore, { firebase } from '@react-native-firebase/firestore';
+
 
 
 const {width} = Dimensions.get("window")
  
-const RegisterMedic = ({navigation,setMedicalInformationAction}) => {
+const RegisterMedic =  ({navigation,setMedicalInformationAction}) => {
+    const [medics,setMedics]= useState([{label:'null' , value:0}])
+    const [medicsLoaded, setLoaded]=useState(true)
     const [etnia,setEtnia] = useState(null)
     const [place,setPlace] = useState (null)
     const [medic,setMedic] = useState(null)
     const [id, setId] = useState("")
 
+    useEffect(() =>{
+        getMedics().then((loadedMedics) => {
+                setMedics(loadedMedics)
+            }
+        )
+    },[medicsLoaded])
+
+    const getMedics = async()=>{
+        const medicsL = []
+        const medicsDb = firestore().collection('medic')
+        await medicsDb.get().then(
+            (snapshot) => {
+                snapshot.forEach(doc => {
+                    medicsL.push({value:doc.id,label:doc.data().name})
+                })
+            }
+        )
+        return medicsL
+    }
+
     const handleSwitchToRegisterMedic = () =>{
        // id.length > 0 ? etnia != "No Asignado" && medic != 0 && place != "No Asignado" && navigation.navigate("register_ilustrator1") : notifyMessage("Faltan datos")
         console.log(id)
         setMedicalInformationAction({medic:medic,place:place,etnia:etnia,id:id})
-        navigation.navigate("register_almost",{type:"continuar"})
+        navigation.navigate("register_almost")
     }
 
     const notifyMessage = (msg) => {
     Platform.OS === 'android' ? ToastAndroid.show(msg, ToastAndroid.SHORT) : AlertIOS.alert(msg)
     }
- 
-    const medics=[{label: 'Roberto', value:0,},
-    {label: 'Pepe', value:1},
-    {label: 'Manuela', value:2}]
 
     const places=[{label: 'Austral', value:0,}]
 
     const etnias=[{label: 'Caucasico', value:0}]
+
+    
 
     const generateDropPicker=(datas,data,dataSet,placeHolderText)=>{
         return(
@@ -48,7 +70,7 @@ const RegisterMedic = ({navigation,setMedicalInformationAction}) => {
                 itemStyle={{ justifyContent: 'flex-start'}}
                 containerStyle={{borderRadius:10}}
                 dropDownStyle={{backgroundColor: '#fafafa'}}
-                onChangeItem={item => dataSet(item.value)}
+                onChangeItem={item => {dataSet(item.value),setLoaded(!medicsLoaded)}}
                 placeholder={placeHolderText}
                 placeholderStyle={data==null?{color:'#AAAAAA', fontSize:17}:{color:'black',fontSize:17}}
                 zIndex={30000}
@@ -59,35 +81,6 @@ const RegisterMedic = ({navigation,setMedicalInformationAction}) => {
     
     return (
         <SafeAreaView style={RegisterUser.reguse_cont_background}>
-
-
-            {
-                /*
-                    <Modal
-                animationType="slide"
-                transparent={true}
-                visible={medicModal}
-                onRequestClose={() => {
-                Alert.alert("Modal has been closed.");
-                setMedicModal(!medicModal);
-                }}>
-                       
-                <SearchBar
-                placeholder="Seleccione su medico"
-                onChangeText={(crSearch)=>setMedicSearch(crSearch)}
-                value={medicSearch}>
-                </SearchBar>
-
-                {medics.map((medic)=>{
-                    if(medic.startsWith(medicSearch)){
-                        <Pressable>{medic}</Pressable>
-                    }
-                })}
-                
-                </Modal>
-                */
-            }
-
             <ScrollView  contentContainerStyle={RegisterUser.scroll} >
                 
                 <View style={RegisterUser.reguse_cont_cont}>

@@ -6,14 +6,28 @@ import { connect } from 'react-redux'
 import {ButtonAvatarSelection} from '../Buttons/ButtonAvatarSelection'
 import {setAvatarAction} from '../../reduxStore/actions/registerAction'
 import {AvatarImage} from '../AvatarImage'
+import firestore from '@react-native-firebase/firestore';
 
-const AvatarChanger = ({navigation,avatarData,setAvatarAction}) => {
+const AvatarChanger = ({navigation,avatarData,id,setAvatarAction}) => {
 
     const [avatar,setAvatar] = useState(avatarData)
     const [avatarSelected,setAvatarSelected] = useState(avatarData)
 
+    const updateToFireStore= () =>{
+        const userDocument = firestore()
+        .collection('users')
+        .doc(id)
+        .update({
+            avatar: avatar
+        })
+        .then(() => {
+            console.log('User avatar updated!');
+        })
+    }
+
     useEffect(()=>{
         setAvatarAction({avatar:avatar})
+        updateToFireStore()
     },[avatar])
 
     const returnPress = () =>{
@@ -156,7 +170,8 @@ const AvatarChangerStyle = StyleSheet.create({
 
 const mapStateToProps = (state) => {
     return {
-        avatarData: state.user_data.avatar
+        avatarData: state.user_data.avatar,
+        id: state.user_data.id
     }
 }
 

@@ -5,7 +5,7 @@ import ItemRegister from '../Item/ItemRegister.js'
 
 const {width} = Dimensions.get("window")
 
-export const RegisterElements = ({navigation,type}) => {
+export const RegisterElements = ({type,nextScreen}) => {
  
     const [typeRegister,setType] = useState(type)
     const [textType,setTextype] = useState("")
@@ -15,7 +15,6 @@ export const RegisterElements = ({navigation,type}) => {
     useEffect(() => {
         typeRegister == "smoke" ? (setTextype("¿FUISTE/ERES FUMADOR?"),setTypeOption(["Fumo actualmente","Fumaba","No"]),setImage(require("../../img/ic_smoke.png"))) :
         (setTextype("¿TIENES DIABETES?"),setTypeOption(["Si","No"]),setImage(require("../../img/ic_diabetic.png"))) 
-
     }, [typeRegister])
 
     //const handleSelectItem = (value) =>{
@@ -35,7 +34,7 @@ export const RegisterElements = ({navigation,type}) => {
                 </View>
                 <View style={RegisterElementStyle.regelem_itemcont}> 
                     {
-                        typeOption.length > 0 && typeOption.map((element,key)=><ItemRegister key={key} type={typeRegister} item={element} />)
+                        typeOption.length > 0 && typeOption.map((element,key)=><ItemRegister key={key} type={typeRegister} item={element} nextScreen={nextScreen} />)
                     }
                 </View> 
             </ScrollView>

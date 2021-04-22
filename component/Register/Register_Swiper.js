@@ -14,40 +14,23 @@ const Register_Swiper = ({navigation,smokeState,dbtState,dbtMed}) => {
     const swiper = React.useRef(null);
 
     const nextScreen = (value) =>{
-        swiper.current.scrollBy(++index,true);
+        swiper.current.scrollBy(1);
     }
-
-    const switchToHome = () =>{
-        navigation.navigate("home")
-    }
-
-    useEffect(()=>{
-        nextScreen()
-    },[dbtMed])
-
-    useEffect(()=>{
-        nextScreen()
-    },[smokeState])
-
-    useEffect(()=>{
-        nextScreen()
-    },[dbtState])
-    
 
     return (
             <Swiper ref={swiper}  loop={false} activeDotColor={"#B189F8"}>
                 
-                <RegisterElements key="1"  type={"smoke"}/>
+                <RegisterElements key="1"  type={"smoke"} nextScreen={nextScreen}/>
                     {
-                        smokeState != 0 && <RegisterElementsMore type={"smoke"}/>
+                        smokeState != 0 && <RegisterElementsMore type={"smoke"} nextScreen={nextScreen}/>
                     }
-                <RegisterElements type={"diabetic"}/>
+                <RegisterElements type={"diabetic"} nextScreen={nextScreen}/>
                     {
                         dbtState && <RegisterElementsMore type={"diabetic_more"}/>
                     }
-                <RegisterElementsMore type={"medicamento"}/>
+                <RegisterElementsMore type={"medicamento"} nextScreen={nextScreen}/>
 
-                <RegisterIllustrator goHomeFunction={() => navigation.navigate('home')}/>
+                <RegisterIllustrator goHomeFunction={() => navigation.navigate('login')}/>
             </Swiper>            
     )
 }
