@@ -76,6 +76,16 @@ const AvatarChanger = ({navigation,avatarData,id,setAvatarAction}) => {
                     <ButtonAvatarSelection handleFunction={()=>setAvatarSelected(8)} avatarImage={8}></ButtonAvatarSelection>
                     <ButtonAvatarSelection handleFunction={()=>setAvatarSelected(9)} avatarImage={9}></ButtonAvatarSelection>
                 </View>
+                <View style={AvatarChangerStyle.avc_row}>
+                    <ButtonAvatarSelection handleFunction={()=>setAvatarSelected(10)} avatarImage={10}></ButtonAvatarSelection>
+                    <ButtonAvatarSelection handleFunction={()=>setAvatarSelected(11)} avatarImage={11}></ButtonAvatarSelection>
+                    <ButtonAvatarSelection handleFunction={()=>setAvatarSelected(12)} avatarImage={12}></ButtonAvatarSelection>
+                </View>
+                <View style={AvatarChangerStyle.avc_row}>
+                    <ButtonAvatarSelection handleFunction={()=>setAvatarSelected(13)} avatarImage={13}></ButtonAvatarSelection>
+                    <ButtonAvatarSelection handleFunction={()=>setAvatarSelected(14)} avatarImage={14}></ButtonAvatarSelection>
+                    <ButtonAvatarSelection handleFunction={()=>setAvatarSelected(15)} avatarImage={15}></ButtonAvatarSelection>
+                </View>
                 </ScrollView>
                 
             </View>
