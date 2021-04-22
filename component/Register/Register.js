@@ -6,7 +6,7 @@ import {ButtonCustomeOrange} from '../Buttons/ButtonCustomeOrange.js'
 import {connect} from 'react-redux'
 import {setPersonalInformationAction} from '../../reduxStore/actions/registerAction'
 import DropDownPicker from 'react-native-dropdown-picker'
-import {CustomPicker} from '../commonComponents/Pickers/commonPicker'
+import {CustomPicker} from '../commonComponents/Pickers/CommonPicker'
 
 const {width} = Dimensions.get("window")
  
@@ -57,7 +57,7 @@ const Register = ({navigation,setPersonalInformationAction}) => {
     }
 
     const notifyMessage = (msg) => {
-    Platform.OS === 'android' ? ToastAndroid.show(msg, ToastAndroid.SHORT) : AlertIOS.alert(msg)
+        Platform.OS === 'android' ? ToastAndroid.show(msg, ToastAndroid.SHORT) : AlertIOS.alert(msg)
     }
 
     const genderTypes=[{label: 'Masculino', value:0,},
@@ -88,7 +88,7 @@ const Register = ({navigation,setPersonalInformationAction}) => {
                             <View style={{marginTop: 25}} zIndex={2000}>
                                 <View>
                                     <Text style={RegisterUser.reguse_text_upinput}>Genero</Text>
-                                    <View >
+                                    <View style={{zIndex:1000}}>
                                         <CustomPicker items={genderTypes} defaultValue={gender} setValue={setGender} placeHolder={'Seleccione su genero'}/>
                                     </View>
                                 </View>

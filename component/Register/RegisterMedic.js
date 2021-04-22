@@ -11,6 +11,7 @@ import {setMedicalInformationAction} from '../../reduxStore/actions/registerActi
 import DropDownPicker from 'react-native-dropdown-picker'
 import {connect} from 'react-redux'
 import firestore, { firebase } from '@react-native-firebase/firestore';
+import {CustomPicker} from '../commonComponents/Pickers/CommonPicker'
 
 
 
@@ -58,26 +59,6 @@ const RegisterMedic =  ({navigation,setMedicalInformationAction}) => {
     const places=[{label: 'Austral', value:0,}]
 
     const etnias=[{label: 'Caucasico', value:0}]
-
-    
-
-    const generateDropPicker=(datas,data,dataSet,placeHolderText)=>{
-        return(
-            <DropDownPicker
-                items={datas}
-                defaultValue={data}
-                style={data!=null?{...RegisterUser.reguse_drop_down_picker,backgroundColor: '#fafafa'}:{...RegisterUser.reguse_drop_down_picker, backgroundColor: "#E3E3E3",padding:0}}
-                itemStyle={{ justifyContent: 'flex-start'}}
-                containerStyle={{borderRadius:10}}
-                dropDownStyle={{backgroundColor: '#fafafa'}}
-                onChangeItem={item => {dataSet(item.value),setLoaded(!medicsLoaded)}}
-                placeholder={placeHolderText}
-                placeholderStyle={data==null?{color:'#AAAAAA', fontSize:17}:{color:'black',fontSize:17}}
-                zIndex={30000}
-                >
-            </DropDownPicker> 
-        ) 
-    }
     
     return (
         <SafeAreaView style={RegisterUser.reguse_cont_background}>
@@ -91,23 +72,23 @@ const RegisterMedic =  ({navigation,setMedicalInformationAction}) => {
                     <Image style={RegisterUser.reguse_top_img} source={require("../../img/register_deco.png")}/>
                     
                     <View style={RegisterUser.reguse_cont_regusein_inputs}>
-                            <View zIndex={5000}>
+                            <View style={{...(Platform.OS !== 'android' && {zIndex: 5000})}}>
                                 <Text style={RegisterUser.reguse_text_upinput}>Medico</Text>
                                 <View style={RegisterUser.reguse_picker} >
-                                    {generateDropPicker(medics,medic,setMedic,'Seleccione su medico')}                              
+                                    <CustomPicker items={medics} defaultValue={medic} setValue={setMedic} placeHolder={'Seleccione su medico'}/>                         
                                 </View>
                             </View>
-                            <View style={{marginTop: 25} } zIndex={4000}>
+                            <View style={{marginTop: 25, ...(Platform.OS !== 'android' && {zIndex: 4000})}}>
                                 <Text style={RegisterUser.reguse_text_upinput}>Lugar</Text>
                                 <View style={RegisterUser.reguse_picker} >
-                                    {generateDropPicker(places,place,setPlace,'Seleccione su Lugar')}  
+                                    <CustomPicker items={places} defaultValue={place} setValue={setPlace} placeHolder={'Seleccione su Lugar'}></CustomPicker>
                                 </View>
                                 
                             </View>
-                            <View style={{marginTop: 25}} zIndex={3000}>
+                            <View style={{marginTop: 25, ...(Platform.OS !== 'android' && {zIndex: 3000})}}>
                                 <Text style={RegisterUser.reguse_text_upinput}>Etnia</Text>
                                 <View style={RegisterUser.reguse_picker}>
-                                    {generateDropPicker(etnias,etnia,setEtnia,'Seleccione su etnia')}
+                                    <CustomPicker items={etnias} defaultValue={etnia} setValue={setEtnia} placeHolder={'Seleccione su etnia'}/>
                                 </View>
                                 
                             </View>

@@ -2,19 +2,25 @@ import React from 'react'
 import DropDownPicker from 'react-native-dropdown-picker'
 import {StyleSheet} from 'react-native'
 
-export const CustomPicker = ({items, defaultValue, setValue, placeHolder}) => {
+export const SearchPicker = ({items, defaultValue, setValue, placeHolder}) => {
     return(
         <DropDownPicker
             items={items}
             defaultValue={defaultValue}
-            style={defaultValue!=null?CustomPickerStyle.not_picked : CustomPickerStyle.picked}
-            itemStyle={{ justifyContent: 'flex-start'}}
+            style={defaultValue!=null? CustomPickerStyle.picked : CustomPickerStyle.not_picked}
+            itemStyle={{justifyContent: 'flex-start'}}
             containerStyle={CustomPickerStyle.container_style}
-            dropDownStyle={{backgroundColor: '#fafafa'}}
-            onChangeItem={(item) => setValue(item.value)}
-            placeholder={placeHolder}
-            placeholderStyle={defaultValue==null?CustomPickerStyle.place_holder_style_not_picked : CustomPickerStyle.place_holder_style_picked}>
-        </DropDownPicker>
+            dropDownStyle={{backgroundColor: 'white'}}
+            onChangeItem={item =>{
+                setValue(item);
+            }}
+            placeholderStyle={defaultValue==null? CustomPickerStyle.place_holder_style_not_picked : CustomPickerStyle.place_holder_style_picked}
+            searchable={true}
+            searchablePlaceholder={placeHolder}
+            searchablePlaceholderTextColor='#AAAAAA'
+            searchableError={()=><Text>Not Found</Text>}
+        >
+        </DropDownPicker> 
     )
 }
 
@@ -22,7 +28,7 @@ const CustomPickerStyle= StyleSheet.create({
 
     place_holder_style_picked:{
         color:'black',
-        fontSize:17
+        fontSize:17,
     },
 
     place_holder_style_not_picked:{
@@ -30,10 +36,7 @@ const CustomPickerStyle= StyleSheet.create({
     },
 
     container_style:{
-        borderTopLeftRadius:10,
-        borderTopRightRadius:10, 
-        borderBottomLeftRadius:10, 
-        borderBottomRightRadius:10,
+
         height:50,
     },
 
@@ -58,4 +61,3 @@ const CustomPickerStyle= StyleSheet.create({
     }
 
 })
-

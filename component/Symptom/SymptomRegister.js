@@ -7,6 +7,8 @@ import { connect } from 'react-redux';
 import firestore from '@react-native-firebase/firestore';
 import { Alert } from 'react-native'
 import {ActivityIndicator} from 'react-native-paper';
+import {SearchPicker} from '../commonComponents/Pickers/SearchPicker'
+import {CustomPicker} from '../commonComponents/Pickers/CommonPicker'
 
 const SymptomRegister = ({navigation,idR}) => {
 
@@ -90,26 +92,8 @@ const SymptomRegister = ({navigation,idR}) => {
         <View style={SymptomStyle.symptom_generalView}>
             <View style={SymptomStyle.symptom_topView} zIndex={50}>
                 <Text style={SymptomStyle.symptom_text_title}>Sintomas</Text>
-                <View zIndex={5000} style={SymptomStyle.symptom_dropDownPickerView}>
-                    <DropDownPicker
-                        items={sLoaded}
-                        defaultValue={symptom.value}
-                        style={symptom.value!=null?{...SymptomStyle.symptom_dropDownPicker,backgroundColor: '#fafafa'}:{...SymptomStyle.symptom_dropDownPicker, backgroundColor: "#E3E3E3",padding:0}}
-                        itemStyle={{ justifyContent: 'flex-start'}}
-                        containerStyle={{borderRadius:10}}
-                        dropDownStyle={{backgroundColor: 'white'}}
-                        onChangeItem={item =>{
-                            setSymptom(item);
-                        }}
-                        placeholderStyle={symptom==null?{color:'#B189F9',fontSize:17}:{color:'black',fontSize:17}}
-                        zIndex={10000}
-                        searchable={true}
-                        searchablePlaceholder={'Seleccione su sintoma'}
-                        searchablePlaceholderTextColor='#AAAAAA'
-                        searchableError={()=><Text>Not Found</Text>}
-                        >
-                            {console.log(symptom)}
-                    </DropDownPicker> 
+                <View style={{...SymptomStyle.symptom_dropDownPickerView, zIndex:5000}}>
+                    <SearchPicker items={sLoaded} defaultValue={symptom.value} setValue={setSymptom} placeHolder={'Seleccione su sintoma'}/>
                 </View>
                 <View>{symptom.value==null?
                 <Text style={SymptomStyle.symptom_descriptionText}>Descripcion de sintoma</Text>:<Text style={SymptomStyle.symptom_descriptionText}>{symptom.descripcion}</Text>}</View>
@@ -117,22 +101,10 @@ const SymptomRegister = ({navigation,idR}) => {
             <Image resizeMode={'stretch'} style={SymptomStyle.symptom_imgBack}source={require('../../img/register_deco.png')}/>
             <View style={SymptomStyle.symptom_bottomView}>
                 <Text style={SymptomStyle.symptom_text_title_bottom}>Grado</Text>
-                <View zIndex={4000} style={SymptomStyle.symptom_dropDownPickerView}>
+                <View style={{...SymptomStyle.symptom_dropDownPickerView, zIndex:4000}}>
                     {currentGrades.length!=0? 
-                        <DropDownPicker
-                            items={currentGrades}
-                            defaultValue={grade}
-                            style={grade!=null?{...SymptomStyle.symptom_dropDownPicker,backgroundColor: '#fafafa'}:{...SymptomStyle.symptom_dropDownPicker, backgroundColor: "#E3E3E3",padding:0}}
-                            itemStyle={{ justifyContent: 'flex-start'}}
-                            containerStyle={{borderRadius:10}}
-                            dropDownStyle={{backgroundColor: 'white'}}
-                            onChangeItem={item =>{
-                                setGrade(item.value)
-                            }}
-                            placeholderStyle={grade==null?{color:'#B189F9',fontSize:17}:{color:'black',fontSize:17}}
-                            zIndex={10000}
-                            >
-                        </DropDownPicker> : <Text>Seleccione un sintoma</Text>}
+                        <CustomPicker items={currentGrades} defaultValue={grade} setValue={setGrade} placeHolder={'Seleccione un grado'}/>
+                        : <Text>Seleccione un sintoma</Text>}
                     
                 </View>
 
@@ -179,7 +151,9 @@ const SymptomStyle=StyleSheet.create({
     },
 
     symptom_dropDownPickerView:{
+
         height: 50,
+        width: '80%',
     },
 
     symptom_dropDownPicker:{
