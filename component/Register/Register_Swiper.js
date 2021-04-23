@@ -26,7 +26,7 @@ const Register_Swiper = ({navigation,smokeState,dbtState,dbtMed}) => {
                     }
                 <RegisterElements type={"diabetic"} nextScreen={nextScreen}/>
                     {
-                        dbtState && <RegisterElementsMore type={"diabetic_more"}/>
+                        dbtState && <RegisterElementsMore type={"diabetic_more"} nextScreen={nextScreen}/>
                     }
                 <RegisterElementsMore type={"medicamento"} nextScreen={nextScreen}/>
 

@@ -10,7 +10,7 @@ import {ActivityIndicator} from 'react-native-paper';
 import {SearchPicker} from '../commonComponents/Pickers/SearchPicker'
 import {CustomPicker} from '../commonComponents/Pickers/CommonPicker'
 
-const SymptomRegister = ({navigation,idR}) => {
+const SymptomRegister = ({navigation,idR,cancer}) => {
 
     const [id,setId] = useState(idR)
     const [symptom,setSymptom] = useState({label:null,value:null,description:null,gravity:null})
@@ -27,7 +27,7 @@ const SymptomRegister = ({navigation,idR}) => {
             (snapshot) => {
                 snapshot.forEach(doc => {
                     console.log(doc.data().label)
-                    sL.push({label:doc.data().label,value:doc.data().value,descripcion:doc.data().descripcion,gravity:doc.data().gravity})
+                    doc.data().cancer==cancer && sL.push({label:doc.data().label,value:doc.data().value,descripcion:doc.data().descripcion,gravity:doc.data().gravity})
                 })
             }
         )
@@ -65,7 +65,8 @@ const SymptomRegister = ({navigation,idR}) => {
             id:id,
             symptom:symptom.label,
             grade:grade,
-            date:date
+            date:date,
+            cancer:cancer
         })
         .then((docRef) => {
             navigation.navigate('status',{text:"Registro de sintomas"})
@@ -107,7 +108,8 @@ const SymptomRegister = ({navigation,idR}) => {
                 <Text style={SymptomStyle.symptom_text_title_bottom}>Grado</Text>
                 {currentGrades.length!=0?
                 <CustomPicker items={currentGrades} defaultValue={grade} setValue={setGrade} placeHolder={'Seleccione un grado'}/>
-                : <Text>Seleccione un sintoma</Text>}
+                : 
+                <Text style={SymptomStyle.no_grade_text}>Seleccione un sintoma</Text>}
                 <View style={{width: '45%' , alignSelf:'center'}}>
                     <ButtonCustomeOrange title="Agregar" handleFunction={pushSymptoms}></ButtonCustomeOrange>
                 </View>
@@ -124,6 +126,12 @@ const SymptomRegister = ({navigation,idR}) => {
 }
 
 const SymptomStyle=StyleSheet.create({
+
+    no_grade_text:{
+        textAlign:'center',
+        color:'#AAAAAA'
+        
+    },
 
     symptom_loading:{
         position: 'absolute',
@@ -205,7 +213,8 @@ const SymptomStyle=StyleSheet.create({
 
 const mapStateToProps = (state) => {
     return {
-        idR: state.user_data.id
+        idR: state.user_data.id,
+        cancer: state.user_data.cancer,
     }
 }
 

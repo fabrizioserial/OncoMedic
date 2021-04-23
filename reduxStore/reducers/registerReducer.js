@@ -27,7 +27,8 @@ const default_user ={
         inf:false
     },
     avatar:"1",
-    status:"Pendiente"
+    status:"Pendiente",
+    cancer:""
 }
 
 const user_data = (state=default_user , action) =>{
@@ -75,7 +76,8 @@ const user_data = (state=default_user , action) =>{
                     acv: action.payload.acv,
                     inf: action.payload.inf,
                 },
-                avatar:action.payload.avatar
+                avatar:action.payload.avatar,
+                cancer:action.payload.cancer
             }
         }
         case SET_MEDICAL_INFORMATION:{

@@ -1,11 +1,12 @@
 import React,{useState,useEffect,useRef,useContex} from 'react'
-import { SafeAreaView } from 'react-native'
+import { SafeAreaView, View } from 'react-native'
 import  Swiper  from "react-native-swiper";
 import {DailyRegisterOptions} from './DailyRegisterOptions.js'
 import {DailyRegisterButtons} from './DailyRegisterButtons.js'
 import firestore from '@react-native-firebase/firestore';
 import { connect } from 'react-redux';
 import { Alert } from 'react-native';
+import {ActivityIndicator} from 'react-native-paper';
 
 
 const DailyRegister = ({navigation,idR}) => {
@@ -18,6 +19,7 @@ const DailyRegister = ({navigation,idR}) => {
     const [hid,setHid] = useState('');
     const [run,setRun] = useState('');
     const [social,setSocial] = useState('');
+    const [isLoading, setLoading] = useState(false)
 
     useEffect(()=>{
         setId(id)
@@ -44,6 +46,7 @@ const DailyRegister = ({navigation,idR}) => {
     }
 
     const pushDR = () =>{
+        setLoading(true)
         const date = new Date()
         const userDocument = firestore()
         .collection('diaryReg')
@@ -59,24 +62,34 @@ const DailyRegister = ({navigation,idR}) => {
             social:social
         })
         .then((docRef) => {
+            setLoading(false)
             navigation.navigate('status',{text:"Registro diario"})
         })
         .catch((error) => {
+            setLoading(false)
             navigation.navigate('fail',{e:error})
         });
     }
 
     return (
-        
-            <Swiper ref={swiper} loop={false} activeDotColor={"#FFB13A"}>
-                <DailyRegisterOptions type={"ESTADO DE ANIMO"} imageProp={require("../../img/ic_child.png")} switchSwiper={swipeNext} handleValue={setMood} index={0}/>
-                <DailyRegisterOptions type={"DOLOR"} imageProp={require("../../img/ic_sad.png")} switchSwiper={swipeNext} handleValue={setSad} index={1}/>
-                <DailyRegisterButtons type={"¿APETITO?"} imageProp={require("../../img/ic_utensils.png")} switchSwiper={swipeNext} handleValue={setHungry} index={2}/>
-                <DailyRegisterButtons type={"¿HIDRATACION?"} imageProp={require("../../img/ic_water.png")} switchSwiper={swipeNext} handleValue={setHid} index={3}/>
-                <DailyRegisterButtons type={"ACTIVIDAD FISICA"} imageProp={require("../../img/ic_run.png")} switchSwiper={swipeNext} handleValue={setRun} index={4}/>
-                <DailyRegisterButtons type={"ACTIVIDAD SOCIAL"} imageProp={require("../../img/ic_social.png")} switchSwiper={swipeNext} handleValue={setSocial} index={5}/>
-            </Swiper>
-       
+        isLoading && 
+        <View style={{
+        position: 'absolute',
+        backgroundColor:'#707070',
+        opacity:0.7, 
+        width:'100%',
+        height:'110%',
+        justifyContent:'center'}}>
+        <ActivityIndicator animating={true} color={"#FFFFFF"} size='large' />
+        </View>,
+        <Swiper ref={swiper} loop={false} activeDotColor={"#FFB13A"}>
+            <DailyRegisterOptions type={"ESTADO DE ANIMO"} imageProp={require("../../img/ic_child.png")} switchSwiper={swipeNext} handleValue={setMood} index={0}/>
+            <DailyRegisterOptions type={"DOLOR"} imageProp={require("../../img/ic_sad.png")} switchSwiper={swipeNext} handleValue={setSad} index={1}/>
+            <DailyRegisterButtons type={"¿APETITO?"} imageProp={require("../../img/ic_utensils.png")} switchSwiper={swipeNext} handleValue={setHungry} index={2}/>
+            <DailyRegisterButtons type={"¿HIDRATACION?"} imageProp={require("../../img/ic_water.png")} switchSwiper={swipeNext} handleValue={setHid} index={3}/>
+            <DailyRegisterButtons type={"ACTIVIDAD FISICA"} imageProp={require("../../img/ic_run.png")} switchSwiper={swipeNext} handleValue={setRun} index={4}/>
+            <DailyRegisterButtons type={"ACTIVIDAD SOCIAL"} imageProp={require("../../img/ic_social.png")} switchSwiper={swipeNext} handleValue={setSocial} index={5}/>
+        </Swiper>
     )
 }
 
