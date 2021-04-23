@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Pressable } from 'react-native'
-import { SafeAreaView,View,Text,StyleSheet,Dimensions,Image } from 'react-native'
+import { SafeAreaView,View,Text,StyleSheet,Dimensions,Image,Button } from 'react-native'
 import {ButtonCustomeHome} from '../Buttons/ButtonCustomeHome.js'
 import { connect } from 'react-redux'
 import {AvatarImage} from '../AvatarImage'
@@ -52,7 +52,7 @@ const Home = ({navigation, avatarData, name}) => {
 
             <ButtonCustomeHome title={"Como te encuentras hoy?"} orientation={"row"} illustration={"RD"} text={"Completa y cuentanos como te has sentido"} color={"#A476FC"} handlePress={switchDailyRegister}/>
             <ButtonCustomeHome title={"No te encuentras bien?"} orientation={"row-reverse"} text={"Completa y cuentanos que te sucede!"} color={"#7685FC"} handlePress={switchSymptomsRegister}/>
-
+            <Button onPress={()=> navigation.navigate("fail",{e:"error de pete"})} title="Tocame"/>
         </SafeAreaView>
     )
 }

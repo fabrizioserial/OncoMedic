@@ -45,13 +45,13 @@ import AvatarChanger from './component/AvatarChanger/AvatarChanger'
 import { firebase } from '@react-native-firebase/firestore';
 import {RegisterAlmostFinished} from './component/Register/RegisterAlmostFinished'
 import {WaitScreen} from './component/Login/WaitScreen'
+import { SucessStatus } from './component/StatusActions/SucessStatus';
+import { FailStatus } from './component/StatusActions/FailStatus';
 
 
 const Stack = createStackNavigator()
 
 const App: () => Node = () => {
-
-  console.log(store.getState())
 
   firebase.initializeApp(firebaseConfig = {
     apiKey: "AIzaSyDcinCzje9E9uwyxVhe3So1-Aa4jWmrV8s",
@@ -81,6 +81,10 @@ const App: () => Node = () => {
           <Stack.Screen  name="avatar_changer" component={AvatarChanger} options={{header: ()=> null}}/>
           <Stack.Screen  name='register_almost' component={RegisterAlmostFinished} options={{header: ()=> null}}/>
           <Stack.Screen  name='wait_screen' component={WaitScreen} options={{header: ()=> null}}/>
+          <Stack.Screen  name='status' component={SucessStatus} options={{header: ()=> null}}/>
+          <Stack.Screen  name='fail' component={FailStatus} options={{header: ()=> null}}/>
+
+
         </Stack.Navigator>
       </Provider>
 

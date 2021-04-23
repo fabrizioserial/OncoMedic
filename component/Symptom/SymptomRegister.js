@@ -66,7 +66,13 @@ const SymptomRegister = ({navigation,idR}) => {
             symptom:symptom.label,
             grade:grade,
             date:date
-        }).then(setIsLoading(false),navigation.navigate('home'))
+        })
+        .then((docRef) => {
+            navigation.navigate('status',{text:"Registro de sintomas"})
+        })
+        .catch((error) => {
+            navigation.navigate('fail',{e:error})
+        });
     }
 
     const pushSymptoms = () =>{
