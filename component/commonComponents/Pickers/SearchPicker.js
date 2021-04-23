@@ -1,8 +1,12 @@
-import React from 'react'
+import React,{useState} from 'react'
 import DropDownPicker from 'react-native-dropdown-picker'
 import {StyleSheet} from 'react-native'
+import { View,TextInput } from 'react-native'
 
 export const SearchPicker = ({items, defaultValue, setValue, placeHolder}) => {
+
+
+
     return(
         <DropDownPicker
             items={items}
@@ -20,7 +24,7 @@ export const SearchPicker = ({items, defaultValue, setValue, placeHolder}) => {
             searchablePlaceholderTextColor='#AAAAAA'
             searchableError={()=><Text>Not Found</Text>}
         >
-        </DropDownPicker> 
+        </DropDownPicker>
     )
 }
 
@@ -36,7 +40,7 @@ const CustomPickerStyle= StyleSheet.create({
     },
 
     container_style:{
-
+        width:'80%',
         height:50,
     },
 

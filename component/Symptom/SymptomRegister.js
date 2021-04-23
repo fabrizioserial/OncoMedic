@@ -90,31 +90,29 @@ const SymptomRegister = ({navigation,idR}) => {
 
     return (
         <View style={SymptomStyle.symptom_generalView}>
-            <View style={SymptomStyle.symptom_topView} zIndex={50}>
+            <View style={SymptomStyle.symptom_topView} >
                 <Text style={SymptomStyle.symptom_text_title}>Sintomas</Text>
-                <View style={{...SymptomStyle.symptom_dropDownPickerView, zIndex:5000}}>
-                    <SearchPicker items={sLoaded} defaultValue={symptom.value} setValue={setSymptom} placeHolder={'Seleccione su sintoma'}/>
-                </View>
+                <SearchPicker items={sLoaded} defaultValue={symptom.value} setValue={setSymptom} placeHolder={'Seleccione su sintoma'}/>
                 <View>{symptom.value==null?
                 <Text style={SymptomStyle.symptom_descriptionText}>Descripcion de sintoma</Text>:<Text style={SymptomStyle.symptom_descriptionText}>{symptom.descripcion}</Text>}</View>
             </View>
             <Image resizeMode={'stretch'} style={SymptomStyle.symptom_imgBack}source={require('../../img/register_deco.png')}/>
             <View style={SymptomStyle.symptom_bottomView}>
                 <Text style={SymptomStyle.symptom_text_title_bottom}>Grado</Text>
-                <View style={{...SymptomStyle.symptom_dropDownPickerView, zIndex:4000}}>
-                    {currentGrades.length!=0? 
-                        <CustomPicker items={currentGrades} defaultValue={grade} setValue={setGrade} placeHolder={'Seleccione un grado'}/>
-                        : <Text>Seleccione un sintoma</Text>}
-                    
+                {currentGrades.length!=0?
+                <CustomPicker items={currentGrades} defaultValue={grade} setValue={setGrade} placeHolder={'Seleccione un grado'}/>
+                : <Text>Seleccione un sintoma</Text>}
+                <View style={{width: '45%' , alignSelf:'center'}}>
+                    <ButtonCustomeOrange title="Agregar" handleFunction={pushSymptoms}></ButtonCustomeOrange>
                 </View>
-
-            <ButtonCustomeOrange title="Agregar" handleFunction={pushSymptoms}></ButtonCustomeOrange>
+                
             </View>
             {isLoading && 
             <View style={SymptomStyle.symptom_loading} zIndex={1000000}>
             <ActivityIndicator animating={true} color={"#FFFFFF"} size='large' />
             </View>}
         </View>
+        
         
     )
 }
@@ -150,11 +148,6 @@ const SymptomStyle=StyleSheet.create({
         height:100
     },
 
-    symptom_dropDownPickerView:{
-
-        height: 50,
-        width: '80%',
-    },
 
     symptom_dropDownPicker:{
         justifyContent:'center',
@@ -193,12 +186,14 @@ const SymptomStyle=StyleSheet.create({
         justifyContent:'flex-start',
         alignContent:'center',
         backgroundColor: 'white',
-        alignItems:'center',
-        flex: 4
+        width: '80%',
+        flex: 4,
+        alignSelf:'center'
     },
 
     symptom_imgBack:{
-        height:50
+        height:50,
+        width:'100%'
     }
 })
 
