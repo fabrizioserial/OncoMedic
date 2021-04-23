@@ -6,6 +6,8 @@ import {setUser, logoutUser} from '../../reduxStore/actions/registerAction'
 import { connect } from 'react-redux';
 import { Alert } from 'react-native';
 import {useFocusEffect} from '@react-navigation/native'
+import {ActivityIndicator} from 'react-native-paper';
+
 
 const {width} = Dimensions.get("window")
 const {height} = Dimensions.get("window")
@@ -14,6 +16,7 @@ const Login = ({navigation, setUser}) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [id,setId]=useState("")
     const [password,setPassword] = useState("")
+    const [isLoading,setIsLoading] = useState(false)
 
     useFocusEffect(
         React.useCallback(()=>{
@@ -27,17 +30,21 @@ const Login = ({navigation, setUser}) => {
     }
 
     const switchToHome = async () =>{
+        setIsLoading(true)
         return await firestore()
         .collection('users')
         .doc(id).get().then((doc)=>{
             if(doc.exists && doc.data().password==password && doc.data().status=='Activo'){
                 setUser(doc.data())
+                setIsLoading(false)
                 navigation.navigate('home')
             }
             else if(doc.exists && doc.data().password==password && doc.data().status!='Activo'){
+                setIsLoading(false)
                 navigation.navigate('wait_screen')
             }
             else if(doc.exists && doc.data().password!=password){
+                setIsLoading(false)
                 Alert.alert(
                     "Error",
                     "Contraseña incorrecta",
@@ -49,6 +56,7 @@ const Login = ({navigation, setUser}) => {
                 )
             }
             else{
+                setIsLoading(false)
                 Alert.alert(
                     "Error",
                     "Usuario no existe",
@@ -59,6 +67,16 @@ const Login = ({navigation, setUser}) => {
                     ]
                 )
             }
+        }).catch(err =>{
+            Alert.alert(
+                "Error",
+                "No se pudo conectar a base de datos",
+                [
+                    {
+                        text: 'OK',
+                    }
+                ]
+            )
         })
     }
 
@@ -120,11 +138,24 @@ const Login = ({navigation, setUser}) => {
                     </Pressable>
                 </View>
             </View>
+            {isLoading && 
+            <View style={LoginStyle.log_loading}>
+            <ActivityIndicator animating={true} color={"#FFFFFF"} size='large' />
+            </View>}
         </SafeAreaView>
+        
     )
 }
 
 const LoginStyle = StyleSheet.create({
+    log_loading:{
+        position: 'absolute',
+        backgroundColor:'#707070',
+        opacity:0.7, 
+        width:'100%',
+        height:'110%',
+        justifyContent:'center'
+    },
     log_text_register:{
         fontWeight: 'bold',
     },

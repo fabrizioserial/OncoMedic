@@ -6,6 +6,7 @@ import {ButtonCustomeOrange} from '../Buttons/ButtonCustomeOrange.js'
 import {connect} from 'react-redux'
 import {setPersonalInformationAction} from '../../reduxStore/actions/registerAction'
 import DropDownPicker from 'react-native-dropdown-picker'
+import {CustomPicker} from '../commonComponents/Pickers/CommonPicker'
 
 const {width} = Dimensions.get("window")
  
@@ -14,7 +15,7 @@ const Register = ({navigation,setPersonalInformationAction}) => {
     const [email,setEmail] = useState("")
     const [name,setName] = useState ("")
     const [password,setPassword] = useState("")
-    const [gender,setGender] = useState(2)
+    const [gender,setGender] = useState(null)
     const [birth, setBirth] = useState("")
     const [lenghtbirth,setLength] = useState(0)
     const [birthValidate,setBValidate] = useState(true)
@@ -56,7 +57,7 @@ const Register = ({navigation,setPersonalInformationAction}) => {
     }
 
     const notifyMessage = (msg) => {
-    Platform.OS === 'android' ? ToastAndroid.show(msg, ToastAndroid.SHORT) : AlertIOS.alert(msg)
+        Platform.OS === 'android' ? ToastAndroid.show(msg, ToastAndroid.SHORT) : AlertIOS.alert(msg)
     }
 
     const genderTypes=[{label: 'Masculino', value:0,},
@@ -84,21 +85,12 @@ const Register = ({navigation,setPersonalInformationAction}) => {
                                 <Text style={RegisterUser.reguse_text_upinput}>Contraseña</Text>
                                 <TextInput onChangeText={setPassword} placeholderTextColor="#c4c4c4" placeholder="Ingrese su contraseña" style={RegisterUser.reguse_textInput}></TextInput>
                             </View>
-                            <View style={{marginTop: 25}} zIndex={10000}>
+                            <View style={{marginTop: 25}} zIndex={2000}>
                                 <View>
                                     <Text style={RegisterUser.reguse_text_upinput}>Genero</Text>
-                                    <DropDownPicker
-                                        items={genderTypes}
-                                        defaultValue={gender}
-                                        style={gender!=null?{...RegisterUser.reguse_drop_down_picker,backgroundColor: '#fafafa'}:{...RegisterUser.reguse_drop_down_picker,backgroundColor: "#E3E3E3"}}
-                                        itemStyle={{ justifyContent: 'flex-start'}}
-                                        containerStyle={{borderTopLeftRadius:10, borderTopRightRadius:10, borderBottomLeftRadius:10, borderBottomRightRadius:10}}
-                                        dropDownStyle={{backgroundColor: '#fafafa'}}
-                                        onChangeItem={(item) => setGender(item.value)}
-                                        placeholder={'Seleccione su genero'}
-                                        placeholderStyle={gender==null?{color:'#AAAAAA',fontSize:17}:{color:'black',fontSize:17}}
-                                        zIndex={30}>
-                                    </DropDownPicker>
+                                    <View style={{zIndex:1000}}>
+                                        <CustomPicker items={genderTypes} defaultValue={gender} setValue={setGender} placeHolder={'Seleccione su genero'}/>
+                                    </View>
                                 </View>
                                 
                             </View>
@@ -147,8 +139,6 @@ const RegisterUser = StyleSheet.create({
         width,
         paddingBottom: 30,
         alignItems: 'center',
-    
-
     },
     reguse_cont_cont:{
         width,
@@ -222,7 +212,6 @@ const RegisterUser = StyleSheet.create({
         height:"100%",
         alignItems: 'center',
         flexDirection: 'column',
-        backgroundColor: "#FFF",
     },
     reguse_top:{
         flexDirection: 'row',

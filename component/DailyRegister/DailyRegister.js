@@ -5,6 +5,7 @@ import {DailyRegisterOptions} from './DailyRegisterOptions.js'
 import {DailyRegisterButtons} from './DailyRegisterButtons.js'
 import firestore from '@react-native-firebase/firestore';
 import { connect } from 'react-redux';
+import { Alert } from 'react-native';
 
 
 const DailyRegister = ({navigation,idR}) => {
