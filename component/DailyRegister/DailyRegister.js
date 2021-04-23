@@ -57,7 +57,12 @@ const DailyRegister = ({navigation,idR}) => {
             run:run,
             social:social
         })
-        .then(navigation.navigate('home'))
+        .then((docRef) => {
+            navigation.navigate('status',{text:"Registro diario"})
+        })
+        .catch((error) => {
+            navigation.navigate('fail',{e:error})
+        });
     }
 
     return (
