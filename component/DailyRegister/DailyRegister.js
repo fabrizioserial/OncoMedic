@@ -85,10 +85,10 @@ const DailyRegister = ({navigation,idR}) => {
         <Swiper ref={swiper} loop={false} activeDotColor={"#FFB13A"}>
             <DailyRegisterOptions type={"Que tan animado te encuentras hoy? \n (1 es muy mal 10 es muy bien)"} imageProp={require("../../img/ic_child.png")} switchSwiper={swipeNext} handleValue={setMood} index={0}/>
             <DailyRegisterOptions type={"Sentiste algun dolor hoy?"} imageProp={require("../../img/ic_sad.png")} switchSwiper={swipeNext} handleValue={setSad} index={1}/>
-            <DailyRegisterButtons type={"¿Tuviste apetito?"} imageProp={require("../../img/ic_utensils.png")} switchSwiper={swipeNext} handleValue={setHungry} index={2}/>
-            <DailyRegisterButtons type={"¿Te hidrataste?"} imageProp={require("../../img/ic_water.png")} switchSwiper={swipeNext} handleValue={setHid} index={3}/>
-            <DailyRegisterButtons type={"Hiciste actividad fisica?"} imageProp={require("../../img/ic_run.png")} switchSwiper={swipeNext} handleValue={setRun} index={4}/>
-            <DailyRegisterButtons type={"Tuviste contacto social?"} imageProp={require("../../img/ic_social.png")} switchSwiper={swipeNext} handleValue={setSocial} index={5}/>
+            <DailyRegisterButtons type={"A"} text={"¿Tuviste apetito?"}imageProp={require("../../img/ic_utensils.png")} switchSwiper={swipeNext} handleValue={setHungry} index={2}/>
+            <DailyRegisterButtons type={"H"} text={"¿Te hidrataste?"} imageProp={require("../../img/ic_water.png")} switchSwiper={swipeNext} handleValue={setHid} index={3}/>
+            <DailyRegisterButtons type={"AF"} text={'Hiciste actividad fisica?'} imageProp={require("../../img/ic_run.png")} switchSwiper={swipeNext} handleValue={setRun} index={4}/>
+            <DailyRegisterButtons type={"S"} text={"Tuviste contacto social?"} imageProp={require("../../img/ic_social.png")} switchSwiper={swipeNext} handleValue={setSocial} index={5}/>
         </Swiper>
     )
 }
