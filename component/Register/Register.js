@@ -85,7 +85,7 @@ const Register = ({navigation,setPersonalInformationAction}) => {
                                 <Text style={RegisterUser.reguse_text_upinput}>Contraseña</Text>
                                 <TextInput onChangeText={setPassword} placeholderTextColor="#c4c4c4" placeholder="Ingrese su contraseña" style={RegisterUser.reguse_textInput}></TextInput>
                             </View>
-                            <View style={{marginTop: 25}} zIndex={2000}>
+                            <View style={{marginTop: 25}}>
                                 <View>
                                     <Text style={RegisterUser.reguse_text_upinput}>Genero</Text>
                                     <View style={{zIndex:1000}}>

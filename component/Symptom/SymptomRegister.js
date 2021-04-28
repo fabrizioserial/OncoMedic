@@ -13,7 +13,7 @@ import {CustomPicker} from '../commonComponents/Pickers/commonPicker'
 const {width} = Dimensions.get('window')
 
 
-const SymptomRegister = ({navigation,idR}) => {
+const SymptomRegister = ({navigation,idR,cancer}) => {
 
     const [id,setId] = useState(idR)
     const [symptom,setSymptom] = useState({label:null,value:null,description:null,gravity:null})
@@ -30,7 +30,7 @@ const SymptomRegister = ({navigation,idR}) => {
             (snapshot) => {
                 snapshot.forEach(doc => {
                     console.log(doc.data().label)
-                    sL.push({label:doc.data().label,value:doc.data().value,descripcion:doc.data().descripcion,gravity:doc.data().gravity})
+                    doc.data().cancer==cancer && sL.push({label:doc.data().label,value:doc.data().value,descripcion:doc.data().descripcion,gravity:doc.data().gravity})
                 })
             }
         )
@@ -68,7 +68,8 @@ const SymptomRegister = ({navigation,idR}) => {
             id:id,
             symptom:symptom.label,
             grade:grade,
-            date:date
+            date:date,
+            cancer:cancer
         })
         .then((docRef) => {
             navigation.navigate('status',{text:"Registro de sintomas"})
@@ -99,25 +100,23 @@ const SymptomRegister = ({navigation,idR}) => {
 
     return (
         <View style={SymptomStyle.symptom_generalView}>
-            <View style={SymptomStyle.symptom_topView} zIndex={50}>
+            <View style={SymptomStyle.symptom_topView} >
                 <Text style={SymptomStyle.symptom_text_title}>Sintomas</Text>
-                <View style={{...SymptomStyle.symptom_dropDownPickerView, zIndex:5000}}>
-                    <SearchPicker items={sLoaded} defaultValue={symptom.value} setValue={setSymptom} placeHolder={'Seleccione su sintoma'}/>
-                </View>
+                <SearchPicker items={sLoaded} defaultValue={symptom.value} setValue={setSymptom} placeHolder={'Seleccione su sintoma'}/>
                 <View>{symptom.value==null?
                 <Text style={SymptomStyle.symptom_descriptionText}>Descripcion de sintoma</Text>:<Text style={SymptomStyle.symptom_descriptionText}>{symptom.descripcion}</Text>}</View>
             </View>
             <Image resizeMode={'stretch'} style={SymptomStyle.symptom_imgBack}source={require('../../img/register_deco.png')}/>
             <View style={SymptomStyle.symptom_bottomView}>
                 <Text style={SymptomStyle.symptom_text_title_bottom}>Grado</Text>
-                <View style={{...SymptomStyle.symptom_dropDownPickerView, zIndex:4000}}>
-                    {currentGrades.length!=0? 
-                        <CustomPicker items={currentGrades} defaultValue={grade} setValue={setGrade} placeHolder={'Seleccione un grado'}/>
-                        : <Text>Seleccione un sintoma</Text>}
-                    
+                {currentGrades.length!=0?
+                <CustomPicker items={currentGrades} defaultValue={grade} setValue={setGrade} placeHolder={'Seleccione un grado'}/>
+                : 
+                <Text style={SymptomStyle.no_grade_text}>Seleccione un sintoma</Text>}
+                <View style={{width: '45%' , alignSelf:'center'}}>
+                    <ButtonCustomeOrange title="Agregar" handleFunction={pushSymptoms}></ButtonCustomeOrange>
                 </View>
-
-            <ButtonCustomeOrange title="Agregar" handleFunction={pushSymptoms}></ButtonCustomeOrange>
+                
             </View>
             {isLoading && 
             <View style={SymptomStyle.symptom_loading} zIndex={1000000}>
@@ -125,10 +124,17 @@ const SymptomRegister = ({navigation,idR}) => {
             </View>}
         </View>
         
+        
     )
 }
 
 const SymptomStyle=StyleSheet.create({
+
+    no_grade_text:{
+        textAlign:'center',
+        color:'#AAAAAA'
+        
+    },
 
     symptom_loading:{
         position: 'absolute',
@@ -159,11 +165,6 @@ const SymptomStyle=StyleSheet.create({
         height:100
     },
 
-    symptom_dropDownPickerView:{
-
-        height: 50,
-        width: '80%',
-    },
 
     symptom_dropDownPicker:{
         justifyContent:'center',
@@ -202,19 +203,26 @@ const SymptomStyle=StyleSheet.create({
         justifyContent:'flex-start',
         alignContent:'center',
         backgroundColor: 'white',
-        alignItems:'center',
-        flex: 4
+        width: '80%',
+        flex: 4,
+        alignSelf:'center'
     },
 
     symptom_imgBack:{
+<<<<<<< HEAD
         width,
         height:60
+=======
+        height:50,
+        width:'100%'
+>>>>>>> 32af9410b627f4133134692e59351dd801806058
     }
 })
 
 const mapStateToProps = (state) => {
     return {
-        idR: state.user_data.id
+        idR: state.user_data.id,
+        cancer: state.user_data.cancer,
     }
 }
 
