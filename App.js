@@ -47,6 +47,7 @@ import {RegisterAlmostFinished} from './component/Register/RegisterAlmostFinishe
 import {WaitScreen} from './component/Login/WaitScreen'
 import { SucessStatus } from './component/StatusActions/SucessStatus';
 import { FailStatus } from './component/StatusActions/FailStatus';
+import { WaitingForApproval } from './component/StatusActions/WaitingForApproval';
 
 
 const Stack = createStackNavigator()
@@ -80,9 +81,10 @@ const App: () => Node = () => {
           <Stack.Screen  name="registro_sintoma" component={SymptomRegister} options={{header: ()=> null}}/>
           <Stack.Screen  name="avatar_changer" component={AvatarChanger} options={{header: ()=> null}}/>
           <Stack.Screen  name='register_almost' component={RegisterAlmostFinished} options={{header: ()=> null}}/>
-          <Stack.Screen  name='wait_screen' component={WaitScreen} options={{header: ()=> null}}/>
+          <Stack.Screen  name='wait_screen' component={WaitingForApproval} options={{header: ()=> null}}/>
           <Stack.Screen  name='status' component={SucessStatus} options={{header: ()=> null}}/>
           <Stack.Screen  name='fail' component={FailStatus} options={{header: ()=> null}}/>
+
 
 
         </Stack.Navigator>
