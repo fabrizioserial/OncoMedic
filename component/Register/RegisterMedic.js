@@ -10,9 +10,11 @@ import store from '../../reduxStore/store';
 import {setMedicalInformationAction} from '../../reduxStore/actions/registerAction'
 import DropDownPicker from 'react-native-dropdown-picker'
 import {connect} from 'react-redux'
+
 import firestore, { firebase } from '@react-native-firebase/firestore';
 import {CustomPicker} from '../commonComponents/Pickers/CommonPicker'
 import zIndex from '@material-ui/core/styles/zIndex'
+
 
 
 

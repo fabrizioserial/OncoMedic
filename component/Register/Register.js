@@ -6,8 +6,10 @@ import {ButtonCustomeOrange} from '../Buttons/ButtonCustomeOrange.js'
 import {connect} from 'react-redux'
 import {setPersonalInformationAction} from '../../reduxStore/actions/registerAction'
 import DropDownPicker from 'react-native-dropdown-picker'
+
 import {CustomPicker} from '../commonComponents/Pickers/CommonPicker'
 import {DatePickerModal} from '../commonComponents/Modals/DatePickerModal'
+
 
 const {width} = Dimensions.get("window")
  

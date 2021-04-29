@@ -1,6 +1,6 @@
 import React, {useState,useEffect } from 'react'
 import { Pressable } from 'react-native'
-import { View,StyleSheet,Image,Text } from 'react-native'
+import { View,StyleSheet,Image,Text,Dimensions } from 'react-native'
 import DropDownPicker from 'react-native-dropdown-picker'
 import { ButtonCustomeOrange } from '../Buttons/ButtonCustomeOrange'
 import { connect } from 'react-redux';
@@ -8,7 +8,10 @@ import firestore from '@react-native-firebase/firestore';
 import { Alert } from 'react-native'
 import {ActivityIndicator} from 'react-native-paper';
 import {SearchPicker} from '../commonComponents/Pickers/SearchPicker'
-import {CustomPicker} from '../commonComponents/Pickers/CommonPicker'
+import {CustomPicker} from '../commonComponents/Pickers/commonPicker'
+
+const {width} = Dimensions.get('window')
+
 
 const SymptomRegister = ({navigation,idR,cancer}) => {
 
@@ -189,7 +192,7 @@ const SymptomStyle=StyleSheet.create({
 
     symptom_topView:{
         backgroundColor: "#B189F8",
-        flex:5,
+        flex:4.5,
         justifyContent:'space-evenly',
         alignItems:'center',
         flexDirection:'column',
@@ -206,8 +209,13 @@ const SymptomStyle=StyleSheet.create({
     },
 
     symptom_imgBack:{
+<<<<<<< HEAD
+        width,
+        height:60
+=======
         height:50,
         width:'100%'
+>>>>>>> 32af9410b627f4133134692e59351dd801806058
     }
 })
 

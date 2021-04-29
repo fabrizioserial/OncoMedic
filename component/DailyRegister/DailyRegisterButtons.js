@@ -23,6 +23,7 @@ export const DailyRegisterButtons = ({type,text,imageProp,switchSwiper,handleVal
                         <Text style={DailyRegisterEStyle.dairegele_cont_top_text}>{text}</Text>
                     </View>
                 </View>
+                <Image style={DailyRegisterEStyle.dairegele_deco_top} source={require("../../img/day_deco.png")}/>
                 <View style={DailyRegisterEStyle.dairegele_itemcont}> 
                     {
                         option.map((item,index) => <ItemDRButtons item={item} key={index} switchSwiper={swipeHandler} handlePress={handleValue} index={index}/>)
@@ -78,6 +79,9 @@ const DailyRegisterEStyle = StyleSheet.create({
         fontWeight: 'bold',
         textAlign:"center",
 
+    },
+    daireg:{
+        width
     }
 })
 
