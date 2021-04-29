@@ -5,9 +5,9 @@ import ItemDRButtons from '../Item/ItemDRButton'
 
 const {width} = Dimensions.get('window')
 
-export const DailyRegisterButtons = ({type,imageProp,switchSwiper,handleValue,index}) => {
+export const DailyRegisterButtons = ({type,text,imageProp,switchSwiper,handleValue,index}) => {
 
-    const option = type=="¿APETITO?" ? ["Menos de lo normal","Normal","Mas de lo normal"] : type == "¿HIDRATACION?"? ["Menos de 1L","Entre 1L y 2L","Mas de 2L"]:type=="ACTIVIDAD FISICA"?
+    const option = type=="A" ? ["Menos de lo normal","Normal","Mas de lo normal"] : type == "H"? ["Menos de 1L","Entre 1L y 2L","Mas de 2L"]:type=="AF"?
     ["No","Menos de 30 min","Entre 30 y 60 min","Mas de 60 min"]:["No. No vi a nadie","Si. Limitado a pocas interacciones interpersonales","Si. Vi a conocidos y amigos mas de una hora","Si. Vi a conocidos y amigos mas de 2 horas"]
 
     const swipeHandler= () =>{
@@ -20,7 +20,7 @@ export const DailyRegisterButtons = ({type,imageProp,switchSwiper,handleValue,in
                 <View style={DailyRegisterEStyle.dairegele_cont}>
                     <View style={DailyRegisterEStyle.dairegele_cont_top}>
                         <Image  source={imageProp}/>
-                        <Text style={DailyRegisterEStyle.dairegele_cont_top_text}>{type}</Text>
+                        <Text style={DailyRegisterEStyle.dairegele_cont_top_text}>{text}</Text>
                     </View>
                 </View>
                 <Image style={DailyRegisterEStyle.dairegele_deco_top} source={require("../../img/day_deco.png")}/>

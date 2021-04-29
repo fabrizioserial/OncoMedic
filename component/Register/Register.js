@@ -1,12 +1,15 @@
 import React, {useState,useEffect} from 'react'
 import {ToastAndroid,Platform, AlertIOS,
-        SafeAreaView,StyleSheet,Dimensions,View,Image,Text,TextInput,ScrollView, Button,Modal,Pressable} from 'react-native'
+        SafeAreaView,StyleSheet,Dimensions,View,Image,Text,TextInput,ScrollView, Button,Modal,Pressable, KeyboardAvoidingView} from 'react-native'
 import {Picker} from '@react-native-picker/picker'
 import {ButtonCustomeOrange} from '../Buttons/ButtonCustomeOrange.js'
 import {connect} from 'react-redux'
 import {setPersonalInformationAction} from '../../reduxStore/actions/registerAction'
 import DropDownPicker from 'react-native-dropdown-picker'
-import {CustomPicker} from '../commonComponents/Pickers/commonPicker'
+
+import {CustomPicker} from '../commonComponents/Pickers/CommonPicker'
+import {DatePickerModal} from '../commonComponents/Modals/DatePickerModal'
+
 
 const {width} = Dimensions.get("window")
  
@@ -14,45 +17,25 @@ const Register = ({navigation,setPersonalInformationAction}) => {
 
     const [email,setEmail] = useState("")
     const [name,setName] = useState ("")
+    const [surname,setSurname] = useState("")
     const [password,setPassword] = useState("")
     const [gender,setGender] = useState(null)
-    const [birth, setBirth] = useState("")
+    const [birth, setBirth] = useState(new Date())
     const [lenghtbirth,setLength] = useState(0)
-    const [birthValidate,setBValidate] = useState(true)
+    const [birthWasSelected, setBirthSelected] = useState(false)
     const [emailValidate,setEValidate] = useState(true)
-
-
-    useEffect(() => {
-        var string = birth;
-        lenghtbirth < string.length && string.length == 2 ? (setLength(string.length),string=string +"/") : setLength(string.length)
-        lenghtbirth < string.length && string.length == 5 ? (setLength(string.length), string = string + "/") : setLength(string.length)
-        setBirth(string)
-
-        if(string.length == 10){
-            const day = string.substring(0,2)
-            if(parseInt(day) > 0 && parseInt(day) <= 31){
-                const month = string.substring(3,5)
-                if(parseInt(month) > 0 && parseInt(month,10) <= 12){
-                    setBValidate(true)
-                }else{
-                    setBValidate(false)
-                }
-            }else{
-                setBValidate(false)
-            }
-        }
-        
-
-    }, [birth])
+    const [dateModalVisible, setDModal] = useState(false)
 
     useEffect(() => {
         const email_aux = email;
         email_aux.length > 0 ? email_aux.includes("@") ? setEValidate(true) : setEValidate(false) : setEValidate(true)
     }, [email])
+    
+
 
     const handleSwitchToRegisterMedic = () =>{
        // email.length > 0 ? name.length >0 && gender != 0 && birth >0 && navigation.navigate("register_medic") : notifyMessage("Faltan datos")
-        setPersonalInformationAction({name:name,email:email,gender:gender,birth:birth,password:password})
+        setPersonalInformationAction({name:''+name+' '+surname,email:email,gender:gender,birth:birth.toDateString(),password:password})
         navigation.navigate("register_medic")
     }
 
@@ -66,7 +49,6 @@ const Register = ({navigation,setPersonalInformationAction}) => {
 
     return (
         <SafeAreaView style={RegisterUser.reguse_cont_background}>
-
             <View style={RegisterUser.reguse_top}>
                 <Image source={require("../../img/ic_user.png")}/>
                 <Text style={RegisterUser.reguse_text_top}>   DATOS USUARIO</Text>
@@ -74,21 +56,29 @@ const Register = ({navigation,setPersonalInformationAction}) => {
             <View>
                 <Image style={RegisterUser.reguse_top_img} source={require("../../img/register_deco.png")}/>
             </View>
+            <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            style={{flex:1}}
+            >
             <ScrollView  contentContainerStyle={RegisterUser.scroll} >
                 <View style={RegisterUser.reguse_cont_cont}>
                     <View style={RegisterUser.reguse_cont_regusein_inputs}>
                             <View>
-                                <Text style={RegisterUser.reguse_text_upinput}>Nombre y apellido</Text>
+                                <Text style={RegisterUser.reguse_text_upinput}>Nombre</Text>
                                 <TextInput onChangeText={setName} placeholderTextColor="#c4c4c4" placeholder="Ingrese su nombre" style={RegisterUser.reguse_textInput}></TextInput>
+                            </View>
+                            <View style={{marginTop:25}}>
+                                <Text style={RegisterUser.reguse_text_upinput}>Apellido</Text>
+                                <TextInput onChangeText={setSurname} placeholderTextColor="#c4c4c4" placeholder="Ingrese su Apellido" style={RegisterUser.reguse_textInput}></TextInput>
                             </View>
                             <View style={{marginTop:25}}>
                                 <Text style={RegisterUser.reguse_text_upinput}>Contraseña</Text>
                                 <TextInput onChangeText={setPassword} placeholderTextColor="#c4c4c4" placeholder="Ingrese su contraseña" style={RegisterUser.reguse_textInput}></TextInput>
                             </View>
-                            <View style={{marginTop: 25}}>
+                            <View style={{marginTop: 25, zIndex:40}}>
                                 <View>
                                     <Text style={RegisterUser.reguse_text_upinput}>Genero</Text>
-                                    <View style={{zIndex:1000}}>
+                                    <View>
                                         <CustomPicker items={genderTypes} defaultValue={gender} setValue={setGender} placeHolder={'Seleccione su genero'}/>
                                     </View>
                                 </View>
@@ -103,16 +93,19 @@ const Register = ({navigation,setPersonalInformationAction}) => {
                             </View>
                             <View style={{marginTop: 25}}>
                                 <Text style={RegisterUser.reguse_text_upinput}>Fecha de Nacimiento</Text>
-                                <TextInput onChangeText={setBirth} value={birth} maxLength={10} placeholder="Ingrese fecha de nacimiento" placeholderTextColor="#c4c4c4" style={birthValidate ? RegisterUser.reguse_textInput : RegisterUser.reguse_textInputRed}></TextInput>
-                                {
-                                    !birthValidate  && <Text style={RegisterUser.reguse_validvalue}>Introducir valor valido</Text>
-                                }
+                                <Pressable style={RegisterUser.reguse_date_picker_container} onPress={()=>(setDModal(true),setBirthSelected(true))}>
+                                    {!birthWasSelected?
+                                    <Text style={RegisterUser.reguse_text_upinput}>Seleccione su fecha de nacimiento</Text>
+                                    :<Text style={RegisterUser.reguse_text}>{''+birth.getDate()+' / '+birth.getMonth()+' / '+birth.getFullYear()}</Text>}    
+                                </Pressable>
                             </View>
                             <ButtonCustomeOrange title={"Continuar"} handleFunction={handleSwitchToRegisterMedic} marginT={{marginTop: 50}}/>
                     
                     </View>
                 </View>
             </ScrollView>
+            <DatePickerModal visibility={dateModalVisible} setVisibility={setDModal} date={birth} setDate={setBirth}/>
+            </KeyboardAvoidingView>
         </SafeAreaView>
     )
 }
@@ -158,6 +151,15 @@ const RegisterUser = StyleSheet.create({
         padding: 10,
         borderRadius: 10,
         backgroundColor: "#E3E3E3",   
+    },
+    reguse_date_picker_container:{
+        marginTop: 6,
+        width:300,
+        height:50,
+        padding: 10,
+        borderRadius: 10,
+        backgroundColor: "#E3E3E3",
+        justifyContent:'center'   
     },
     reguse_text:{
         fontSize: 17,

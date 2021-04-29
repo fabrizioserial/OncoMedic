@@ -90,6 +90,7 @@ const RegisterElementMoreStyle = StyleSheet.create({
         minHeight: 500,
         justifyContent: 'center',
         alignItems: 'center',
+        marginBottom:60
     },
     regelem_const_back:{
     

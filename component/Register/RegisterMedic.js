@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react'
 import {ToastAndroid,Platform, AlertIOS,
-        SafeAreaView,StyleSheet,Dimensions,View,Image,Text,TextInput,ScrollView, Pressable} from 'react-native'
+        SafeAreaView,StyleSheet,Dimensions,View,Image,Text,TextInput,ScrollView, Pressable, KeyboardAvoidingView} from 'react-native'
 import {Picker} from '@react-native-picker/picker'
 import {ButtonCustomeOrange} from '../Buttons/ButtonCustomeOrange.js'
 import { Button, Modal } from 'react-native-paper'
@@ -10,8 +10,11 @@ import store from '../../reduxStore/store';
 import {setMedicalInformationAction} from '../../reduxStore/actions/registerAction'
 import DropDownPicker from 'react-native-dropdown-picker'
 import {connect} from 'react-redux'
-import firestore, { firebase } from '@react-native-firebase/firestore'
-import {CustomPicker} from '../commonComponents/Pickers/commonPicker'
+
+import firestore, { firebase } from '@react-native-firebase/firestore';
+import {CustomPicker} from '../commonComponents/Pickers/CommonPicker'
+import zIndex from '@material-ui/core/styles/zIndex'
+
 
 
 
@@ -62,45 +65,47 @@ const RegisterMedic =  ({navigation,setMedicalInformationAction}) => {
     
     return (
         <SafeAreaView style={RegisterUser.reguse_cont_background}>
-            <ScrollView  contentContainerStyle={RegisterUser.scroll} >
-                
-                <View style={RegisterUser.reguse_cont_cont}>
-                    <View style={RegisterUser.reguse_top}>
-                        <Image source={require("../../img/ic_medic.png")}/>
-                        <Text style={RegisterUser.reguse_text_top}>   DATOS HOSPITALARIOS</Text>
-                    </View>
-                    <Image style={RegisterUser.reguse_top_img} source={require("../../img/register_deco.png")}/>
-                    
-                    <View style={RegisterUser.reguse_cont_regusein_inputs}>
-                            <View style={{...(Platform.OS !== 'android' && {zIndex: 5000})}}>
-                                <Text style={RegisterUser.reguse_text_upinput}>Medico</Text>
-                                <View style={RegisterUser.reguse_picker} >
-                                    <CustomPicker items={medics} defaultValue={medic} setValue={setMedic} placeHolder={'Seleccione su medico'}/>                         
-                                </View>
-                            </View>
-                            <View style={{marginTop: 25, ...(Platform.OS !== 'android' && {zIndex: 4000})}}>
-                                <Text style={RegisterUser.reguse_text_upinput}>Lugar</Text>
-                                <View style={RegisterUser.reguse_picker} >
-                                    <CustomPicker items={places} defaultValue={place} setValue={setPlace} placeHolder={'Seleccione su Lugar'}></CustomPicker>
-                                </View>
-                                
-                            </View>
-                            <View style={{marginTop: 25, ...(Platform.OS !== 'android' && {zIndex: 3000})}}>
-                                <Text style={RegisterUser.reguse_text_upinput}>Etnia</Text>
-                                <View style={RegisterUser.reguse_picker}>
-                                    <CustomPicker items={etnias} defaultValue={etnia} setValue={setEtnia} placeHolder={'Seleccione su etnia'}/>
-                                </View>
-                                
-                            </View>
-                            <View style={{marginTop: 25}}>
-                                <Text style={RegisterUser.reguse_text_upinput}>Id de paciente</Text>
-                                <TextInput onChangeText={setId} value={id} maxLength={10} placeholder="Ingrese su ID de paciente" placeholderTextColor="#c4c4c4" style={RegisterUser.reguse_textInput }></TextInput>
-                            </View>
-                            <ButtonCustomeOrange title={"Continuar"} handleFunction={handleSwitchToRegisterMedic} marginT={{marginTop: 50}}/>
-                    
-                    </View>
+            <View style={RegisterUser.reguse_cont_cont}>
+                <View style={RegisterUser.reguse_top}>
+                    <Image source={require("../../img/ic_medic.png")}/>
+                    <Text style={RegisterUser.reguse_text_top}>   DATOS HOSPITALARIOS</Text>
                 </View>
-            </ScrollView>
+                <Image style={RegisterUser.reguse_top_img} source={require("../../img/register_deco.png")}/>
+            </View>        
+            <KeyboardAvoidingView
+            style={{flex:9, marginTop:50}}
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            keyboardVerticalOffset={Platform.OS==="ios" && 40}>
+                <ScrollView  contentContainerStyle={RegisterUser.scroll} >    
+                    <View style={RegisterUser.reguse_cont_regusein_inputs}>
+                        <View style={{...(Platform.OS !== 'android' && {zIndex: 5000})}}>
+                            <Text style={RegisterUser.reguse_text_upinput}>Medico</Text>
+                            <View style={RegisterUser.reguse_picker} >
+                                <CustomPicker items={medics} defaultValue={medic} setValue={setMedic} placeHolder={'Seleccione su medico'}/>                         
+                            </View>
+                        </View>
+                        <View style={{marginTop: 25, ...(Platform.OS !== 'android' && {zIndex: 4000})}}>
+                            <Text style={RegisterUser.reguse_text_upinput}>Lugar</Text>
+                            <View style={RegisterUser.reguse_picker} >
+                                <CustomPicker items={places} defaultValue={place} setValue={setPlace} placeHolder={'Seleccione su Lugar'}></CustomPicker>
+                            </View>
+                                    
+                        </View>
+                        <View style={{marginTop: 25, ...(Platform.OS !== 'android' && {zIndex: 3000})}}>
+                            <Text style={RegisterUser.reguse_text_upinput}>Etnia</Text>
+                            <View style={RegisterUser.reguse_picker}>
+                                <CustomPicker items={etnias} defaultValue={etnia} setValue={setEtnia} placeHolder={'Seleccione su etnia'}/>
+                            </View>
+                                    
+                        </View>
+                        <View style={{marginTop: 25}}>
+                            <Text style={RegisterUser.reguse_text_upinput}>Id de paciente</Text>
+                            <TextInput keyboardType={'numeric'} onChangeText={setId} value={id} maxLength={10} placeholder="Ingrese su ID de paciente" placeholderTextColor="#c4c4c4" style={RegisterUser.reguse_textInput }></TextInput>
+                        </View>
+                        <ButtonCustomeOrange title={"Continuar"} handleFunction={handleSwitchToRegisterMedic} marginT={{marginTop: 50}}/>
+                    </View>
+                </ScrollView>
+            </KeyboardAvoidingView>
         </SafeAreaView>
     )
 }
@@ -135,6 +140,9 @@ const RegisterUser = StyleSheet.create({
         justifyContent: 'center',
         position:"relative",
         flex: 1,
+        marginTop:50,
+        zIndex:30,
+        backgroundColor:'#FFFFFF'
     },
     reguse_text_upinput:{
         color:"#AAAAAA",
