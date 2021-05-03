@@ -8,7 +8,7 @@ import firestore from '@react-native-firebase/firestore';
 import { Alert } from 'react-native'
 import {ActivityIndicator} from 'react-native-paper';
 import {SearchPicker} from '../commonComponents/Pickers/SearchPicker'
-import {CustomPicker} from '../commonComponents/Pickers/commonPicker'
+import {CustomPicker} from '../commonComponents/Pickers/CommonPicker'
 
 const {width} = Dimensions.get('window')
 
@@ -30,7 +30,9 @@ const SymptomRegister = ({navigation,idR,cancer}) => {
             (snapshot) => {
                 snapshot.forEach(doc => {
                     console.log(doc.data().label)
-                    doc.data().cancer==cancer && sL.push({label:doc.data().label,value:doc.data().value,descripcion:doc.data().descripcion,gravity:doc.data().gravity})
+                    if (doc.data().cancer==cancer|| doc.data().cancer=='comun' ){
+                        sL.push({label:doc.data().label,value:doc.data().value,descripcion:doc.data().descripcion,gravity:doc.data().gravity})
+                    } 
                 })
             }
         )
@@ -80,22 +82,39 @@ const SymptomRegister = ({navigation,idR,cancer}) => {
     }
 
     const pushSymptoms = () =>{
-        if(grade>5){
-            console.log('fue activado')
-            console.log(grade)
+        if(grade == null || symptom == {label:null,value:null,description:null,gravity:null}){
             Alert.alert(
-                "Advertencia",
-                "Se sugiere su visita a un hospital",
+                "Error",
+                "Seleccione un sintoma y un grado",
                 [
                     {
                         text: 'OK',
-                        onPress:() => firestoreSave()
                     }
                 ]
             )
-        }else{
-            firestoreSave()
         }
+        else{
+            if(grade>5){
+                console.log('fue activado')
+                console.log(grade)
+                Alert.alert(
+                    "Advertencia",
+                    "Se sugiere su visita a un hospital",
+                    [
+                        {
+                            text: 'OK',
+                            onPress:() => firestoreSave()
+                        }
+                    ]
+                )
+            }else{
+                firestoreSave()
+            }
+        }
+    }
+
+    const pickedSymptom = (item) =>{
+        
     }
 
     return (
@@ -103,7 +122,7 @@ const SymptomRegister = ({navigation,idR,cancer}) => {
             <View style={SymptomStyle.symptom_topView} >
                 <Text style={SymptomStyle.symptom_text_title}>Sintomas</Text>
                 <SearchPicker items={sLoaded} defaultValue={symptom.value} setValue={setSymptom} placeHolder={'Seleccione su sintoma'}/>
-                <View>{symptom.value==null?
+                <View style={{width:'80%'}}>{symptom.value==null?
                 <Text style={SymptomStyle.symptom_descriptionText}>Descripcion de sintoma</Text>:<Text style={SymptomStyle.symptom_descriptionText}>{symptom.descripcion}</Text>}</View>
             </View>
             <Image resizeMode={'stretch'} style={SymptomStyle.symptom_imgBack}source={require('../../img/register_deco.png')}/>
@@ -162,7 +181,8 @@ const SymptomStyle=StyleSheet.create({
     symptom_descriptionText:{
         marginTop:20,
         color:'white',
-        height:100
+        height:100,
+        textAlign:'center'
     },
 
 

@@ -52,10 +52,27 @@ const Home = ({navigation, avatarData, name}) => {
 
             <ButtonCustomeHome title={"Como te encuentras hoy?"} orientation={"row"} illustration={"RD"} text={"Completa y cuentanos como te has sentido"} color={"#A476FC"} handlePress={switchDailyRegister}/>
             <ButtonCustomeHome title={"No te encuentras bien?"} orientation={"row-reverse"} text={"Completa y cuentanos que te sucede!"} color={"#7685FC"} handlePress={switchSymptomsRegister}/>
+            <Pressable style={HomeStyle.h_btn_logout} onPress={()=>{navigation.navigate('login')}}>
+                <Text style={HomeStyle.h_txt_logout}>Log out</Text>
+            </Pressable>
         </SafeAreaView>
     )
 }
 const HomeStyle = StyleSheet.create({
+    h_txt_logout:{
+        color:'#FFFFFF'
+    },
+    h_btn_logout:{
+        justifyContent:'center',
+        alignItems:'center',
+        position:'absolute',
+        left:'6%',
+        bottom:'4%',
+        width:'20%',
+        height:'5%',
+        borderRadius:10,
+        backgroundColor:"#FFB13A",
+    },
     h_txt_hola:{
         marginTop:20,
         marginLeft: 20,
@@ -90,9 +107,7 @@ const HomeStyle = StyleSheet.create({
         backgroundColor: "#EEE6FD",
     },
     h_const_background:{
-        width,
         flex: 1,
-        height:"100%",
         backgroundColor: "white",
         alignItems: 'center',
         justifyContent: 'center',
