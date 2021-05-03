@@ -209,13 +209,8 @@ const SymptomStyle=StyleSheet.create({
     },
 
     symptom_imgBack:{
-<<<<<<< HEAD
         width,
         height:60
-=======
-        height:50,
-        width:'100%'
->>>>>>> 32af9410b627f4133134692e59351dd801806058
     }
 })
 
