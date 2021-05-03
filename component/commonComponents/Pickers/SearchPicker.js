@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import DropDownPicker from 'react-native-dropdown-picker'
-import {StyleSheet} from 'react-native'
+import {StyleSheet, Text} from 'react-native'
 import { View,TextInput } from 'react-native'
 
 export const SearchPicker = ({items, defaultValue, setValue, placeHolder}) => {
