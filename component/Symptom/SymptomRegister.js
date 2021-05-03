@@ -113,6 +113,10 @@ const SymptomRegister = ({navigation,idR,cancer}) => {
         }
     }
 
+    const pickedSymptom = (item) =>{
+        
+    }
+
     return (
         <View style={SymptomStyle.symptom_generalView}>
             <View style={SymptomStyle.symptom_topView} >
