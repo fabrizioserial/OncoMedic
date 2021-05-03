@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { Alert } from 'react-native';
 import {useFocusEffect} from '@react-navigation/native'
 import {ActivityIndicator} from 'react-native-paper';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 
 const {width} = Dimensions.get("window")
@@ -16,6 +17,7 @@ const Login = ({navigation, setUser}) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [id,setId]=useState("")
     const [password,setPassword] = useState("")
+    const [passwordHidden, setHidPas] = useState(true)
     const [isLoading,setIsLoading] = useState(false)
 
     useFocusEffect(
@@ -43,23 +45,11 @@ const Login = ({navigation, setUser}) => {
                 setIsLoading(false)
                 navigation.navigate('wait_screen')
             }
-            else if(doc.exists && doc.data().password!=password){
-                setIsLoading(false)
-                Alert.alert(
-                    "Error",
-                    "Contraseña incorrecta",
-                    [
-                        {
-                            text: 'OK',
-                        }
-                    ]
-                )
-            }
             else{
                 setIsLoading(false)
                 Alert.alert(
                     "Error",
-                    "Usuario no existe",
+                    "Usuario no existe o contraseña incorrecta",
                     [
                         {
                             text: 'OK',
@@ -115,11 +105,16 @@ const Login = ({navigation, setUser}) => {
                 <View style={LoginStyle.log_cont_login_inputs}>
                     <View>
                         <Text style={LoginStyle.log_text_upinput}>ID de paciente</Text>
-                        <TextInput onChangeText={setId} placeholderTextColor="#c4c4c4" placeholder="Ingrese su ID de paciente" style={LoginStyle.log_textInput}></TextInput>
+                        <View style={LoginStyle.log_text_container}>
+                            <TextInput onChangeText={setId} placeholderTextColor="#c4c4c4" placeholder="Ingrese su ID de paciente" style={LoginStyle.log_textInput}></TextInput>
+                        </View>
                     </View>
                     <View style={{marginTop: 20}}>
                         <Text style={LoginStyle.log_text_upinput}>Constraseña</Text>
-                        <TextInput onChangeText={setPassword} placeholderTextColor="#c4c4c4" placeholder="Ingrese su contraseña" style={LoginStyle.log_textInput}></TextInput>
+                        <View style={LoginStyle.log_text_container}>
+                            <TextInput secureTextEntry={passwordHidden} onChangeText={setPassword} placeholderTextColor="#c4c4c4" placeholder="Ingrese su contraseña" style={LoginStyle.log_textInput}></TextInput>
+                            <Icon.Button name={passwordHidden?'eye':'eyeo'}  color={'#AAAAAA'} style={LoginStyle.log_icon_style} onPress={()=>setHidPas(!passwordHidden)}/>
+                        </View>
                     </View>
                     <View style={LoginStyle.log_cont_olvcont}>
                         <Pressable style={{width:300}} onPress={() => setModalVisible(true)}>
@@ -148,6 +143,10 @@ const Login = ({navigation, setUser}) => {
 }
 
 const LoginStyle = StyleSheet.create({
+    log_icon_style:{
+        backgroundColor:'#E3E3E3',
+        flex:1,
+    },
     log_loading:{
         position: 'absolute',
         backgroundColor:'#707070',
@@ -181,14 +180,24 @@ const LoginStyle = StyleSheet.create({
         fontSize: 17,
     },
     log_textInput:{
+
+        flex:5,
+        height:50,
+        width:20,
+        fontSize: 17,
+        borderRadius: 10,
+    },
+    log_text_container:{
+        justifyContent:'center',
+        alignItems:'center',
+        flexDirection:'row',
         marginTop: 6,
+        paddingLeft:10,
+        paddingRight:10,
         width:300,
         height:50,
-        fontSize: 17,
-        padding: 10,
         borderRadius: 10,
         backgroundColor: "#E3E3E3",
-        
     },
     log_cont_login_inputs:{
         flexDirection: 'column',
