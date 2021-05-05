@@ -29,7 +29,6 @@ import {
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack' ;
-import {Splash} from './component/Splash/Splash.js'
 import Login from './component/Login/Login.js'
 import Register from './component/Register/Register.js'
 import RegisterMedic from './component/Register/RegisterMedic.js'
@@ -70,7 +69,6 @@ const App: () => Node = () => {
       <Provider store={store}>
         
         <Stack.Navigator>
-          <Stack.Screen  name="Splash_Screen" component={Splash} options={{header: ()=> null}}/>
           <Stack.Screen  name="login" component={Login} options={{header: ()=> null}}/>
           <Stack.Screen  name="register" component={Register} options={{header: ()=> null}}/>
           <Stack.Screen  name="register_medic" component={RegisterMedic} options={{header: ()=> null}}/>
@@ -84,9 +82,6 @@ const App: () => Node = () => {
           <Stack.Screen  name='wait_screen' component={WaitingForApproval} options={{header: ()=> null}}/>
           <Stack.Screen  name='status' component={SucessStatus} options={{header: ()=> null}}/>
           <Stack.Screen  name='fail' component={FailStatus} options={{header: ()=> null}}/>
-
-
-
         </Stack.Navigator>
       </Provider>
 

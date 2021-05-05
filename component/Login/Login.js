@@ -8,6 +8,7 @@ import { Alert } from 'react-native';
 import {useFocusEffect} from '@react-navigation/native'
 import {ActivityIndicator} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/AntDesign';
+import {CommonActions} from '@react-navigation/native';
 
 
 const {width} = Dimensions.get("window")
@@ -22,7 +23,6 @@ const Login = ({navigation, setUser}) => {
 
     useFocusEffect(
         React.useCallback(()=>{
-            console.log('buenas')
             logoutUser()
         })
     )
