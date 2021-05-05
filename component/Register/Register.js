@@ -35,7 +35,7 @@ const Register = ({navigation,setPersonalInformationAction}) => {
 
     const handleSwitchToRegisterMedic = () =>{
        // email.length > 0 ? name.length >0 && gender != 0 && birth >0 && navigation.navigate("register_medic") : notifyMessage("Faltan datos")
-        setPersonalInformationAction({name:''+name+' '+surname,email:email,gender:gender,birth:birth.toDateString(),password:password})
+        setPersonalInformationAction({name:name,surname:surname,email:email,gender:gender,birth:birth.toDateString(),password:password})
         navigation.navigate("register_medic")
     }
 

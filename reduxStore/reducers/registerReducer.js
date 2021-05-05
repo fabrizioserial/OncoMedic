@@ -3,6 +3,7 @@ import {SET_PERSONAL_INFORMATION,SET_MEDICAL_INFORMATION,SET_SMOKE_INFORMATION,S
 
 const default_user ={
     name:"",
+    surname:"",
     password:"",
     email:"",
     gender:"",
@@ -43,6 +44,7 @@ const user_data = (state=default_user , action) =>{
             return{
                 ...state,
                 name : action.payload.name,
+                surname: action.payload.surname,
                 email: action.payload.email,
                 gender: action.payload.gender,
                 birth: action.payload.birth,
@@ -53,6 +55,7 @@ const user_data = (state=default_user , action) =>{
             return{
                 ...state,
                 name : action.payload.name,
+                surname: action.payload.surname,
                 email: action.payload.email,
                 gender: action.payload.gender,
                 birth: action.payload.birth,
